@@ -1,32 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>부서 목록</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>근태 현황</h1>-->
 
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>부서코드</th>-->
-<!--        <br>-->
-<!--        <th>뭐하는지</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    &lt;!&ndash; deptList를 반복하며 부서 정보를 표시 &ndash;&gt;-->
-<!--    <tr th:each="dept : ${deptList}">-->
-<!--        <td th:text="${dept.deptno}">부서번호</td>-->
-<!--        <td th:text="${dept.isworking}">isworking</td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -41,27 +13,20 @@
 <table border="1">
 
 
-
-
     <!-- 부서의 출근 전, 출근, 퇴근 카운트를 표시 -->
     <p>부서 이름:<span th:text="${deptname}"></span></p>
     <p>출근 전: <span th:text="${preWorkCount}"></span></p>
     <p>출근: <span th:text="${workCount}"></span></p>
     <p>퇴근: <span th:text="${leaveCount}"></span></p>
+    <p>외출: <span th:text="${commuteCount}"></span></p>
+    <p>휴가: <span th:text="${vacationCount}"></span></p>
+
 
 
 
 </table>
 <table>
 
-    <tbody>
-    <!-- deptList를 반복하며 부서 정보를 표시 -->
-    <tr th:each="dept : ${deptList}">
-        <td th:text="${dept.id}">1</td>
-        <td th:text="${dept.name}">부서명</td>
-        <td th:text="${dept.code}">부서 코드</td>
-    </tr>
-    </tbody>
 </table>
 </body>
 </html>
