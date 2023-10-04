@@ -51,4 +51,7 @@ public interface SampleDao {
     public String istardytoday(int empno);
 
     public void updateextrawork(int extratime,int empno, int month);
+
+    public int getDeptNo(int empno);
+
 }

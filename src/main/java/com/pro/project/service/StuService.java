@@ -94,4 +94,6 @@ public class StuService {
 
     public String istardytoday(int empno){return sampledao.istardytoday(empno);}
     public void updateextrawork(int extratime,int empno, int month){sampledao.updateextrawork(extratime,empno,month);}
+
+    public int getDeptNo(int empno){return sampledao.getDeptNo(empno);}
 }

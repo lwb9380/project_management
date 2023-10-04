@@ -97,6 +97,12 @@
         update monthresult set worktime=work+#{param1} where empno=#{param2} and month=#{param3}
     </update>
 
+    <select id="getDeptNo" resultType="java.lang.Integer">
+        select deptno from dept where empno=#{param1}
+
+    </select>
+
+
     <select id="istardytoday" resultType="String">
         select tardy from working where empno=#{param1}
     </select>
