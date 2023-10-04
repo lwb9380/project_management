@@ -7,11 +7,14 @@ import com.pro.project.repository.DepartmentRepository;
 import com.pro.project.repository.EmployeeRepository;
 import com.pro.project.service.VacationRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -72,5 +75,10 @@ public class VacationRequestController {
         List<VacationRequest> vacationRequests = vacationRequestService.getAllVacationRequests();
         model.addAttribute("vacationRequests", vacationRequests);
         return "vacationRequestList";
+    }
+    @GetMapping("/api/vacation-requests")
+    @ResponseBody
+    public Page<VacationRequest> getVacationRequests(Pageable pageable) {
+        return vacationRequestService.getAllVacationRequests(pageable);
     }
 }
