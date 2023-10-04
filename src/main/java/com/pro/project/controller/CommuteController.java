@@ -1,5 +1,6 @@
 package com.pro.project.controller;
 
+import com.pro.project.auth.AuthInfo;
 import com.pro.project.dto.Day;
 import com.pro.project.dto.Dept;
 import com.pro.project.dto.Working;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -25,8 +28,12 @@ public class CommuteController {
     StuService stuService;
 
     @GetMapping("/make")
-    public String makego(){
-        int empno=25;
+    public String makego(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+
         stuService.resetworking(empno);
         return "send";
         //초기화임
@@ -54,12 +61,14 @@ public class CommuteController {
 
 
     @GetMapping("/start")
-    public String startpage(Model model){
+    public String startpage(HttpServletRequest request,Model model){
 
 
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
 
-        int empno=25;  //세션에서 가져올 사원 번호
-        int deptno=1100; //마찬가지로 부서 번호
+        int deptno=stuService.getDeptNo(empno);
         Working working=stuService.getlogininfo(empno);  //오늘의 근무 상태를 일단 가져옴 empno로
         Date last=working.getLastday(); //근무 상태에 있는 마지막으로 로그인 한 날을조회
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -159,12 +168,16 @@ public class CommuteController {
 
     @PostMapping("/makecommute")
     @ResponseBody
-    public String processData() {
+    public String processData(HttpServletRequest request) {
 
         //출근 버튼 누르면 출근을 기록하기 위함
 
 
-        int empno=25;
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+        int deptno=stuService.getDeptNo(empno);
         LocalDateTime start=LocalDateTime.now();
         String starttime=start.toString();
         String tttime=starttime.substring(11, 16);
@@ -236,11 +249,16 @@ public class CommuteController {
 
     @PostMapping("/takearest")
     @ResponseBody
-    public String takeaRest(){
+    public String takeaRest(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+
+        int deptno=stuService.getDeptNo(empno);
 
         //외출신청
 
-        int empno=25;
         String responseData="";
         String  working=stuService.checkisworking(empno);
         //현재 근무 정보를 받아옴
@@ -278,8 +296,14 @@ public class CommuteController {
 
 
     @PostMapping("/reset")
-    public void reset(){
-        int empno=25;
+    public void reset(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+
+        int deptno=stuService.getDeptNo(empno);
+
         stuService.resetworking(empno);
         //초기화 버튼에서 돌아가는 초기화
 
@@ -287,9 +311,14 @@ public class CommuteController {
 
     @PostMapping("/quitcommute")
     @ResponseBody
-    public String quitcommute(@RequestParam("result") String resultValue){
+    public String quitcommute(@RequestParam("result") String resultValue,HttpServletRequest request){
 
-        int empno=25;
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+
+        int deptno=stuService.getDeptNo(empno);
         Working working=stuService.getlogininfo(empno);
         int month=LocalDateTime.now().getMonthValue();
         //퇴근임
@@ -378,8 +407,12 @@ public class CommuteController {
 
 
     @GetMapping("/mypage")
-    public String mypage(Model model){
-        int empno=22;
+    public String mypage(HttpServletRequest request, Model model){
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+        int deptno=stuService.getDeptNo(empno);
 
         String authority=stuService.getAuthority(empno);
 
