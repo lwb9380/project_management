@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>휴가 신청하기</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    h2 {
+      color: #555;
+      text-align: center;
+      padding: 2em 0;
+      border-bottom: 2px solid #eaeaea;
+    }
+    form, table {
+      max-width: 80%;
+      margin: auto;
+    }
+    form {
+      background: #fff;
+      padding: 2em;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-bottom: 2em;
+    }
+    label, select, input, textarea, button {
+      display: block;
+      margin: 15px 0;
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+    }
+    button {
+      background: #5cb85c;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    button:hover {
+      background: #4cae4c;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 30px;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    @media (max-width: 768px) {
+      form, table {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+<h2>휴가 신청하기</h2>
+
+<!-- 휴가 신청 폼 -->
+<form action="/submit" method="post">
+
+
+  <label for="department">부서:</label>
+  <select id="department" name="department.id" required>
+    <option value="">부서 선택</option>
+    <!-- 여기에 부서 목록을 동적으로 로드하는 방법을 추가할 수 있습니다. -->
+  </select><br><br>
+
+  <label for="employee">사원:</label>
+  <select id="employee" name="employee.id" required>
+    <option value="">사원 선택</option>
+    <!-- 여기에 사원 목록을 동적으로 로드하는 방법을 추가할 수 있습니다. -->
+  </select><br><br>
+
+  <label for="vacationType">휴가 종류:</label>
+  <select id="vacationType" name="vacationType" required>
+    <option value="">휴가 종류 선택</option>
+    <option value="법정 휴가">법정 휴가</option>
+    <option value="약정 휴가">약정 휴가</option>
+  </select><br><br>
+
+  <!-- 하위 휴가 종류 선택 (동적으로 업데이트됨) -->
+  <label for="subVacationType">하위 휴가 종류:</label>
+  <select id="subVacationType" name="subVacationType" required disabled>
+    <option value="">하위 휴가 종류 선택</option>
+  </select><br><br>
+
+  <div id="requiredDocsMessage" style="color: black; margin-top: 10px;"></div>
+
+  <label for="detailedInfo">세부사항:</label>
+  <select id="detailedInfo" name="detailedInfo" required disabled>
+    <option value="">세부사항 선택</option>
+  </select><br><br>
+
+  <div id="detailedInfoMessage" style="color: black; margin-top: 10px;"></div> <!-- 새로운 div를 여기에 추가 -->
+
+  <label for="vacationReason">휴가 사유:</label>
+  <textarea id="vacationReason" name="vacationReason" rows="4" cols="50" required></textarea><br><br>
+
+  <!-- 휴가 신청일을 자동으로 설정합니다. -->
+  <input type="hidden" id="requestDatetime" name="requestDatetime">
+
+  <label for="vacationHopeDate">휴가 희망일:</label>
+  <input type="date" id="vacationHopeDate" name="vacationHopeDate" required><br><br>
+
+  <label for="vacationPeriod">휴가 기간:</label>
+  <input type="text" id="vacationPeriod" name="vacationPeriod" required><br><br>
+
+  <button type="submit">신청</button>
+</form>
+
+<script>
+  // 직원 목록 가져오기
+  function fetchEmployeesByDepartment() {
+    const selectedDepartmentId = document.getElementById('department').value;
+    fetch(`/employees/byDepartment/${selectedDepartmentId}`)
+            .then(response => response.json())
+            .then(data => {
+              const employeeSelect = document.getElementById('employee');
+              // 기존 옵션을 모두 제거
+              employeeSelect.innerHTML = '';
+              // 사원 목록 추가
+              data.forEach(employee => {
+                const option = document.createElement('option');
+                option.value = employee.id;
+                option.text = employee.employeeName;
+                employeeSelect.appendChild(option);
+              });
+            })
+            .catch(error => console.error('Error fetching employees:', error));
+  }
+
+  // 페이지 로드 시 부서 목록 가져오기
+  fetch('/departments/all')
+          .then(response => response.json())
+          .then(data => {
+            const departmentSelect = document.getElementById('department');
+            data.forEach(department => {
+              const option = document.createElement('option');
+              option.value = department.id;
+              option.text = department.departmentName;
+              departmentSelect.appendChild(option);
+            });
+          })
+          .catch(error => console.error('Error fetching departments:', error));
+
+  // 부서 선택 값이 변경될 때 사원 목록 가져오기
+  document.getElementById('department').addEventListener('change', fetchEmployeesByDepartment);
+
+  // 휴가 종류 선택 값이 변경될 때 하위 휴가 종류를 업데이트
+  document.getElementById('vacationType').addEventListener('change', function() {
+    const selectedVacationType = document.getElementById('vacationType').value;
+    const subVacationTypeSelect = document.getElementById('subVacationType');
+
+    document.getElementById('vacationPeriod').value = ''; // 값 초기화
+    document.getElementById('detailedInfoMessage').innerHTML = '';
+
+
+    // 하위 휴가 종류 목록 업데이트
+    if (selectedVacationType === '법정 휴가') {
+      // 법정 휴가에 해당하는 하위 휴가 종류 목록 업데이트
+      subVacationTypeSelect.innerHTML = `
+      <option value="">하위 휴가 종류 선택</option>
+      <option value="연차 휴가(유급)">연차 휴가(유급)</option>
+      <option value="반차 휴가(유급)">반차 휴가(유급)</option>
+      <option value="출산 휴가(유급)">출산 휴가(유급)</option>
+      <option value="배우자 출산 휴가(유급)">배우자 출산 휴가(유급)</option>
+      <option value="생리 휴가(무급)">생리 휴가(무급)</option>
+      <option value="가족 돌봄 휴직, 휴가(무급)">가족 돌봄 휴직, 휴가(무급)</option>
+    `;
+    } else if (selectedVacationType === '약정 휴가') {
+      // 약정 휴가에 해당하는 하위 휴가 종류 목록 업데이트
+      subVacationTypeSelect.innerHTML = `
+      <option value="">하위 휴가 종류 선택</option>
+      <option value="예비군 및 민방위(유급)">예비군 및 민방위(유급)</option>
+      <option value="경조사 휴가(무급)">경조사 휴가(무급)</option>
+      <option value="병가(무급)">병가(무급)</option>
+      <option value="계절 휴가(무급)">계절 휴가(무급)</option>
+      <option value="백신 휴가(무급)">백신 휴가(무급)</option>
+      <option value="리프레시 휴가(무급)">리프레시 휴가(무급)</option>
+    `;
+    } else {
+      // 선택한 휴가 종류에 따라 하위 휴가 종류를 업데이트
+      subVacationTypeSelect.innerHTML = '<option value="">하위 휴가 종류 선택</option>';
+    }
+
+
+    // 하위 휴가 종류 선택을 활성화
+    subVacationTypeSelect.disabled = false;
+
+    // 휴가 종류나 하위 휴가 종류를 변경할 때 휴가 기간을 초기화하고 수정 가능하도록 설정
+    vacationPeriodInput.value = '';
+    vacationPeriodInput.removeAttribute('readonly');
+  });
+
+  // 휴가 기간이 변경될 때 반차 휴가(유급)을 선택한 경우 0.5로 자동 설정
+  document.getElementById('vacationPeriod').addEventListener('input', function() {
+    const selectedVacationType = document.getElementById('vacationType').value;
+    const subVacationTypeSelect = document.getElementById('subVacationType');
+    const vacationPeriodInput = document.getElementById('vacationPeriod');
+
+    // detailedInfo 리스너에 의해 readonly 속성이 설정되었는지 확인
+    if(vacationPeriodInput.hasAttribute('readonly')) return; // readonly 인 경우 아무 것도 수행하지 않음
+
+    else {
+      vacationPeriodInput.removeAttribute('readonly');
+    }
+  });
+</script>
+
+<script>
+  document.getElementById('subVacationType').addEventListener('change', function() {
+    const selectedSubVacationType = this.value;
+    const detailedInfoSelect = document.getElementById('detailedInfo');
+
+    const requiredDocsMessage = document.getElementById('requiredDocsMessage');
+
+    document.getElementById('detailedInfoMessage').innerHTML = '';
+    document.getElementById('vacationPeriod').value = '';
+
+    // 선택한 하위 휴가 종류에 따라 필수 문구 출력
+    if (this.value === '병가(무급)') {
+      requiredDocsMessage.innerHTML = '<span>필수 서류 :</span><span style="color:red"> 진료 확인서, 진단서</span><br><span>(최대 60일을 초과할 수 없습니다.)<br>해당 서류를 추후에 반드시 </span><span style="color:red">인사과</span><span>에 제출해 주세요.</span>';
+    } else if (this.value === '배우자 출산 휴가(유급)') {
+      requiredDocsMessage.innerHTML = '<span>반드시 </span><span style="color:red">출산일</span><span>로부터 </span><span style="color:red">90일</span><span> 이내에 사용해야 합니다.<br>(</span><span style="color:red">90일</span><span>을 초과하는 경우 사용할 수 없습니다.)</span>';
+    }
+    else {
+      requiredDocsMessage.innerHTML = ''; // 다른 항목을 선택했을 때는 메시지를 지움
+    }
+
+
+
+    // 출산 휴가(유급)에 대한 세부사항 목록 업데이트
+    if (selectedSubVacationType === '출산 휴가(유급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="산전 휴가(단태아)">산전 휴가(단태아)</option>
+        <option value="산전 휴가(다태아)">산전 휴가(다태아)</option>
+        <option value="산후 휴가(단태아)">산후 휴가(단태아)</option>
+        <option value="산후 휴가(다태아)">산후 휴가(다태아)</option>
+      `;
+      // 경조사 휴가(무급)에 대한 세부사항 목록 업데이트
+    } else if (selectedSubVacationType === '경조사 휴가(무급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="배우자 또는 본인/배우자의 부모님이 돌아가신 경우">배우자 또는 본인/배우자의 부모님이 돌아가신 경우</option>
+        <option value="본인/배우자의 (외)조부모가 돌아가신 경우">본인/배우자의 (외)조부모가 돌아가신 경우</option>
+        <option value="자녀 또는 자녀의 배우자가 사망한 경우">자녀 또는 자녀의 배우자가 사망한 경우</option>
+        <option value="본인/배우자의 형제/자매/형제자매의 배우자가 사망한 경우">본인/배우자의 형제/자매/형제자매의 배우자가 사망한 경우</option>
+      `;
+    } else if (selectedSubVacationType === '예비군 및 민방위(유급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="예비군 동원 훈련 (1일)">예비군 동원 훈련 (1일)</option>
+        <option value="예비군 동원 훈련 (3일)">예비군 동원 훈련 (3일)</option>
+        <option value="전반기 작계 훈련(1일)">전반기 작계 훈련(1일)</option>
+        <option value="후반기 작계 훈련(1일)">후반기 작계 훈련(1일)</option>
+        <option value="민방위 훈련(1일)">민방위 훈련(1일)</option>
+      `;
+    }else if (selectedSubVacationType === '반차 휴가(유급)') {
+        detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="오전 반차">오전 반차</option>
+        <option value="오후 반차">오후 반차</option>
+      `;
+
+    }else if (selectedSubVacationType === '계절 휴가(무급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="동계 휴가">동계 휴가</option>
+        <option value="하계 휴가">하계 휴가</option>
+      `;
+    }else if (selectedSubVacationType === '가족 돌봄 휴직, 휴가(무급)') {
+        detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="가족 돌봄 휴직">가족 돌봄 휴직</option>
+        <option value="가족 돌봄 휴가">가족 돌봄 휴가</option>
+      `;
+    }else if (selectedSubVacationType === '배우자 출산 휴가(유급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="배우자 출산">배우자 출산</option>
+
+      `;
+    }else if (selectedSubVacationType === '백신 휴가(무급)') {
+        detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="백신 휴가">백신 휴가</option>
+
+      `;
+
+    }else if (selectedSubVacationType === '리프레시 휴가(무급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="리프레시 휴가">리프레시 휴가</option>
+
+      `;
+    }else if (selectedSubVacationType === '병가(무급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="병가">병가</option>
+
+      `;
+    }else if (selectedSubVacationType === '연차 휴가(유급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="연차">연차</option>
+
+      `;
+
+    }else if (selectedSubVacationType === '생리 휴가(무급)') {
+      detailedInfoSelect.innerHTML = `
+        <option value="">세부사항 선택을 반드시 선택해 주세요.</option>
+        <option value="생리 휴가">생리 휴가</option>
+
+      `;
+
+    } else {
+      detailedInfoSelect.innerHTML = '<option value="">세부사항 선택</option>';
+    }
+
+
+
+    detailedInfoSelect.disabled = selectedSubVacationType === ''; // 하위 휴가 종류가 선택되지 않았다면 세부사항 선택 비활성화
+  });
+  document.getElementById('detailedInfo').addEventListener('change', function() {
+    const selectedDetailedInfo = this.value;
+    const vacationPeriodInput = document.getElementById('vacationPeriod');
+
+    const detailedInfoMessage = document.getElementById('detailedInfoMessage');
+
+    // 만약 가족 돌봄 휴직을 선택했다면,
+    if(selectedDetailedInfo === '가족 돌봄 휴직') {
+      detailedInfoMessage.innerHTML = `
+        <span>원하시는 </span><span style="color:red">휴가 일수</span> 를 <span style="color:red">휴가 기간</span><span>에 입력해 주세요.<br> ex) 1일, 3일, 10일...</span><br><br><span>가족 돌봄 휴직 기간은 </span><span style="color:red">연간 최장 90일</span><span>로 하며, 이를 </span><span style="color:red">나누어 사용</span><span>할 수 있습니다. 이 경우 </span><span style="color:red">나누어 사용하는 1회의 기간은 30일 이상</span><span>이 되어야 합니다.</span>`;
+    }
+    // 만약 가족 돌봄 휴가를 선택했다면,
+    else if(selectedDetailedInfo === '가족 돌봄 휴가') {
+      detailedInfoMessage.innerHTML = `
+        <span>원하시는 </span><span style="color:red">휴가 일수</span> 를 <span style="color:red">휴가 기간</span><span>에 입력해 주세요.<br> ex) 1일, 3일, 10일...</span><br><br><span>가족 돌봄 휴가 기간은 </span><span style="color:red">연간 최장 10일</span> [제 3호에 따라 가족 돌봄 휴가 기간이 연장되는 경우 20일(「한부모가족지원법」 제 4조 제 1호의 모 또는 부에 해당하는 근로자의 경우 25일) 이내]로 하며, <span style="color:red">일 단위로 사용</span><span>할 수 있습니다. 다만, 가족 돌봄 휴가 기간은 가족 돌봄 휴직 기간에 포함됩니다.</span>`;
+    }
+    else if(selectedDetailedInfo === '연차') {
+      detailedInfoMessage.innerHTML = `
+        <span>원하시는 </span><span style="color:red">휴가 일수</span> 를 <span style="color:red">휴가 기간</span><span>에 입력해 주세요.<br> ex) 1일, 3일, 10일...</span>`;
+    }
+    else if(selectedDetailedInfo === '병가') {
+      detailedInfoMessage.innerHTML = `
+        <span>원하시는 </span><span style="color:red">휴가 일수</span> 를 <span style="color:red">휴가 기간</span><span>에 입력해 주세요.<br> ex) 1일, 3일, 10일...</span>`;
+    }
+    // 만약 다른 세부사항을 선택했다면,
+    else {
+      detailedInfoMessage.innerHTML = ''; // 메시지를 지움
+    }
+
+
+
+    let period;
+    switch(selectedDetailedInfo) {
+      case "배우자 또는 본인/배우자의 부모님이 돌아가신 경우":
+        period = '5일';
+        break;
+      case "동계 휴가":
+      case "하계 휴가":
+        period = '4일';
+        break;
+      case "본인/배우자의 (외)조부모가 돌아가신 경우":
+      case "자녀 또는 자녀의 배우자가 사망한 경우":
+      case "예비군 동원 훈련 (3일)":
+        period = '3일';
+        break;
+      case "본인/배우자의 형제/자매/형제자매의 배우자가 사망한 경우":
+      case "예비군 동원 훈련 (1일)":
+      case "전반기 작계 훈련(1일)":
+      case "후반기 작계 훈련(1일)":
+      case "민방위 훈련(1일)":
+      case "백신 휴가":
+      case "리프레시 휴가":
+      case "생리 휴가":
+        period = '1일';
+        break;
+      case "오전 반차":
+      case "오후 반차":
+        period = '0.5일';
+        break;
+      case "산전 휴가(단태아)":
+      case "산후 휴가(단태아)":
+        period = '30일';
+        break;
+      case "산전 휴가(다태아)":
+      case "산후 휴가(다태아)":
+        period = '45일';
+        break;
+      case "배우자 출산":
+        period = '10일';
+        break;
+      default:
+
+    }
+
+    if(period) {
+      vacationPeriodInput.value = period;
+      vacationPeriodInput.setAttribute('readonly', true); // 사용자가 값을 변경할 수 없게 만듦
+    } else {
+      vacationPeriodInput.removeAttribute('readonly');
+    }
+  });
+
+</script>
+
+<!-- 휴가 신청 목록을 동적으로 로드하는 부분 -->
+<h2>휴가 신청 목록</h2>
+<table>
+  <thead>
+  <tr>
+    <th>부서</th>
+    <th>신청자</th>
+    <th>휴가 종류</th>
+    <th>하위 휴가 종류</th>
+    <th>세부사항</th>
+    <th>휴가 사유</th>
+    <th>신청일</th>
+    <th>휴가 희망일</th>
+    <th>휴가 기간</th>
+  </tr>
+  </thead>
+  <tbody id="vacationRequestTable">
+  <!-- 여기에 휴가 신청 목록을 동적으로 로드하는 방법을 추가할 수 있습니다. -->
+  <!-- 예를 들어 JavaScript로 데이터를 가져와서 아래와 같이 표시할 수 있습니다. -->
+  </tbody>
+</table>
+
+<!-- 휴가 신청 목록을 동적으로 로드하는 JavaScript -->
+<script>
+  function formatDateTime(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedDate = `${year}-${month}-${day}, ${hours}:${minutes} ${ampm}`;
+    return formattedDate;
+  }
+  // 휴가 신청 목록 가져오기
+  fetch('/vacation-requests/all')
+          .then(response => response.json())
+          .then(data => {
+            const vacationRequestTable = document.getElementById('vacationRequestTable');
+            data.forEach(request => {
+              const row = vacationRequestTable.insertRow();
+
+              const departmentCell = row.insertCell(0);
+              const employeeCell = row.insertCell(1);
+              const vacationTypeCell = row.insertCell(2);
+              const vacationSubTypeCell = row.insertCell(3);
+              const detailedInfoCell = row.insertCell(4);
+              const vacationReasonCell = row.insertCell(5);
+              const requestDatetimeCell = row.insertCell(6);
+              const vacationHopeDateCell = row.insertCell(7);
+              const vacationPeriodCell = row.insertCell(8);
+
+              departmentCell.textContent = request.department ? request.department.departmentName : 'N/A';
+              employeeCell.textContent = request.employee ? request.employee.employeeName : 'N/A';
+              vacationTypeCell.textContent = request.vacationType ? request.vacationType : 'N/A';
+              vacationSubTypeCell.textContent = request.subVacationType ? request.subVacationType : 'N/A';
+              detailedInfoCell.textContent = request.detailedInfo ? request.detailedInfo : 'N/A';
+              vacationReasonCell.textContent = request.vacationReason ? request.vacationReason : 'N/A';
+              requestDatetimeCell.textContent = request.requestDatetime ? formatDateTime(request.requestDatetime) : 'N/A';
+              vacationHopeDateCell.textContent = request.vacationHopeDate ? request.vacationHopeDate : 'N/A';
+              vacationPeriodCell.textContent = request.vacationPeriod ? request.vacationPeriod : 'N/A';
+            });
+          })
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="center">
+    <p><a th:href="@{/logout}">로그아웃</a></p>
+    <p><a th:href="@{/mypage}">마이페이지</a></p>
+    <p th:text="#{login.done}"></p>
+    <div th:if="${authInfo != null}">
+        <p th:text="${authInfo.empname + '님. 이미 로그인되어 있습니다.'}"></p>
+
+    </div>
+</div>
+</body>
+</html>

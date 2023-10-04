@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{login.title}">로그인 페이지</title>
+</head>
+<body>
+<div id="center">
+    <!-- 로그인 폼 -->
+    <form th:action="@{/login}" class="login-form" method="post">
+        <!-- 직원 번호 입력 필드 -->
+        <div>
+            <label for="empno" th:text="#{empno}">직원 번호</label>
+            <input type="text" name="empno" id="empno" class="input-field"/>
+            <div th:if="${#fields.hasErrors('empno')}" th:errors="*{empno}" ></div>
+        </div>
+        <!-- 비밀번호 입력 필드 -->
+        <div>
+            <label for="password" th:text="#{password}">비밀번호</label>
+            <input type="password" name="password" id="password" class="input-field"/>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></div>
+        </div>
+        <!-- "기억하기" 체크박스 -->
+        <p>
+            <input type="checkbox" id="rememberEmpno" name="rememberEmpno" class="input-field"/>
+            <label for="rememberEmpno" th:text="#{rememberEmpno}">기억하기</label>
+        </p>
+        <!-- 로그인 버튼 -->
+        <input type="submit" value="로그인" class="submit-button"/>
+    </form>
+</div>
+</body>
+</html>

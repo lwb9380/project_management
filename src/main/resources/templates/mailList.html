@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            white-space: nowrap;
+        }
+
+        th[colspan="5"] {
+            text-align: center;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+<th:block th:if="${not mails.empty}">
+총: <th:block th:text="${size}"></th:block>개의 메일
+<table border="1">
+    <thead>
+    <tr>
+        <th colspan="5">
+        <span><span id="selectedCount">0</span>개의 메일</span>
+        <button type="button" onclick="deleteSelectedMails()">
+            <a href="${'/mailDelete' + ${mail.id}}"></a>
+            삭제</button>
+        </th>
+    </tr>
+    <tr>
+        <th>Check</th><input type="checkbox" id="selectAllCheckbox" />
+        <th>Sender</th>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mail : ${mails}">
+        <td><input type="checkbox" name="selectedMail" th:value="${mail.id}" onchange="updateSelectedCount()" /></td>
+        <td th:text="${mail.sName}"></td>
+        <td>
+            <a th:href="@{'/mailDetail/' + ${mail.id}}">
+                <span th:text="${mail.title}"></span>
+            </a>
+        </td>
+        <td th:text="${#temporals.format(mail.date, 'yyyy.MM.dd')}"></td>
+    </tr>
+    </tbody>
+</table>
+    <div class="pagination">
+        <!-- 이전 페이지로 이동하는 버튼 -->
+        <a th:if="${mails.hasPrevious()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number - 1})}">이전</a>
+
+        <!-- 페이지 번호 출력 -->
+        <span th:each="i : ${#numbers.sequence(0, mails.totalPages - 1)}">
+        <a th:href="@{/mailList/{empno}(empno=${empno},page=${i})}" th:text="${i + 1}"></a>
+    </span>
+
+        <!-- 다음 페이지로 이동하는 버튼 -->
+        <a th:if="${mails.hasNext()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number + 1})}">다음</a>
+    </div>
+
+    <a href="/start"><input type="button" value="돌아가기"></a>
+</th:block>
+
+<th:block th:if="${mails.empty}">
+    <div style="text-align: center; padding: 20px;">
+        <p> 메일이 없습니다.</p>
+    </div>
+    <script>
+        alert('메일이 없습니다.');
+        window.location.href = '/start'; // 돌아가기 링크로 이동
+    </script>
+</th:block>
+
+<script src="/js/mailListSelectDeleteMail.js"></script>
+
+</body>
+</html>

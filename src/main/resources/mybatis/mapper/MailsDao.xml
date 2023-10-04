@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pro.project.dao.MailDao">
+
+    <select id="mailList" resultType="com.pro.project.dto.MailDto">
+        select * from mail where empno = #{param1}
+    </select>
+
+
+    <insert id="sendMail">
+        insert into mail (content, date, empno, s_name, title)
+        values(#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+    </insert>
+
+    <select id="selectDeptList" resultType="com.pro.project.dto.Dept">
+        select distinct deptname from dept
+    </select>
+
+    <select id="selectEmpnoList" resultType="com.pro.project.dto.Dept">
+        select empno from dept where deptname=#{param1}
+    </select>
+
+    <select id="selectMailDetail" resultType="com.pro.project.dto.MailDto">
+        select * from mail where id=#{param1}
+    </select>
+
+    <delete id="mailDelete">
+        delete from mail where id=#{param1}
+    </delete>
+
+
+
+</mapper>

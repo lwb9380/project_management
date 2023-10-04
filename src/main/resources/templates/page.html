@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Page</title>
+    <style>
+        /* 전체 테이블 스타일 */
+        .employee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        /* 테이블 헤더 스타일 */
+        .employee-table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* 테이블 셀 스타일 */
+        .employee-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        /* 짝수 행 배경색 변경 */
+        .employee-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>마이페이지 테스트</h1>
+<table class="employee-table">
+    <tr>
+        <th>사원번호</th>
+        <th>비밀번호</th>
+        <th>주소</th>
+        <th>폰번호</th>
+        <th>부서이름</th>
+        <th>부서번호</th>
+        <th>Email</th>
+    </tr>
+    <!-- Loop through the list of employees and display their information -->
+    <tr th:each="emp : ${list}">
+        <td th:text="${emp.empno}"></td>
+        <td th:text="${emp.password}"></td>
+        <td th:text="${emp.addr}"></td>
+        <td th:text="${emp.phone}"></td>
+        <td th:text="${emp.empname}"></td>
+        <td th:text="${emp.deptno}"></td>
+        <td th:text="${emp.email}"></td>
+    </tr>
+</table>
+</body>
+</html>

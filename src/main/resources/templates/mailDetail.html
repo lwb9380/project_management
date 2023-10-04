@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            background-color: #ffffff;
+            margin: 20px auto;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+        }
+
+        td {
+            border: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+<body>
+
+<form action="/mailDelete" method="get">
+<table border="1">
+    <thead>
+    <tr>
+
+    </tr>
+    <tr>
+        <th>Sender</th>
+        <th>Content</th>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mail : ${mails}">
+        <td th:text="${mail.sName}"></td>
+        <td th:text="${mail.content}"></td>
+        <td><a th:text="${mail.title}"></a></td>
+        <td th:text="${#temporals.format(mail.date, 'yyyy.MM.dd')}"></td>
+        <th><input type="hidden" th:value="${mail.id}" name="id"></th>
+        <input type="hidden" th:value="${mail.empno}" name="empno" />
+    </tr>
+    </tbody>
+
+</table>
+    <input type="submit" value="삭제" onclick="closeMessage()">
+</form>
+<script>
+    function closeMessage() {
+        alert("삭제되었습니다.");
+    }
+</script>
+
+</body>
+
+</html>

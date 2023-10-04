@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+</head>
+<body>
+<h2>사원 목록</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>사원 번호</th>
+        <th>사원 이름</th>
+        <th>부서 이름</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Thymeleaf 코드를 사용하여 직원 목록을 표시합니다. -->
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.employeeName}"></td>
+        <td th:text="${employee.department.departmentName}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/employees/form">사원 등록</a>
+</body>
+</html>

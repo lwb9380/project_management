@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pro.project.dao.SampleDao">
+
+    <select id="getlogininfo" resultType="com.pro.project.dto.Working">
+        SELECT d.isworking, w.empno, w.ischul, d.name, w.cometime, w.gotime, w.lastday
+        FROM dept d
+                 JOIN working w ON d.empno = w.empno
+        WHERE d.empno = #{param1};
+
+    </select>
+
+    <select id="deptlist" resultType="com.pro.project.dto.Dept">
+        select * from dept where deptno=#{param1}
+    </select>
+
+    <select id="chul1" resultType="String">
+        select ischul from working where empno=#{param1}
+    </select>
+
+    <update id="updateWork">
+        update working SET ischul = 'o', cometime=#{param1} WHERE empno =#{param2}
+
+    </update>
+
+    <update id="updateWork2">
+        update dept set isworking ='출근' where empno=#{param1}
+
+    </update>
+
+
+    <update id="updatelastday">
+        update working set lastday=#{param1} where empno=#{param2}
+    </update>
+
+    <update id="updatego">
+        update working set ischul='oo', gotime=#{param1} where empno=#{param2}
+
+    </update>
+
+    <update id="updatego2">
+        update dept set isworking='퇴근' where empno=#{param1}
+    </update>
+
+
+    <update id="resetworking">
+        update working set ischul='x', cometime='', gotime='' where empno=#{param1}
+
+    </update>
+
+    <update id="resetworking2">
+        update dept set isworking='출근전' where empno=#{param1}
+    </update>
+
+    <select id="typecheck" resultType="com.pro.project.dto.Day">
+        select * from daycheck where empno =#{param1} and month=#{param2}
+    </select>
+
+    <update id="updaterest">
+        update dept set isworking='외출' where empno=#{param1}
+
+    </update>
+
+    <update id="finishrest">
+        update dept set isworking='출근' where empno=#{param1}
+    </update>
+
+    <select id="checkisworking" resultType="String">
+        select isworking from dept where empno= #{param1}
+    </select>
+
+    <update id="updatevacation">
+        update dept set isworking='휴가' where empno=#{param1}
+    </update>
+
+    <select id="getAuthority" resultType="String">
+        select authority from emp where empno= #{param1}
+    </select>
+
+    <update id="updatetardy">
+        update working set tardy='o' where empno=#{param1}
+
+    </update>
+
+    <update id="checktardy">
+        UPDATE monthresult SET tardy = tardy + 1 WHERE empno = #{param1} and month=#{param2}
+    </update>
+
+    <update id="updateworktime">
+        update monthresult set worktime=work+8 where empno= #{param1} and month=#{param2}
+    </update>
+
+    <update id="updateworkself">
+        update monthresult set worktime=work+#{param1} where empno=#{param2} and month=#{param3}
+    </update>
+
+    <select id="istardytoday" resultType="String">
+        select tardy from working where empno=#{param1}
+    </select>
+
+    <select id="isextratoday" resultType="String">
+        select extrawork from working where empno=#{param1}
+    </select>
+
+    <update id="updateextrawork">
+        update monthresult set extraworktime=extraworktime+ #{param1} where empno=#{param2} and month=#{param3}
+    </update>
+
+    <select id="checkvacation" resultType="String">
+        <choose>
+            <when test="param1 == 'day1'">SELECT day1 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day2'">SELECT day2 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day3'">SELECT day3 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day4'">SELECT day4 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day5'">SELECT day5 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day6'">SELECT day6 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day7'">SELECT day7 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day8'">SELECT day8 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day9'">SELECT day9 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day10'">SELECT day10 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day11'">SELECT day11 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day12'">SELECT day12 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day13'">SELECT day13 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day14'">SELECT day14 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day15'">SELECT day15 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day16'">SELECT day16 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day17'">SELECT day17 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day18'">SELECT day18 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day19'">SELECT day19 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day20'">SELECT day20 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day21'">SELECT day21 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day22'">SELECT day22 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day23'">SELECT day23 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day24'">SELECT day24 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day25'">SELECT day25 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day26'">SELECT day26 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day27'">SELECT day27 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day28'">SELECT day28 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day29'">SELECT day29 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day30'">SELECT day30 FROM month1 WHERE empno = #{param2}</when>
+            <when test="param1 == 'day31'">SELECT day31 FROM month1 WHERE empno = #{param2}</when>
+            <otherwise>SELECT NULL</otherwise>
+        </choose>
+    </select>
+
+
+</mapper>

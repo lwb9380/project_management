@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mail, state : ${mails}">
+        <td th:text="${mail.id}"></td>
+        <td th:text="${mail.sName}"></td>
+        <td th:text="${mail.rName}"></td>
+        <td>
+            <a th:href="@{/exView/{id}(id=${mail.id})}">
+                <span th:text="${mail.title}"></span>
+            </a>
+        </td>
+        <td th:text="${#temporals.format(mail.date, 'yyyy.MM.dd')}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
