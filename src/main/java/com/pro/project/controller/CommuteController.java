@@ -1,10 +1,11 @@
 package com.pro.project.controller;
 
-
+import com.pro.project.auth.AuthInfo;
 import com.pro.project.dto.Day;
 import com.pro.project.dto.Dept;
 import com.pro.project.dto.Working;
 import com.pro.project.service.DeptService;
+import com.pro.project.service.MailService;
 import com.pro.project.service.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class CommuteController {
 
     @Autowired
     StuService stuService;
+
+    @Autowired
+    MailService mailService;
+
     @Autowired
     DeptService deptService;
     @GetMapping("/resetall")
@@ -174,6 +179,15 @@ public class CommuteController {
         model.addAttribute("leaveCount", leaveCount);
         model.addAttribute("commuteCount", commuteCount);
         model.addAttribute("vacationCount", vacationCount);
+        List<Dept> emplist = mailService.selectEmpnoList(deptno);
+
+        model.addAttribute("sessionemp", empno);
+        model.addAttribute("emplist", emplist);
+        model.addAttribute("deptname",deptname);
+        model.addAttribute("list",list);
+        model.addAttribute("result",result);
+        model.addAttribute("working",working);
+        model.addAttribute("vacation",vacation);
         return "hi";
 
     }

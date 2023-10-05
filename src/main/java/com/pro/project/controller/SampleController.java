@@ -5,6 +5,7 @@ import com.pro.project.dto.MailDto;
 import com.pro.project.entity.Mail;
 import com.pro.project.repository.MailRepository;
 import com.pro.project.service.MailService;
+import com.pro.project.service.StuService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,6 +27,9 @@ public class SampleController {
 
     @Autowired
     MailService mailService;
+
+    @Autowired
+    StuService stuService;
 
     @GetMapping("/mailList/{empno}")
     public String mailList(@PathVariable int empno,
@@ -63,9 +69,10 @@ public class SampleController {
     public String deptSendMail2(@RequestParam("content") String content,
                                 @RequestParam("empno") int empno,
                                 @RequestParam("title") String title,
-                                Model model) {
+                                Model model,
+                                HttpServletRequest request) {
         LocalDateTime date = LocalDateTime.now();
-        String sName = "25";
+        String sName = mailService.selectSenderName(empno);
         mailService.sendMail(content, date, empno, sName, title);
         return "sendSuccess";
     }
@@ -81,19 +88,25 @@ public class SampleController {
     @PostMapping("/sendMail")
     public String sendMail(@RequestParam("content") String content,
                            @RequestParam("title") String title,
-                           Model model) {
+                           @RequestParam("empno") int empno,
+                           Model model,
+                           HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        String sName = mailService.selectSenderName(empno);
+
         List<Dept> list = mailService.selectDeptList();
         LocalDateTime date = LocalDateTime.now();
-        String sName = "30";
         model.addAttribute("deptList", list);
-        mailService.sendMail(content, date, 30, sName, title);
+        mailService.sendMail(content, date, empno, sName, title);
         return "sendSuccess";
     }
 
     @GetMapping("getEmpnosByDept")
     @ResponseBody
-    public List<Dept> getEmpnosByDept(@RequestParam("dept") String dept) {
-        List<Dept> empnos = mailService.selectEmpnoList(dept);
+    public List<Dept> getEmpnosByDept(@RequestParam(name = "dept") String deptname) {
+        List<Dept> empnos = mailService.selectEmpnoListMailSend(deptname);
         return empnos;
     }
 

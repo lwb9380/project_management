@@ -31,6 +31,11 @@ public class MailService {
         return list;
     }
 
+    public String selectSenderName(int empno) {
+        String senderName = mailDao.selectSenderName(empno);
+        return senderName;
+    }
+
     public List<MailDto> selectMailDetail(Long id) {
         List<MailDto> list = mailDao.selectMailDetail(id);
         return list;
@@ -48,8 +53,12 @@ public class MailService {
         return mailDao.selectDeptList();
     }
 
-    public List<Dept> selectEmpnoList(String deptname) {
-        return mailDao.selectEmpnoList(deptname);
+    public List<Dept> selectEmpnoList(int deptno) {
+        return mailDao.selectEmpnoList(deptno);
+    }
+
+    public List<Dept> selectEmpnoListMailSend(String deptname) {
+        return mailDao.selectEmpnoListMailSend(deptname);
     }
 
     // paging 처리

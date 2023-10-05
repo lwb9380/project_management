@@ -20,7 +20,11 @@ public interface MailDao {
 
     public List<Dept> selectDeptList();
 
-    public List<Dept> selectEmpnoList(String deptname);
+    public List<Dept> selectEmpnoList(int deptno);
+
+    public String selectSenderName(int empno);
+
+    public List<Dept> selectEmpnoListMailSend(String deptname);
 
 
 }

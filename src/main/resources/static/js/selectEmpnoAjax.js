@@ -1,4 +1,5 @@
 function getEmpnos() {
+    console.log("함수 호출됨");
     var selectedDept = $("#dept").val();
     if (selectedDept) {
         $.ajax({
@@ -14,7 +15,6 @@ function getEmpnos() {
                 $.each(data, function (index, item) {
                     empnoSelect.append('<option value="' + item.empno + '">' + item.empno + '</option>');
                 });
-
             }
         });
     } else {
