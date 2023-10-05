@@ -20,13 +20,13 @@ public class VacationRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+//    @ManyToOne
+//    @JoinColumn(name = "empno")
+    private Long empno;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+//    @ManyToOne
+//    @JoinColumn(name = "deptno")
+    private Long deptno;
 
     @Column(name = "vacation_type")
     private String vacationType;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>휴가 신청하기</title>
@@ -95,17 +95,13 @@
 <form action="/submit" method="post">
 
 
-  <label for="department">부서:</label>
-  <select id="department" name="department.id" required>
-    <option value="">부서 선택</option>
-    <!-- 여기에 부서 목록을 동적으로 로드하는 방법을 추가할 수 있습니다. -->
-  </select><br><br>
+  <!-- 로그인한 사용자의 empno 정보를 자동으로 불러옴 -->
+  <input type="hidden" name="empno" th:value="${loggedInEmpno}">
+  <p th:text="'사원 번호: ' + ${loggedInEmp.empno}"></p>
 
-  <label for="employee">사원:</label>
-  <select id="employee" name="employee.id" required>
-    <option value="">사원 선택</option>
-    <!-- 여기에 사원 목록을 동적으로 로드하는 방법을 추가할 수 있습니다. -->
-  </select><br><br>
+  <!-- 로그인한 사용자의 deptno 정보를 자동으로 불러옴 -->
+  <input type="hidden" name="deptno" th:value="${loggedInDeptno}">
+  <p th:text="'부서 번호: ' + ${loggedInEmp.deptno}"></p>
 
   <label for="vacationType">휴가 종류:</label>
   <select id="vacationType" name="vacationType" required>
@@ -146,41 +142,8 @@
 
 <script>
   // 직원 목록 가져오기
-  function fetchEmployeesByDepartment() {
-    const selectedDepartmentId = document.getElementById('department').value;
-    fetch(`/employees/byDepartment/${selectedDepartmentId}`)
-            .then(response => response.json())
-            .then(data => {
-              const employeeSelect = document.getElementById('employee');
-              // 기존 옵션을 모두 제거
-              employeeSelect.innerHTML = '';
-              // 사원 목록 추가
-              data.forEach(employee => {
-                const option = document.createElement('option');
-                option.value = employee.id;
-                option.text = employee.employeeName;
-                employeeSelect.appendChild(option);
-              });
-            })
-            .catch(error => console.error('Error fetching employees:', error));
-  }
 
-  // 페이지 로드 시 부서 목록 가져오기
-  fetch('/departments/all')
-          .then(response => response.json())
-          .then(data => {
-            const departmentSelect = document.getElementById('department');
-            data.forEach(department => {
-              const option = document.createElement('option');
-              option.value = department.id;
-              option.text = department.departmentName;
-              departmentSelect.appendChild(option);
-            });
-          })
-          .catch(error => console.error('Error fetching departments:', error));
 
-  // 부서 선택 값이 변경될 때 사원 목록 가져오기
-  document.getElementById('department').addEventListener('change', fetchEmployeesByDepartment);
 
   // 휴가 종류 선택 값이 변경될 때 하위 휴가 종류를 업데이트
   document.getElementById('vacationType').addEventListener('change', function() {
@@ -442,106 +405,6 @@
 
 </script>
 
-<!-- 휴가 신청 목록을 동적으로 로드하는 부분 -->
-<h2>휴가 신청 목록</h2>
-<table>
-  <thead>
-  <tr>
-    <th>부서</th>
-    <th>신청자</th>
-    <th>휴가 종류</th>
-    <th>하위 휴가 종류</th>
-    <th>세부사항</th>
-    <th>휴가 사유</th>
-    <th>신청일</th>
-    <th>휴가 희망일</th>
-    <th>휴가 기간</th>
-  </tr>
-  </thead>
-  <tbody id="vacationRequestTable">
-  <!-- 여기에 휴가 신청 목록을 동적으로 로드하는 방법을 추가할 수 있습니다. -->
-  <!-- 예를 들어 JavaScript로 데이터를 가져와서 아래와 같이 표시할 수 있습니다. -->
-  </tbody>
-</table>
-<div class="pagination">
-  <button id="prevPage" onclick="changePage(-1)">이전</button>
-  <span id="currentPage">1</span>
-  <button id="nextPage" onclick="changePage(1)">다음</button>
-</div>
-<!-- 휴가 신청 목록을 동적으로 로드하는 JavaScript -->
-<script>
-  function formatDateTime(dateTimeString) {
-    const dateTime = new Date(dateTimeString);
-    const year = dateTime.getFullYear();
-    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
-    const day = String(dateTime.getDate()).padStart(2, '0');
-    const hours = String(dateTime.getHours()).padStart(2, '0');
-    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const formattedDate = `${year}-${month}-${day}, ${hours}:${minutes} ${ampm}`;
-    return formattedDate;
-  }
-  // 휴가 신청 목록 가져오기
-  fetch('/vacation-requests/all')
-          .then(response => response.json())
-          .then(data => {
 
-          })
-  let currentPage = 1; // 현재 페이지 번호
-  const size = 5; // 페이지 당 행 수
-  let totalPages = 1; // 총 페이지 수 (기본값은 1로 설정)
-
-  function fetchVacationRequests(page = 1, size = 5) {
-    fetch(`/api/vacation-requests?page=${page - 1}&size=${size}`) // 페이지는 0부터 시작이므로 -1
-            .then(response => response.json())
-            .then(data => {
-              const vacationRequestTable = document.getElementById('vacationRequestTable');
-              // 테이블 내용 비우기
-              vacationRequestTable.innerHTML = '';
-              data.content.forEach(request => {
-                const row = vacationRequestTable.insertRow();
-
-                const departmentCell = row.insertCell(0);
-                const employeeCell = row.insertCell(1);
-                const vacationTypeCell = row.insertCell(2);
-                const vacationSubTypeCell = row.insertCell(3);
-                const detailedInfoCell = row.insertCell(4);
-                const vacationReasonCell = row.insertCell(5);
-                const requestDatetimeCell = row.insertCell(6);
-                const vacationHopeDateCell = row.insertCell(7);
-                const vacationPeriodCell = row.insertCell(8);
-
-                departmentCell.textContent = request.department ? request.department.departmentName : 'N/A';
-                employeeCell.textContent = request.employee ? request.employee.employeeName : 'N/A';
-                vacationTypeCell.textContent = request.vacationType ? request.vacationType : 'N/A';
-                vacationSubTypeCell.textContent = request.subVacationType ? request.subVacationType : 'N/A';
-                detailedInfoCell.textContent = request.detailedInfo ? request.detailedInfo : 'N/A';
-                vacationReasonCell.textContent = request.vacationReason ? request.vacationReason : 'N/A';
-                requestDatetimeCell.textContent = request.requestDatetime ? formatDateTime(request.requestDatetime) : 'N/A';
-                vacationHopeDateCell.textContent = request.vacationHopeDate ? request.vacationHopeDate : 'N/A';
-                vacationPeriodCell.textContent = request.vacationPeriod ? request.vacationPeriod : 'N/A';
-              });
-
-              // 페이지 정보 갱신
-              document.getElementById('currentPage').textContent = page;
-              currentPage = page;
-              totalPages = data.totalPages;
-
-              // 버튼 상태 갱신
-              document.getElementById('prevPage').disabled = currentPage === 1;
-              document.getElementById('nextPage').disabled = currentPage === totalPages;
-            })
-  }
-
-  function changePage(direction) {
-    const newPage = currentPage + direction;
-    if (newPage >= 1 && newPage <= totalPages) {
-      fetchVacationRequests(newPage);
-    }
-  }
-
-  // 초기 데이터 로드
-  fetchVacationRequests(currentPage);
-</script>
 </body>
 </html>
