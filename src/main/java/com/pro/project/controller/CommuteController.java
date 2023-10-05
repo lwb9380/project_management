@@ -395,11 +395,15 @@ public class CommuteController {
         } else {
             String tardy=stuService.istardytoday(empno);
 
+            System.out.println("==============================여기");
+            System.out.println(working);
+
             if(working.getExtrawork().equals("o")){
                 int nowtime=time.getHour();
                 int homeHour = hometime.getHour();
                 int extraworktime=nowtime-homeHour;
 
+                System.out.println(month);
                 stuService.updateextrawork(extraworktime,empno,month);
 
             }

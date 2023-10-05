@@ -6,7 +6,7 @@
 <mapper namespace="com.pro.project.dao.SampleDao">
 
     <select id="getlogininfo" resultType="com.pro.project.dto.Working">
-        SELECT d.isworking, w.empno, w.ischul, d.name, w.cometime, w.gotime, w.lastday
+        SELECT d.isworking, w.empno, w.ischul, d.name, w.cometime, w.gotime, w.lastday, w.tardy, w.extrawork
         FROM dept d
                  JOIN working w ON d.empno = w.empno
         WHERE d.empno = #{param1};
@@ -111,11 +111,11 @@
     </update>
 
     <update id="updateworktime">
-        update monthresult set worktime=work+8 where empno= #{param1} and month=#{param2}
+        update monthresult set worktime=worktime+8 where empno= #{param1} and month=#{param2}
     </update>
 
     <update id="updateworkself">
-        update monthresult set worktime=work+#{param1} where empno=#{param2} and month=#{param3}
+        update monthresult set worktime=worktime+#{param1} where empno=#{param2} and month=#{param3}
     </update>
 
     <select id="getDeptNo" resultType="java.lang.Integer">

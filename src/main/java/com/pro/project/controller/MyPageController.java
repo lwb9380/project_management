@@ -55,6 +55,17 @@ public class MyPageController {
         return "showrequest";
     }
 
+    @PostMapping("/repulse")
+    public String repulse(@RequestParam("id")int id){
+        VacationDto dto=stuService.getvacationone(id);
+        int empno=dto.getEmpno();
+        mailService.sendMail("휴가 신청이 반려되었습니다", LocalDateTime.now(), empno, "관리자", "휴가 신청 결과");
+        stuService.deleteVacationRequest(id);
+
+        return "hhhh";
+    }
+
+
     @PostMapping("/admitVacation")
     public String admitvaca(@RequestParam("id")int id, @RequestParam("lastday")String lastday){
         VacationDto dto=stuService.getvacationone(id);
