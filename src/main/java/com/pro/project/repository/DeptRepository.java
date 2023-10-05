@@ -8,15 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeptRepository extends JpaRepository<Dept, Long> {
-    //        @Query(value = "SELECT COUNT(*) FROM dept WHERE deptno = 1100 AND isworking = '출근전'", nativeQuery = true)
-//    public int countDept();
-//    @Query(value = "SELECT COUNT(*) FROM dept WHERE deptno = 1100 AND isworking = '출근'", nativeQuery = true)
-//    public int countDept2();
-//    @Query(value = "SELECT COUNT(*) FROM dept WHERE deptno = 1100 AND isworking = '퇴근'", nativeQuery = true)
-//    publ
-    // public List<Dept> findAll();
     @Query("SELECT COUNT(d) FROM Dept d WHERE d.deptno = :deptno AND d.isworking = '출근전'")
-    //[출근전] 카운트
+        //[출근전] 카운트
     Long countPreWork(@Param("deptno") Long deptno);
 
     @Query("SELECT COUNT(d) FROM Dept d WHERE d.deptno = :deptno AND d.isworking = '출근'")

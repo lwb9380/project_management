@@ -1,9 +1,10 @@
 package com.pro.project.controller;
 
-import com.pro.project.auth.AuthInfo;
+
 import com.pro.project.dto.Day;
 import com.pro.project.dto.Dept;
 import com.pro.project.dto.Working;
+import com.pro.project.service.DeptService;
 import com.pro.project.service.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,11 @@ public class CommuteController {
 
     @Autowired
     StuService stuService;
-
+    @Autowired
+    DeptService deptService;
     @GetMapping("/resetall")
     public String makego(HttpServletRequest request){
-       stuService.resetall();
+        stuService.resetall();
 
         return "send";
         //초기화임
@@ -153,13 +155,25 @@ public class CommuteController {
             }
         }// 이터레이터로 반복문을 돌려서 내 부서 리스트에 로그인 한 본인의 정보가 들어가지 않게 함. 본인은 메인페이지에 크게 나오기 때문
 
-        String deptname=list.get(0).getDeptname();
+        String deptname = list.get(0).getDeptname();
+        Long preWorkCount = deptService.countPreWorkByDeptNo((long) deptno);  //출근전 카운트
+        Long workCount = deptService.countWorkByDeptNo((long) deptno); //출근 카운트
+        Long leaveCount = deptService.countLeaveByDeptNo((long) deptno); //퇴근 카운트
+        Long commuteCount = deptService.countCommuteByDeptNo((long) deptno); //외출 카운트
+        Long vacationCount = deptService.countVacationByDeptNo((long) deptno); //휴가 카운트
 
-        model.addAttribute("deptname",deptname);
-        model.addAttribute("list",list);
-        model.addAttribute("result",result);
-        model.addAttribute("working",working);
-        model.addAttribute("vacation",vacation);
+        model.addAttribute("deptname", deptname);
+        model.addAttribute("list", list);
+        model.addAttribute("result", result);
+        model.addAttribute("working", working);
+        model.addAttribute("vacation", vacation);
+//        여기부터
+        model.addAttribute("deptno", deptno);
+        model.addAttribute("preWorkCount", preWorkCount);
+        model.addAttribute("workCount", workCount);
+        model.addAttribute("leaveCount", leaveCount);
+        model.addAttribute("commuteCount", commuteCount);
+        model.addAttribute("vacationCount", vacationCount);
         return "hi";
 
     }
