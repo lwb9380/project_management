@@ -2,6 +2,7 @@ package com.pro.project.dao;
 
 import com.pro.project.dto.Day;
 import com.pro.project.dto.Dept;
+import com.pro.project.dto.VacationDto;
 import com.pro.project.dto.Working;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,6 +24,8 @@ public interface SampleDao {
     public Day typecheck(int empno, int month);
 
     public Working getlogininfo(int empno);
+
+    public List<VacationDto> getVacationRequest(int deptno);
 
     public List<Dept>deptlist(int deptno);
 
@@ -58,4 +61,9 @@ public interface SampleDao {
 
     public void resetall2();
 
+    public VacationDto getvacationone(int id);
+
+    public void updateDayVacation(String day,int empno, int month);
+
+    public void deleteVacationRequest(int id);
 }

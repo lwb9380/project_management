@@ -13,6 +13,19 @@
 
     </select>
 
+    <select id="getVacationRequest" resultType="com.pro.project.dto.VacationDto">
+        select v.id, v.deptno, v.detailed_info, v.empno, v.request_datetime, v.sub_vacation_type, v.vacation_hope_date,
+               v.vacation_period, v.vacation_reason, v.vacation_type, d.name from
+               vacation_requests v join dept d on v.empno = d.empno
+        where v.deptno=#{param1}
+
+    </select>
+
+    <select id="getvacationone" resultType="com.pro.project.dto.VacationDto">
+        select * from vacation_requests where id=#{param1}
+
+    </select>
+
     <select id="deptlist" resultType="com.pro.project.dto.Dept">
         select * from dept where deptno=#{param1}
     </select>
@@ -110,6 +123,10 @@
 
     </select>
 
+    <delete id="deleteVacationRequest">
+    delete from vacation_requests where id=#{param1}
+
+    </delete>
 
     <select id="istardytoday" resultType="String">
         select tardy from working where empno=#{param1}
@@ -159,6 +176,43 @@
             <otherwise>SELECT NULL</otherwise>
         </choose>
     </select>
+
+    <update id="updateDayVacation" >
+        <choose>
+            <when test="param1 == 'day1'">UPDATE month1 SET day1 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day2'">UPDATE month1 SET day2 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day3'">UPDATE month1 SET day3 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day4'">UPDATE month1 SET day4 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day5'">UPDATE month1 SET day5 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day6'">UPDATE month1 SET day6 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day7'">UPDATE month1 SET day7 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day8'">UPDATE month1 SET day8 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day9'">UPDATE month1 SET day9 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day10'">UPDATE month1 SET day10 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day11'">UPDATE month1 SET day11 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day12'">UPDATE month1 SET day12 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day13'">UPDATE month1 SET day13 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day14'">UPDATE month1 SET day14 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day15'">UPDATE month1 SET day15 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day16'">UPDATE month1 SET day16 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day17'">UPDATE month1 SET day17 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day18'">UPDATE month1 SET day18 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day19'">UPDATE month1 SET day19 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day20'">UPDATE month1 SET day20 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day21'">UPDATE month1 SET day21 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day22'">UPDATE month1 SET day22 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day23'">UPDATE month1 SET day23 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day24'">UPDATE month1 SET day24 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day25'">UPDATE month1 SET day25 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day26'">UPDATE month1 SET day26 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day27'">UPDATE month1 SET day27 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day28'">UPDATE month1 SET day28 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day29'">UPDATE month1 SET day29 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day30'">UPDATE month1 SET day30 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day31'">UPDATE month1 SET day31 = '휴가' WHERE empno = #{param2} and month= #{param3}</when>
+            <otherwise>SELECT NULL</otherwise>
+        </choose>
+    </update>
 
 
 </mapper>

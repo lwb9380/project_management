@@ -3,6 +3,7 @@ package com.pro.project.service;
 import com.pro.project.dao.SampleDao;
 import com.pro.project.dto.Day;
 import com.pro.project.dto.Dept;
+import com.pro.project.dto.VacationDto;
 import com.pro.project.dto.Working;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,4 +99,12 @@ public class StuService {
     public int getDeptNo(int empno){return sampledao.getDeptNo(empno);}
 
     public void resetall(){sampledao.resetall();  sampledao.resetall2();}
+
+    public  List<VacationDto> getVacationRequest(int deptno){return sampledao.getVacationRequest(deptno);}
+
+    public VacationDto getvacationone(int id){return sampledao.getvacationone(id);}
+
+    public void updateDayVacation(String day,int empno,int month){sampledao.updateDayVacation(day,empno,month);}
+
+    public void deleteVacationRequest(int id){sampledao.deleteVacationRequest(id);}
 }
