@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
 public class VacationRequestController {
 
     private final VacationRequestService vacationRequestService;
+
 
     private final EmpRepository empRepository;
 
@@ -32,6 +34,7 @@ public class VacationRequestController {
     public VacationRequestController(
             VacationRequestService vacationRequestService, EmpRepository empRepository) {
         this.vacationRequestService = vacationRequestService;
+
         this.empRepository = empRepository;
     }
 
@@ -57,6 +60,7 @@ public class VacationRequestController {
             Long loggedInDeptno = loggedInEmp.getDeptno();  // 이 부분은 Emp 엔터티에 따라 변경될 수 있습니다.
             model.addAttribute("loggedInDeptno", loggedInDeptno);
             model.addAttribute("loggedInEmpno", loggedInEmpno);
+
         }
 
         List<Emp> deptno = empRepository.findAll();
@@ -75,10 +79,10 @@ public class VacationRequestController {
     public String submitVacationRequest(@ModelAttribute VacationRequest vacationRequest) {
 
         try {
-            LocalDateTime currentDatetime = LocalDateTime.now();
+            LocalDateTime currentDatetime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
             // 현재 시간을 휴가 신청일로 설정하고 원하는 형식으로 변환
-            vacationRequest.setRequestDatetime(LocalDateTime.now());
+            vacationRequest.setRequestDatetime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
             Long loggedInEmpno = (Long) session.getAttribute("user"); // 세션에서 empno 가져오기
             if (loggedInEmpno == null) {
                 // 로그인하지 않았다면 로그인 페이지로 리다이렉트 등의 조치 필요

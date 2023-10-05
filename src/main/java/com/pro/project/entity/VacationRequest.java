@@ -37,7 +37,7 @@ public class VacationRequest {
     @Column(name = "vacation_reason")
     private String vacationReason;
 
-    @Column(name = "request_datetime")
+    @Column(name = "request_datetime", columnDefinition = "DATETIME(0)")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime requestDatetime;
 

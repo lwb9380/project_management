@@ -163,8 +163,8 @@
                     const vacationHopeDateCell = row.insertCell(7);
                     const vacationPeriodCell = row.insertCell(8);
 
-                    departmentCell.textContent = request.department ? request.department.departmentName : 'N/A';
-                    employeeCell.textContent = request.employee ? request.employee.employeeName : 'N/A';
+                    departmentCell.textContent = request.deptno ? request.deptno.toString() : 'N/A'; // deptno로 변경
+                    employeeCell.textContent = request.empno ? request.empno : 'N/A'; // empname로 변경
                     vacationTypeCell.textContent = request.vacationType ? request.vacationType : 'N/A';
                     vacationSubTypeCell.textContent = request.subVacationType ? request.subVacationType : 'N/A';
                     detailedInfoCell.textContent = request.detailedInfo ? request.detailedInfo : 'N/A';

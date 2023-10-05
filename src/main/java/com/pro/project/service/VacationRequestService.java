@@ -1,5 +1,6 @@
 package com.pro.project.service;
 
+import com.pro.project.dto.VacationDto;
 import com.pro.project.entity.Emp;
 import com.pro.project.entity.VacationRequest;
 import com.pro.project.repository.EmpRepository;
@@ -42,18 +43,6 @@ public class VacationRequestService {
         return vacationRequestRepository.findAll(pageable);
     }
 
-//    @Transactional
-//    public void saveWithEmpInfo(VacationRequest vacationRequest, Long empno) {
-//        Emp emp = empRepository.findById(empno).orElse(null); // Emp 조회
-//        if (emp != null) {
-//            vacationRequest.setEmpno(empno);
-//            // deptno를 emp에서 가져오도록 수정
-//            Long deptno = emp.getDeptno();
-//            vacationRequest.setDeptno(deptno);  // 여기서 deptno를 emp에서 가져오는 것으로 가정했습니다.
-//            vacationRequestRepository.save(vacationRequest);
-//        } else {
-//            // emp가 없는 경우의 예외 처리
-//            throw new RuntimeException("Employee not found");
-//        }
-//    }
+
+
 }
