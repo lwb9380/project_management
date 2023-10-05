@@ -92,7 +92,7 @@
 <h2>휴가 신청하기</h2>
 
 <!-- 휴가 신청 폼 -->
-<form action="/submit" method="post" onsubmit="return showConfirmMessage();">
+<form action="/submit" method="post">
 
 
   <!-- 로그인한 사용자의 empno 정보를 자동으로 불러옴 -->
@@ -403,17 +403,6 @@
     }
   });
 
-</script>
-<script>
-  function showConfirmMessage() {
-    const confirmation = window.confirm("휴가를 신청하겠습니까?");  // 사용자에게 확인 메시지 표시
-    if (confirmation) {
-      alert("휴가 신청이 완료되었습니다.");  // 사용자에게 휴가 신청 완료 메시지 표시
-      window.location.href = "/mypage";  // 사용자가 확인을 누르면 mypage로 리다이렉트
-      return false;  // 폼 제출을 중단 (리다이렉트를 수행하기 위해)
-    }
-    return false;  // 사용자가 취소를 누르면 폼 제출을 중단
-  }
 </script>
 
 </body>
