@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
@@ -27,14 +28,10 @@ public class CommuteController {
     @Autowired
     StuService stuService;
 
-    @GetMapping("/make")
+    @GetMapping("/resetall")
     public String makego(HttpServletRequest request){
-        HttpSession session=request.getSession();
-        Long num=(Long)session.getAttribute("user");
-        int empno=num.intValue();
+       stuService.resetall();
 
-
-        stuService.resetworking(empno);
         return "send";
         //초기화임
     }
@@ -113,7 +110,8 @@ public class CommuteController {
         //오늘이 무슨 요일인지 받아옴
 
         String result="";
-        int month=9;
+        LocalDate currentDate = LocalDate.now();
+        int month = currentDate.getMonthValue();
         Day day=stuService.typecheck(empno,month);
 
         //오늘 받아온 요일을 9월 스케쥴표에서 검색해서 오늘이 어떤 근무형태인지 switch case로 결정함
@@ -193,7 +191,8 @@ public class CommuteController {
         //오늘이 무슨 요일인지 받아옴
 
         String result="";
-        int month=9;
+        LocalDate currentDate = LocalDate.now();
+        int month = currentDate.getMonthValue();
         Day day=stuService.typecheck(empno,month);
 
         //오늘 받아온 요일을 9월 스케쥴표에서 검색해서 오늘이 어떤 근무형태인지 switch case로 결정함

@@ -96,4 +96,6 @@ public class StuService {
     public void updateextrawork(int extratime,int empno, int month){sampledao.updateextrawork(extratime,empno,month);}
 
     public int getDeptNo(int empno){return sampledao.getDeptNo(empno);}
+
+    public void resetall(){sampledao.resetall();  sampledao.resetall2();}
 }

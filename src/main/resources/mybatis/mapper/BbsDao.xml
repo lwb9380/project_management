@@ -55,6 +55,14 @@
         update dept set isworking='출근전' where empno=#{param1}
     </update>
 
+    <update id="resetall">
+        update working set ischul='x', cometime='', gotime='' where empno is not null
+    </update>
+
+    <update id="resetall2">
+        update dept set isworking='출근전' where empno is not null
+    </update>
+
     <select id="typecheck" resultType="com.pro.project.dto.Day">
         select * from daycheck where empno =#{param1} and month=#{param2}
     </select>

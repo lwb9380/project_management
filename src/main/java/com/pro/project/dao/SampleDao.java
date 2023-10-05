@@ -54,4 +54,8 @@ public interface SampleDao {
 
     public int getDeptNo(int empno);
 
+    public void resetall();
+
+    public void resetall2();
+
 }
