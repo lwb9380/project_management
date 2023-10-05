@@ -1,9 +1,7 @@
 package com.pro.project.controller;
 
 import com.pro.project.entity.*;
-import com.pro.project.repository.DepartmentRepository;
 import com.pro.project.repository.EmpRepository;
-import com.pro.project.repository.EmployeeRepository;
 import com.pro.project.service.VacationRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,9 +22,6 @@ import java.util.List;
 public class VacationRequestController {
 
     private final VacationRequestService vacationRequestService;
-    private final DepartmentRepository departmentRepository;
-
-    private final EmployeeRepository employeeRepository;
 
     private final EmpRepository empRepository;
 
@@ -35,11 +30,8 @@ public class VacationRequestController {
 
     @Autowired
     public VacationRequestController(
-            VacationRequestService vacationRequestService,
-            DepartmentRepository departmentRepository, EmployeeRepository employeeRepository, EmpRepository empRepository) {
+            VacationRequestService vacationRequestService, EmpRepository empRepository) {
         this.vacationRequestService = vacationRequestService;
-        this.departmentRepository = departmentRepository;
-        this.employeeRepository = employeeRepository;
         this.empRepository = empRepository;
     }
 
