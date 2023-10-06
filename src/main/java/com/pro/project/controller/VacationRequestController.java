@@ -92,7 +92,7 @@ public class VacationRequestController {
             // 휴가 신청 서비스를 호출하여 데이터 저장 로직 추가
             vacationRequestService.submitVacationRequest(vacationRequest);
 
-            return "redirect:/vacationRequest";
+            return "redirect:/start";
         } catch (Exception e) {
             // 예외 처리 코드 추가
             return "redirect:/vacationRequest?error=true";
