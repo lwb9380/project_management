@@ -69,7 +69,6 @@ public class MailController {
     public String deptSendMail2(@RequestParam("content") String content,
                                 @RequestParam("empno") int empno,
                                 @RequestParam("title") String title,
-                                Model model,
                                 HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long num = (Long) session.getAttribute("user");
@@ -123,8 +122,7 @@ public class MailController {
     }
 
     @PostMapping("deleteMails")
-    public void mailsDelete(@RequestBody List<Long> selectedMailIds,
-                                              Model model) {
+    public void mailsDelete(@RequestBody List<Long> selectedMailIds) {
             mailService.deleteMailsByIds(selectedMailIds);
     }
 
