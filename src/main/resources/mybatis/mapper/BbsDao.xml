@@ -54,6 +54,10 @@
 
     </update>
 
+    <update id="resettardy">
+        update working set tardy='x' where empno=#{param1}
+    </update>
+
     <update id="updatego2">
         update dept set isworking='퇴근' where empno=#{param1}
     </update>
@@ -69,7 +73,7 @@
     </update>
 
     <update id="resetall">
-        update working set ischul='x', cometime='', gotime='' where empno is not null
+        update working set ischul='x', cometime='', gotime='', tardy='x',extrawork='x' where empno is not null
     </update>
 
     <update id="resetall2">

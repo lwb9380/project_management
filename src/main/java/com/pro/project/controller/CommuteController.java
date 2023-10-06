@@ -237,7 +237,8 @@ public class CommuteController {
                 break;
         }
 
-
+        String newtoday=" ";
+        String vacation="기본";
         LocalTime hometime = LocalTime.of(18, 0, 0);
         LocalTime halfcometime=LocalTime.of(9,0,0);
         if(type==1){
@@ -263,11 +264,23 @@ public class CommuteController {
 
             responseData="이미출근";
         } else {
-            String newtoday="day"+LocalDate.now().getDayOfMonth();
-            String vacation= stuService.checkvacation(newtoday,empno);
+
+
+            try{
+                newtoday="day"+LocalDate.now().getDayOfMonth();
+                vacation= stuService.checkvacation(newtoday,empno);
+
+            }catch (Exception e){
+                vacation="아님";
+            }
+
+
+
             if(vacation.equals("오전 반차")){
 
             stuService.updateWork(halfcometime.toString(),empno);
+            stuService.resettardy(empno);
+
             } else{
 
                 stuService.updateWork(tttime,empno);

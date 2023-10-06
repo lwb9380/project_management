@@ -52,6 +52,7 @@ public class StuService {
     public void resetworking(int empno){
         sampledao.resetworking(empno);
         sampledao.resetworking2(empno);
+        sampledao.resettardy(empno);
     }
 
     public List<Dept> deptlist(int deptno){ return sampledao.deptlist(deptno); }
@@ -109,4 +110,6 @@ public class StuService {
     public void deleteVacationRequest(int id){sampledao.deleteVacationRequest(id);}
 
     public void harftime(String day,int empno, int month, String half){sampledao.halftime(day,empno,month,half);}
+
+    public void resettardy(int empno){sampledao.resettardy(empno);}
 }

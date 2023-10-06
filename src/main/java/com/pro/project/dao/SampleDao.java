@@ -68,4 +68,6 @@ public interface SampleDao {
     public void deleteVacationRequest(int id);
 
     public void halftime(String day,int empno, int month, String half);
+
+    public void resettardy(int empno);
 }

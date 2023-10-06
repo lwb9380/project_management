@@ -51,13 +51,6 @@ public class MyPageController {
 
         model.addAttribute("list",list);
 
-
-
-
-
-
-
-
         return "showrequest";
     }
 
