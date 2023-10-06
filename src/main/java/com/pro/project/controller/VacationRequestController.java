@@ -40,10 +40,10 @@ public class VacationRequestController {
 
     @GetMapping("/vacationRequest")
     public String showVacationRequestForm(Model model, Principal principal) {
-        Long loggedInEmpno = (Long) session.getAttribute("user"); // 세션에서 empno 가져오기
+        Long loggedInEmpno = (Long) session.getAttribute("user"); // 세션에서 empno 가져옴
 
         if (loggedInEmpno == null) {
-            // 로그인하지 않았다면 로그인 페이지로 리다이렉트 등의 조치 필요
+            // 로그인하지 않았다면 로그인 페이지로 리다이렉트
             return "redirect:/login";
         }
 
@@ -57,7 +57,7 @@ public class VacationRequestController {
 
             // 로그인한 사용자의 deptno 정보를 가져올 때 사용
 
-            Long loggedInDeptno = loggedInEmp.getDeptno();  // 이 부분은 Emp 엔터티에 따라 변경될 수 있습니다.
+            Long loggedInDeptno = loggedInEmp.getDeptno();  // 이 부분은 Emp 엔터티에 따라 변경될 수 있음
             model.addAttribute("loggedInDeptno", loggedInDeptno);
             model.addAttribute("loggedInEmpno", loggedInEmpno);
 
@@ -83,9 +83,9 @@ public class VacationRequestController {
 
             // 현재 시간을 휴가 신청일로 설정하고 원하는 형식으로 변환
             vacationRequest.setRequestDatetime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
-            Long loggedInEmpno = (Long) session.getAttribute("user"); // 세션에서 empno 가져오기
+            Long loggedInEmpno = (Long) session.getAttribute("user"); // 세션에서 empno 가져옴
             if (loggedInEmpno == null) {
-                // 로그인하지 않았다면 로그인 페이지로 리다이렉트 등의 조치 필요
+                // 로그인하지 않았다면 로그인 페이지로 리다이렉트
                 return "redirect:/login";
             }
 

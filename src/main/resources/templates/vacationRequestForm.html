@@ -5,77 +5,7 @@
   <title>휴가 신청하기</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #fafafa;
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    h2 {
-      color: #555;
-      text-align: center;
-      padding: 2em 0;
-      border-bottom: 2px solid #eaeaea;
-    }
-    form, table {
-      max-width: 80%;
-      margin: auto;
-    }
-    form {
-      background: #fff;
-      padding: 2em;
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      margin-bottom: 2em;
-    }
-    label, select, input, textarea, button {
-      display: block;
-      margin: 15px 0;
-    }
-    select, input, textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      margin-top: 5px;
-    }
-    button {
-      background: #5cb85c;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      display: inline-block;
-    }
-    button:hover {
-      background: #4cae4c;
-    }
-    table {
-      border-collapse: collapse;
-      margin-top: 30px;
-      width: 100%;
-    }
-    th, td {
-      text-align: left;
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-    }
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-    tr:hover {
-      background-color: #f1f1f1;
-    }
+
     @media (max-width: 768px) {
       form, table {
         width: 90%;
@@ -123,12 +53,12 @@
     <option value="">세부사항 선택</option>
   </select><br><br>
 
-  <div id="detailedInfoMessage" style="color: black; margin-top: 10px;"></div> <!-- 새로운 div를 여기에 추가 -->
+  <div id="detailedInfoMessage" style="color: black; margin-top: 10px;"></div>
 
   <label for="vacationReason">휴가 사유:</label>
   <textarea id="vacationReason" name="vacationReason" rows="4" cols="50" required></textarea><br><br>
 
-  <!-- 휴가 신청일을 자동으로 설정합니다. -->
+  <!-- 휴가 신청일을 자동으로 설정 -->
   <input type="hidden" id="requestDatetime" name="requestDatetime">
 
   <label for="vacationHopeDate">휴가 희망일:</label>
@@ -141,7 +71,7 @@
 </form>
 
 <script>
-  // 직원 목록 가져오기
+
 
 
 
@@ -191,7 +121,7 @@
     vacationPeriodInput.removeAttribute('readonly');
   });
 
-  // 휴가 기간이 변경될 때 반차 휴가(유급)을 선택한 경우 0.5로 자동 설정
+  // 휴가 기간이 변경될 때 반차 휴가(유급)을 선택한 경우 0으로 자동 설정
   document.getElementById('vacationPeriod').addEventListener('input', function() {
     const selectedVacationType = document.getElementById('vacationType').value;
     const subVacationTypeSelect = document.getElementById('subVacationType');
@@ -411,8 +341,8 @@
     let isConfirmed = confirm("휴가 신청하시겠습니까?");
 
     if(isConfirmed) {
-      // 사용자가 확인을 눌렀다면 폼을 제출하게 됩니다.
-      // 이 경우, 서버에서 폼 데이터를 처리한 후에 /submit 경로로 응답해야 합니다.
+      // 사용자가 확인을 눌렀다면 폼을 제출
+
       alert("휴가 신청이 완료되었습니다.");
       // 페이지를 /start로 리디렉션
 
