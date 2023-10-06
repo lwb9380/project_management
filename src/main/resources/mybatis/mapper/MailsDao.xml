@@ -9,10 +9,9 @@
         select * from mail where empno = #{param1}
     </select>
 
-    <insert id="sendMail">
-        insert into mail (content, date, empno, s_name, title)
-        values(#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
-    </insert>
+    <select id="selectMailDetail" resultType="com.pro.project.dto.MailDto">
+        select * from mail where id=#{param1}
+    </select>
 
     <select id="selectDeptList" resultType="com.pro.project.dto.Dept">
         select distinct deptname from dept
@@ -22,22 +21,21 @@
         select * from dept where deptno=#{param1}
     </select>
 
-    <select id="selectMailDetail" resultType="com.pro.project.dto.MailDto">
-        select * from mail where id=#{param1}
+    <select id="selectEmpnoListMailSend" resultType="com.pro.project.dto.Dept">
+        select empno from dept where deptname=#{param1}
     </select>
-
-    <delete id="mailDelete">
-        delete from mail where id=#{param1}
-    </delete>
 
     <select id="selectSenderName">
         select name from dept where empno=#{param1}
     </select>
 
-    <select id="selectEmpnoListMailSend" resultType="com.pro.project.dto.Dept">
-        select empno from dept where deptname=#{param1}
-    </select>
+    <insert id="sendMail">
+        insert into mail (content, date, empno, s_name, title)
+        values(#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+    </insert>
 
-
+    <delete id="mailDelete">
+        delete from mail where id=#{param1}
+    </delete>
 
 </mapper>

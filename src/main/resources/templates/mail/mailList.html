@@ -35,6 +35,9 @@
     </style>
 </head>
 <body>
+<input value="메일쓰기" type="button" onclick="location.href='/sendMail'">
+<br>
+<br>
 <th:block th:if="${not mails.empty}">
 총: <th:block th:text="${size}"></th:block>개의 메일
 <table border="1">
@@ -87,10 +90,7 @@
     <div style="text-align: center; padding: 20px;">
         <p> 메일이 없습니다.</p>
     </div>
-    <script>
-        alert('메일이 없습니다.');
-        window.location.href = '/start'; // 돌아가기 링크로 이동
-    </script>
+    <a href="/start"><input type="button" value="돌아가기"></a>
 </th:block>
 
 <script src="/js/mailListSelectDeleteMail.js"></script>

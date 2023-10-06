@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @Log4j2
-public class SampleController {
+public class MailController {
 
     @Autowired
     MailRepository mailRepository;
@@ -48,7 +48,7 @@ public class SampleController {
         }
         Page<Mail> mailPage = mailService.getMailPage(empno, pageNumber, pageSize);
         model.addAttribute("mails", mailPage);
-        return "mailList";
+        return "mail/mailList";
     }
 
 
@@ -56,13 +56,13 @@ public class SampleController {
     public String mailDetail(@PathVariable Long id, Model model) {
         List<MailDto> mail = mailService.selectMailDetail(id);
         model.addAttribute("mails", mail);
-        return "mailDetail";
+        return "mail/mailDetail";
     }
 
     @GetMapping("/deptSendMail/{empno}")
     public String deptSendMail(@PathVariable int empno, Model model){
         model.addAttribute("empno", empno);
-        return "deptSendMail";
+        return "mail/deptSendMail";
     }
 
     @PostMapping("/deptSendMail")
@@ -77,7 +77,7 @@ public class SampleController {
         String sName = mailService.selectSenderName(sEmpno);
         LocalDateTime date = LocalDateTime.now();
         mailService.sendMail(content, date, empno, sName, title);
-        return "sendSuccess";
+        return "mail/sendSuccess";
     }
 
 
@@ -85,7 +85,7 @@ public class SampleController {
     public String sendMail( Model model) {
         List<Dept> deptList = mailService.selectDeptList();
         model.addAttribute("deptList", deptList);
-        return "sendMail";
+        return "mail/sendMail";
     }
 
     @PostMapping("/sendMail")
@@ -105,7 +105,7 @@ public class SampleController {
         LocalDateTime date = LocalDateTime.now();
         model.addAttribute("deptList", list);
         mailService.sendMail(content, date, empno, sName, title);
-        return "sendSuccess";
+        return "mail/sendSuccess";
     }
 
     @GetMapping("getEmpnosByDept")

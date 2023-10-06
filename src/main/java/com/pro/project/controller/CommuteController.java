@@ -172,22 +172,20 @@ public class CommuteController {
         model.addAttribute("result", result);
         model.addAttribute("working", working);
         model.addAttribute("vacation", vacation);
-//        여기부터
+        // 여기부터 ( 유비의 count )
         model.addAttribute("deptno", deptno);
         model.addAttribute("preWorkCount", preWorkCount);
         model.addAttribute("workCount", workCount);
         model.addAttribute("leaveCount", leaveCount);
         model.addAttribute("commuteCount", commuteCount);
         model.addAttribute("vacationCount", vacationCount);
+
+        // 여기부터 (범)
         List<Dept> emplist = mailService.selectEmpnoList(deptno);
 
         model.addAttribute("sessionemp", empno);
         model.addAttribute("emplist", emplist);
-        model.addAttribute("deptname",deptname);
-        model.addAttribute("list",list);
-        model.addAttribute("result",result);
-        model.addAttribute("working",working);
-        model.addAttribute("vacation",vacation);
+
         return "hi";
 
     }

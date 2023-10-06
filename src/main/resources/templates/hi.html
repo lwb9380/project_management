@@ -103,16 +103,15 @@
     </table>
 <br>
 <br>
-    <input value="메일쓰기" type="button" onclick="location.href='/sendMail'">
-    <table>
-        <tr th:each="dto : ${emplist}">
-            <td th:if="${sessionemp eq dto.empno}">
-                <button type="button">
-                    <a th:href="@{/mailList/{empno}(empno=${dto.empno})}">메일보기</a>
-                </button>
-            </td>
-        </tr>
-    </table>
+<!--    <table>-->
+<!--        <tr th:each="dto : ${emplist}">-->
+<!--            <td th:if="${sessionemp eq dto.empno}">-->
+<!--                <button type="button">-->
+<!--                    <a th:href="@{/mailList/{empno}(empno=${dto.empno})}">메일보기</a>-->
+<!--                </button>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
     <br>
     <br>
 
