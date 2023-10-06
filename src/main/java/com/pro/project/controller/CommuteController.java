@@ -97,7 +97,6 @@ public class CommuteController {
         String vacation="";
 
 
-
         try{
             vacation= stuService.checkvacation(newtoday,empno);
             if(vacation.equals("휴가")){
@@ -240,13 +239,16 @@ public class CommuteController {
 
 
         LocalTime hometime = LocalTime.of(18, 0, 0);
-
+        LocalTime halfcometime=LocalTime.of(9,0,0);
         if(type==1){
             hometime=LocalTime.of(17,0,0);
+            halfcometime=LocalTime.of(8,0,0);
         } else if (type==2) {
             hometime=LocalTime.of(18,0,0);
+            halfcometime=LocalTime.of(9,0,0);
         } else if (type==3) {
             hometime=LocalTime.of(19,0,0);
+            halfcometime=LocalTime.of(10,0,0);
         }
 
         LocalDateTime now = LocalDateTime.now();
@@ -261,8 +263,15 @@ public class CommuteController {
 
             responseData="이미출근";
         } else {
+            String newtoday="day"+LocalDate.now().getDayOfMonth();
+            String vacation= stuService.checkvacation(newtoday,empno);
+            if(vacation.equals("오전 반차")){
 
-            stuService.updateWork(tttime,empno);
+            stuService.updateWork(halfcometime.toString(),empno);
+            } else{
+
+                stuService.updateWork(tttime,empno);
+            }
 
         }
 
@@ -393,23 +402,19 @@ public class CommuteController {
         } else {
             String tardy=stuService.istardytoday(empno);
 
-            System.out.println("==============================여기");
-            System.out.println(working);
 
             if(working.getExtrawork().equals("o")){
                 int nowtime=time.getHour();
                 int homeHour = hometime.getHour();
                 int extraworktime=nowtime-homeHour;
 
-                System.out.println(month);
                 stuService.updateextrawork(extraworktime,empno,month);
 
             }
 
-
-
-
             if(!tardy.equals("o")){
+
+
                 stuService.updateworktime(empno,month);
             } else if(tardy.equals("o")){
                 String commutetimestr=working.getCometime();
@@ -427,7 +432,17 @@ public class CommuteController {
             } //해당 if문은 지각을 하지 않았으면 8시간을 근무 기록 하고 오늘 지각을 했으면 퇴근시간-출근시간으로 실제 근무 시간만을 기록함.
             //지각하고 8시간 넘게 일해도 8시간만 기록됨
             //지각한 날은 연장 근무 기록이 불가능 하게 해둠.
-            stuService.updatego(tttime,empno);
+
+
+            String newtoday="day"+LocalDate.now().getDayOfMonth();
+            String vacation= stuService.checkvacation(newtoday,empno);
+            if(vacation.equals("오후 반차")){
+                stuService.updatego(hometime.toString(),empno);
+            } else{
+                stuService.updatego(tttime,empno);
+
+            }
+
         }
 
         return responseData;

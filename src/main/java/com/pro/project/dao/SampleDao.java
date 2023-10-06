@@ -66,4 +66,6 @@ public interface SampleDao {
     public void updateDayVacation(String day,int empno, int month);
 
     public void deleteVacationRequest(int id);
+
+    public void halftime(String day,int empno, int month, String half);
 }

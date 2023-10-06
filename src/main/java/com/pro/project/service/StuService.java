@@ -107,4 +107,6 @@ public class StuService {
     public void updateDayVacation(String day,int empno,int month){sampledao.updateDayVacation(day,empno,month);}
 
     public void deleteVacationRequest(int id){sampledao.deleteVacationRequest(id);}
+
+    public void harftime(String day,int empno, int month, String half){sampledao.halftime(day,empno,month,half);}
 }

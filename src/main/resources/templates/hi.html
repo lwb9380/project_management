@@ -41,6 +41,8 @@
     <input value="출근" type="button" onclick="vac()">
     <input value="퇴근" type="button" onclick="vac()">
     <br>
+
+
     <table border="1">
         <thead>
         <tr>
@@ -72,7 +74,7 @@
 
 
 <th:block th:if="${vacation}!='휴가'" >
-
+    <div class="fff">
     <table border="1">
 <td>
 
@@ -101,6 +103,7 @@
     </form>
 </td>
     </table>
+    </div>
 <br>
 <br>
 <!--    <table>-->

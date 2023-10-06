@@ -132,6 +132,45 @@
         select tardy from working where empno=#{param1}
     </select>
 
+    <update id="halftime">
+        <choose>
+            <when test="param1 == 'day1'">UPDATE month1 SET day1 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day2'">UPDATE month1 SET day2 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day3'">UPDATE month1 SET day3 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day4'">UPDATE month1 SET day4 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day5'">UPDATE month1 SET day5 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day6'">UPDATE month1 SET day6 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day7'">UPDATE month1 SET day7 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day8'">UPDATE month1 SET day8 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day9'">UPDATE month1 SET day9 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day10'">UPDATE month1 SET day10 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day11'">UPDATE month1 SET day11 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day12'">UPDATE month1 SET day12 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day13'">UPDATE month1 SET day13 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day14'">UPDATE month1 SET day14 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day15'">UPDATE month1 SET day15 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day16'">UPDATE month1 SET day16 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day17'">UPDATE month1 SET day17 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day18'">UPDATE month1 SET day18 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day19'">UPDATE month1 SET day19 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day20'">UPDATE month1 SET day20 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day21'">UPDATE month1 SET day21 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day22'">UPDATE month1 SET day22 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day23'">UPDATE month1 SET day23 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day24'">UPDATE month1 SET day24 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day25'">UPDATE month1 SET day25 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day26'">UPDATE month1 SET day26 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day27'">UPDATE month1 SET day27 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day28'">UPDATE month1 SET day28 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day29'">UPDATE month1 SET day29 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day30'">UPDATE month1 SET day30 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <when test="param1 == 'day31'">UPDATE month1 SET day31 = #{param4} WHERE empno = #{param2} and month= #{param3}</when>
+            <otherwise>SELECT NULL</otherwise>
+        </choose>
+    </update>
+
+
+
     <select id="isextratoday" resultType="String">
         select extrawork from working where empno=#{param1}
     </select>

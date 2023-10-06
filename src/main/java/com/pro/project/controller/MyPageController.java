@@ -51,7 +51,13 @@ public class MyPageController {
 
         model.addAttribute("list",list);
 
-        System.out.println(list);
+
+
+
+
+
+
+
         return "showrequest";
     }
 
@@ -72,7 +78,25 @@ public class MyPageController {
         int empno=dto.getEmpno();
         LocalDate startday=dto.getVacation_hope_date();
 
+
         Long number=(Long)session.getAttribute("user");
+
+
+        if (dto.getDetailed_info().equals("오전 반차")){
+             int month=startday.getMonthValue();
+            String day="day"+startday.getDayOfMonth();
+             stuService.harftime(day,empno,month,"오전 반차");
+            mailService.sendMail("반차 신청이 승인되었습니다", LocalDateTime.now(), empno, "관리자", "휴가 신청 결과");
+            stuService.deleteVacationRequest(id);
+        } else if(dto.getDetailed_info().equals("오후 반차")){
+            int month=startday.getMonthValue();
+            String day="day"+startday.getDayOfMonth();
+            stuService.harftime(day,empno,month,"오후 반차");
+            mailService.sendMail("반차 신청이 승인되었습니다", LocalDateTime.now(), empno, "관리자", "휴가 신청 결과");
+            stuService.deleteVacationRequest(id);
+        }
+
+
 
 
         int days=Integer.parseInt(dto.getVacation_period());
