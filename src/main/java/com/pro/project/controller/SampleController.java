@@ -71,8 +71,11 @@ public class SampleController {
                                 @RequestParam("title") String title,
                                 Model model,
                                 HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int sEmpno = num.intValue();
+        String sName = mailService.selectSenderName(sEmpno);
         LocalDateTime date = LocalDateTime.now();
-        String sName = mailService.selectSenderName(empno);
         mailService.sendMail(content, date, empno, sName, title);
         return "sendSuccess";
     }
@@ -94,7 +97,9 @@ public class SampleController {
 
         HttpSession session = request.getSession();
         Long num = (Long) session.getAttribute("user");
-        String sName = mailService.selectSenderName(empno);
+        int sEmpno = num.intValue();
+        String sName = mailService.selectSenderName(sEmpno);
+        System.out.println(empno);
 
         List<Dept> list = mailService.selectDeptList();
         LocalDateTime date = LocalDateTime.now();
