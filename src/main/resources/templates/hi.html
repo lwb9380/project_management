@@ -5,9 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/hi.css">
+
 </head>
 <body>
+<nav>
+    <div class="menu-btn">
+        <div class="line line--1"></div>
+        <div class="line line--2"></div>
+        <div class="line line--3"></div>
+    </div>
 
+    <div class="nav-links">
+        <a href="/start" class="link">Home</a>
+        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>
+        <a href="" class="link">Profile</a>
+        <a href="/vacationRequest" class="link">Vacation Request</a>
+        <a href="/Vacationdept" class="link">Dept</a>
+    </div>
+</nav>
+
+
+<div class="support">
+    <a href="https://twitter.com/DevLoop01" target="_blank"><i class="fab fa-twitter-square"></i></a>
+    <a href="https://codepen.io/dev_loop/" target="_blank"><i class="fab fa-codepen"></i></a>
+</div>
 <th:block th:if="${vacation}=='휴가'" >
 
     <p th:text="${working.name+' 님은 오늘 휴가 날입니다'}" ></p>
@@ -138,7 +160,7 @@
 </th:block>
 
 
-<script src="/js/storeDataSendAjax.js"></script>
+<script src="/js/hi.js"></script>
 <script th:inline="javascript">
     var resultValue = /*[[${result}]]*/ '';
 

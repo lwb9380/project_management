@@ -73,8 +73,8 @@ public class CommuteController {
         int empno=num.intValue();
 
         int deptno=stuService.getDeptNo(empno);
-        Working working=stuService.getlogininfo(empno);  //오늘의 근무 상태를 일단 가져옴 empno로
-        Date last=working.getLastday(); //근무 상태에 있는 마지막으로 로그인 한 날을조회
+        Working working1=stuService.getlogininfo(empno);  //오늘의 근무 상태를 일단 가져옴 empno로
+        Date last=working1.getLastday(); //근무 상태에 있는 마지막으로 로그인 한 날을조회
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String lastday=sdf.format(last);
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd");
@@ -90,7 +90,7 @@ public class CommuteController {
             stuService.updatelastday(today,empno);
         }
         //마지막 로그인 날자와 오늘 날자가 다르면 working 테이블을 초기화 함
-
+        Working working=stuService.getlogininfo(empno);
 
         String newtoday="day"+todaysday;
         //휴가 여부 조회

@@ -71,22 +71,17 @@ public class MyPageController {
         VacationDto dto=stuService.getvacationone(id);
         int empno=dto.getEmpno();
         LocalDate startday=dto.getVacation_hope_date();
-        LocalDate lastdayy=LocalDate.parse(lastday);
 
         Long number=(Long)session.getAttribute("user");
-        int myempno=number.intValue();
-
-        int start=startday.getDayOfMonth();
-        int last=lastdayy.getDayOfMonth();
 
 
-
-        if(startday.getMonthValue()==lastdayy.getMonthValue()){
+        int days=Integer.parseInt(dto.getVacation_period());
+        for(int i=0;i<days;i++){
             int month=startday.getMonthValue();
-            for(int i=start;i<=last;i++){
-                String day="day"+i;
-                stuService.updateDayVacation(day,empno,month);
-            }
+            String day="day"+startday.getDayOfMonth();
+
+            startday=startday.plusDays(1);
+            stuService.updateDayVacation(day,empno,month);
         }
 
         mailService.sendMail("휴가 신청이 승인되었습니다", LocalDateTime.now(), empno, "관리자", "휴가 신청 결과");
