@@ -34,6 +34,9 @@ public class VacationRequest {
     @Column(name = "sub_vacation_type")
     private String subVacationType;
 
+    @Column(name = "typeNum")
+    private Integer typeNum;
+
     @Column(name = "vacation_reason")
     private String vacationReason;
 

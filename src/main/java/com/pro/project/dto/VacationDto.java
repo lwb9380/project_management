@@ -19,6 +19,7 @@ public class VacationDto {
     private int empno;
     private String request_datetime;
     private String sub_vacation_type;
+    private Integer typeNum;
     private LocalDate vacation_hope_date;
 
     private String vacation_period;

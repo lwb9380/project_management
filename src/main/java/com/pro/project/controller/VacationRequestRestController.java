@@ -22,8 +22,9 @@ public class VacationRequestRestController {
 
     @GetMapping("/all")
     public List<VacationRequest> getAllVacationRequests() {
-        // 휴가 신청 목록을 서비스에서 가져와서 반환
-
+        // 휴가 신청 목록을 서비스에서 가져와서 반환합니다.
+//        List<VacationRequest> vacationRequests = vacationRequestService.getAllVacationRequests();
+//        return vacationRequests;
         return vacationRequestService.getAllVacationRequests();
     }
 }
