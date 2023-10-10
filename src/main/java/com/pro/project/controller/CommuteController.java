@@ -124,6 +124,7 @@ public class CommuteController {
 
         int type=0; //디폴트값
 
+
         switch (doweek){
             case "월요일": type=day.get월요일();
                 break;
@@ -185,6 +186,8 @@ public class CommuteController {
         model.addAttribute("sessionemp", empno);
         model.addAttribute("emplist", emplist);
 
+        System.out.println("=======================");
+        System.out.println(result);
         return "hi";
 
     }
