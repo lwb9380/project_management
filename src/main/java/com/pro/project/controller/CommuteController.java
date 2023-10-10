@@ -117,27 +117,41 @@ public class CommuteController {
         String doweek=stuService.getdoweek();
         //오늘이 무슨 요일인지 받아옴
 
+
+        System.out.println("====================== doweek");
+        System.out.println(doweek);
+
+
         String result="";
         LocalDate currentDate = LocalDate.now();
         int month = currentDate.getMonthValue();
-        Day day=stuService.typecheck(empno,month);
 
-        //오늘 받아온 요일을 9월 스케쥴표에서 검색해서 오늘이 어떤 근무형태인지 switch case로 결정함
+
+            Day day=stuService.typecheck(empno,month);
+
+
+
 
         int type=0; //디폴트값
 
-        switch (doweek){
-            case "월요일": type=day.get월요일();
-                break;
-            case "화요일": type=day.get화요일();
-                break;
-            case "수요일": type=day.get수요일();
-                break;
-            case "목요일": type=day.get목요일();
-                break;
-            case "금요일": type=day.get금요일();
-                break;
+
+        if(day==null){
+            type=2;
+        } else {
+            switch (doweek){
+                case "월요일": type=day.getMonday();
+                    break;
+                case "화요일": type=day.getTuesday();
+                    break;
+                case "수요일": type=day.getWednesday();
+                    break;
+                case "목요일": type=day.getThursday();
+                    break;
+                case "금요일": type=day.getFriday();
+                    break;
+            }
         }
+
 
 
         switch (type){
@@ -233,15 +247,15 @@ public class CommuteController {
         int type=0; //디폴트값
 
         switch (doweek){
-            case "월요일": type=day.get월요일();
+            case "월요일": type=day.getMonday();
                 break;
-            case "화요일": type=day.get화요일();
+            case "화요일": type=day.getTuesday();
                 break;
-            case "수요일": type=day.get수요일();
+            case "수요일": type=day.getWednesday();
                 break;
-            case "목요일": type=day.get목요일();
+            case "목요일": type=day.getThursday();
                 break;
-            case "금요일": type=day.get금요일();
+            case "금요일": type=day.getFriday();
                 break;
         }
 

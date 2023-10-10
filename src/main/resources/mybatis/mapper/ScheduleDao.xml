@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pro.project.dao.ScheduleDao">
+
+    <!--스케쥴 인서트-->
+    <insert id="insertSchedule">
+        insert into daycheck (empno, 월요일, 화요일, 수요일, 목요일, 금요일, year, month)
+        values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
+    </insert>
+
+    <!--empno로 daycheck 불러오기-->
+    <select id="selectDaycheck" resultType="com.pro.project.dto.Day">
+        select * from daycheck where empno = #{param1}
+    </select>
+
+    <update id="updateSchedule">
+        update daycheck set 월요일=#{param1}, 화요일=#{param2}, 수요일=#{param3}, 목요일=#{param4}, 금요일=#{param5}
+        where empno = #{param6}
+    </update>
+
+    <insert id="insertScheduleRequest">
+        insert into schedule_request (empno, monday, tuesday, wednesday, thursday, friday, year, month)
+        values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
+    </insert>
+
+    <select id="selectRequest" resultType="com.pro.project.dto.ScheduleRequest">
+        select * from schedule_request where empno = #{param1}
+    </select>
+
+    <delete id="deleteSchedule">
+        delete from daycheck where empno= #{param1}
+    </delete>
+
+    <delete id="deleteScheduleRequest">
+        delete from schedule_request where empno = #{param1}
+    </delete>
+
+</mapper>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="|${empno}님 이번달(${month}월) 스케줄 신청|"/>
+<form action="/newSchedule" method="post">
+    <table style="text-align: center;">
+        <caption th:text="|${year}년 ${month}월|"></caption>
+        <tr>
+            <td>월요일</td>
+            <td>화요일</td>
+            <td>수요일</td>
+            <td>목요일</td>
+            <td>금요일</td>
+        </tr>
+        <tr>
+            <td>
+                <select name="monday" required>
+                    <option value="1">8시출근-17시퇴근</option>
+                    <option value="2">9시출근-18시퇴근</option>
+                    <option value="3">10시출근-19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="tuesday" required>
+                    <option value="1">8시출근-17시퇴근</option>
+                    <option value="2">9시출근-18시퇴근</option>
+                    <option value="3">10시출근-19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="wednesday" required>
+                    <option value="1">8시출근-17시퇴근</option>
+                    <option value="2">9시출근-18시퇴근</option>
+                    <option value="3">10시출근-19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="thursday" required>
+                    <option value="1">8시출근-17시퇴근</option>
+                    <option value="2">9시출근-18시퇴근</option>
+                    <option value="3">10시출근-19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="friday" required>
+                    <option value="1">8시출근-17시퇴근</option>
+                    <option value="2">9시출근-18시퇴근</option>
+                    <option value="3">10시출근-19시퇴근</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="신청하기">
+</form>
+</body>
+</html>

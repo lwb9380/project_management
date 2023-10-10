@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    td {
+        border: 1px solid;
+    }
+    table {
+        border : 1px solid;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>showSimpleSchedule</title>
+</head>
+<body>
+<div th:if="${monday != null}">
+    <th:block th:text="|${empno}님의 ${year}년 ${month}월 스케줄|"/>
+    <table>
+        <tr>
+            <td>월</td>
+            <td>화</td>
+            <td>수</td>
+            <td>목</td>
+            <td>금</td>
+        </tr>
+        <tr>
+            <td th:text="${monday}"></td>
+            <td th:text="${tuesday}"></td>
+            <td th:text="${wednesday}"></td>
+            <td th:text="${thursday}"></td>
+            <td th:text="${friday}"></td>
+        </tr>
+    </table>
+    <a href="/schedule">뒤로가기</a>
+</div>
+<div th:unless="${monday != null}">
+    <th:block th:text="|${empno}님의 ${month}월 스케줄|"/><br>
+    아직 스케줄이 확정되지 않았습니다.<br>
+    <a href="/newSchedule">신청하기</a>
+    <a href="/insertSchedule">(임시)바로 등록하기</a><br>
+    <a href="/schedule">뒤로가기</a>
+</div>
+</body>
+</html>

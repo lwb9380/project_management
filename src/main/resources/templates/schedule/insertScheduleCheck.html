@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>insertCheck</title>
+</head>
+<body>
+<th:block th:text="|${empno}번 사원님의 ${month}월 스케줄 신청입니다.|"/><br>
+<th:block th:text="|월요일 : ${monday}|"/><br>
+<th:block th:text="|화요일 : ${tuesday}|"/><br>
+<th:block th:text="|수요일 : ${wednesday}|"/><br>
+<th:block th:text="|목요일 : ${thursday}|"/><br>
+<th:block th:text="|금요일 : ${friday}|"/><br>
+<a href="/showSchedule">돌아가기</a>
+</body>
+</html>

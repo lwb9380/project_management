@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Day {
+public class ScheduleRequest {
     private int empno;
     private int monday;
     private int tuesday;
@@ -15,6 +15,6 @@ public class Day {
     private int thursday;
     private int friday;
     private int month;
-    private int autokey;
+    private int year;
 
 }
