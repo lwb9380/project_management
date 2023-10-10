@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>$Title$</title>
     <link rel="stylesheet" href="/css/hi.css">
+    <link rel="stylesheet" href="/css/dept.css">
+
 </head>
 <body>
 
@@ -18,7 +20,7 @@
         <a href="/start" class="link">Home</a>
         <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>
         <a href="/vacationRequest" class="link">Vacation Request</a>
-
+        <a href="/schedule" class="link">Schedule Request </a>
         <th:block th:if="${authority}=='row'">
             <a href="/Vacationdept" class="link">Dept</a>
         </th:block>
@@ -31,18 +33,18 @@
 
 <table border="1">
     <thead>
-
     <tr>
-        <th:block th:text="${deptname} + ' '+ ${month}+'월 근태 현황' "> </th:block>
+        <th colspan="5" th:text="${deptname} + ' ' + ${month} + '월 근태 현황'"></th>
     </tr>
     <tr>
-        <th> 사번 </th>
-        <th> 이름 </th>
-        <th> 지각횟수 </th>
-        <th> 근무 시간 </th>
-        <th> 추가근무 시간</th>
+        <th>사번</th>
+        <th>이름</th>
+        <th>지각횟수</th>
+        <th>근무 시간</th>
+        <th>추가근무 시간</th>
     </tr>
-
+    </thead>
+    <tbody>
     <tr th:each="dto2, iterStat : ${list2}">
         <td th:text="${dto2.empno}"></td>
         <td th:text="${dto2.name}"></td>
@@ -50,13 +52,12 @@
         <td th:text="${dto2.worktime}"></td>
         <td th:text="${dto2.extraworktime}"></td>
     </tr>
-
-    </thead>
+    </tbody>
 </table>
 
 
 
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br>
 
 <table border="1">
     <thead>

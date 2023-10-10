@@ -1,0 +1,29 @@
+/* style.css */
+/* 테이블 스타일 */
+table {
+    width: 50%; /* 테이블의 가로 너비를 80%로 설정 */
+    border-collapse: collapse;
+    margin: 0 auto; /* 테이블을 수평 가운데로 정렬 */
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* 휴가 승인/반려 버튼 스타일 */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
