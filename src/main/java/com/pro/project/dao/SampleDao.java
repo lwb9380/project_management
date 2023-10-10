@@ -37,6 +37,7 @@ public interface SampleDao {
     public String checkvacation(String day,int empno);
 
     public void updatevacation(int empno);
+    public void updatevacation2(int empno);
 
     public String getAuthority(int empno);
 
@@ -60,7 +61,7 @@ public interface SampleDao {
 
     public VacationDto getvacationone(int id);
 
-    public void updateDayVacation(String day,int empno, int month);
+    public void updateDayVacation(String day,int empno, int month,String which);
 
     public void deleteVacationRequest(int id);
 

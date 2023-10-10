@@ -83,6 +83,8 @@ public class StuService {
         sampledao.updatevacation(empno);
     }
 
+    public void updatevacation2(int empno){sampledao.updatevacation2(empno);}
+
     public String getAuthority(int empno) {return sampledao.getAuthority(empno); }
 
     public void updatetardy(int empno,int month) {sampledao.updatetardy(empno); sampledao.checktardy(empno,month); }
@@ -102,7 +104,7 @@ public class StuService {
 
     public VacationDto getvacationone(int id){return sampledao.getvacationone(id);}
 
-    public void updateDayVacation(String day,int empno,int month){sampledao.updateDayVacation(day,empno,month);}
+    public void updateDayVacation(String day,int empno,int month,String which){sampledao.updateDayVacation(day,empno,month,which);}
 
     public void deleteVacationRequest(int id){sampledao.deleteVacationRequest(id);}
 

@@ -104,16 +104,27 @@ public class MyPageController {
         }
 
 
+        if(dto.getType_num()==0){
+            int days=Integer.parseInt(dto.getVacation_period());
+            for(int i=0;i<days;i++){
+                int month=startday.getMonthValue();
+                String day="day"+startday.getDayOfMonth();
 
+                startday=startday.plusDays(1);
+                stuService.updateDayVacation(day,empno,month,"무급");
+            }
+        } else if(dto.getType_num()==1) {
+            int days=Integer.parseInt(dto.getVacation_period());
+            for(int i=0;i<days;i++){
+                int month=startday.getMonthValue();
+                String day="day"+startday.getDayOfMonth();
 
-        int days=Integer.parseInt(dto.getVacation_period());
-        for(int i=0;i<days;i++){
-            int month=startday.getMonthValue();
-            String day="day"+startday.getDayOfMonth();
-
-            startday=startday.plusDays(1);
-            stuService.updateDayVacation(day,empno,month);
+                startday=startday.plusDays(1);
+                stuService.updateDayVacation(day,empno,month,"휴가");
+            }
         }
+
+
 
         mailService.sendMail("휴가 신청이 승인되었습니다", LocalDateTime.now(), empno, "관리자", "휴가 신청 결과");
         stuService.deleteVacationRequest(id);

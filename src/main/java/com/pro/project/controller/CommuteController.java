@@ -103,6 +103,12 @@ public class CommuteController {
             vacation= stuService.checkvacation(newtoday,empno);
             if(vacation.equals("휴가")){
                 stuService.updatevacation(empno);
+
+
+            }if(vacation.equals("무급")){
+
+                stuService.updatevacation2(empno);
+
             }
         } catch (Exception e){
 

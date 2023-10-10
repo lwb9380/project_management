@@ -27,5 +27,5 @@ public class VacationDto {
     private String vacation_type;
 
     private String name;
-
+    private int type_num;
 }
