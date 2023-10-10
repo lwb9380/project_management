@@ -23,19 +23,13 @@ public class LoginController {
         if (loginCommand == null) {
             loginCommand = new LoginCommand();
         }
-        // 로그인된 사용자의 경우 메인 페이지로 리다이렉트
-//        if (!(boolean)session.getAttribute("authInfo")) {
-//            return "login/loginForm";
-//        } else {
-//            return "login/loginSuccess";
-//        }
         if(session.getAttribute("authInfo")!=null) {
             if((boolean) session.getAttribute("authInfo")){
                 return "login/loginSuccess";
             }
-            return "login/loginForm";
+            return "index";
         }
-        return "login/loginForm";
+        return "index";
     }
 
 
@@ -45,7 +39,7 @@ public class LoginController {
         new LoginCommandValidator().validate(loginCommand, errors);
 
         if (errors.hasErrors()) {
-            return "login/loginForm";
+            return "index";
         }
         try {
             boolean authInfo = authService.authenticate(
@@ -58,7 +52,7 @@ public class LoginController {
 
         } catch (WrongIdPasswordException e) {
             errors.reject("idPasswordNotMatching");
-            return "login/loginForm";
+            return "index";
         }
 
     }

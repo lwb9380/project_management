@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div id="center">
-    <p><a th:href="@{/logout}">로그아웃</a></p>
-    <p><a th:href="@{/mypage}">마이페이지</a></p>
-    <p th:text="#{login.done}"></p>
-    <div th:if="${authInfo != null}">
-        <p th:text="${authInfo.empname + '님. 이미 로그인되어 있습니다.'}"></p>
 
-    </div>
-</div>
+<script type="text/javascript">
+    window.location.href = "/start"; // 페이지 로드 후 /start로 이동
+</script>
+
+
 </body>
 </html>

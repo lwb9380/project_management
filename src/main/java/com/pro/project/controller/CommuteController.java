@@ -485,5 +485,10 @@ public class CommuteController {
         return "mypage";
     }
 
+    @GetMapping("/logintest")
+    public String logintest(){
+        return "login/logintest";
+    }
+
 
 }
