@@ -1,10 +1,7 @@
 package com.pro.project.service;
 
 import com.pro.project.dao.SampleDao;
-import com.pro.project.dto.Day;
-import com.pro.project.dto.Dept;
-import com.pro.project.dto.VacationDto;
-import com.pro.project.dto.Working;
+import com.pro.project.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -112,4 +109,6 @@ public class StuService {
     public void harftime(String day,int empno, int month, String half){sampledao.halftime(day,empno,month,half);}
 
     public void resettardy(int empno){sampledao.resettardy(empno);}
+
+    public List<DeptResult> getdeptinfo(int deptno){return sampledao.getdeptinfo(deptno);}
 }

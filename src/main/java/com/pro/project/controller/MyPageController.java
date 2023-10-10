@@ -1,6 +1,8 @@
 package com.pro.project.controller;
 
+import com.pro.project.dto.DeptResult;
 import com.pro.project.dto.VacationDto;
+import com.pro.project.dto.Working;
 import com.pro.project.entity.Emp;
 import com.pro.project.repository.MyPageRepository;
 import com.pro.project.service.MailService;
@@ -43,14 +45,26 @@ public class MyPageController {
 
     @GetMapping("/Vacationdept")
     public String showrequest(Model model){
+
+
         Long num=(Long)session.getAttribute("user");
         int empno=num.intValue();
         int deptno=stuService.getDeptNo(empno);
+        String authority=stuService.getAuthority(empno);
 
         List<VacationDto> list=stuService.getVacationRequest(deptno);
 
-        model.addAttribute("list",list);
+        String deptname=stuService.deptlist(deptno).get(0).getDeptname();
+        Working working=stuService.getlogininfo(empno);
 
+
+        List<DeptResult> list2=stuService.getdeptinfo(deptno);
+        int month=list2.get(0).getMonth();
+        model.addAttribute("month",month);
+        model.addAttribute("deptname",deptname);
+        model.addAttribute("list2",list2);
+        model.addAttribute("list",list);
+        model.addAttribute("working", working);
         return "showrequest";
     }
 

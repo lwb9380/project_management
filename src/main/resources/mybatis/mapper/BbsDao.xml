@@ -21,6 +21,15 @@
 
     </select>
 
+
+    <select id="getdeptinfo" resultType="com.pro.project.dto.DeptResult">
+        SELECT emp.deptno, emp.empno, emp.name, monthresult.month, monthresult.tardy, monthresult.worktime, monthresult.extraworktime
+        FROM emp
+                 INNER JOIN monthresult ON emp.empno = monthresult.empno
+        WHERE emp.deptno = #{param1};
+
+    </select>
+
     <select id="getvacationone" resultType="com.pro.project.dto.VacationDto">
         select * from vacation_requests where id=#{param1}
 

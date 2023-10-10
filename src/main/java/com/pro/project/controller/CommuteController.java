@@ -72,6 +72,7 @@ public class CommuteController {
         Long num=(Long)session.getAttribute("user");
         int empno=num.intValue();
 
+        String authority=stuService.getAuthority(empno);
         int deptno=stuService.getDeptNo(empno);
         Working working1=stuService.getlogininfo(empno);  //오늘의 근무 상태를 일단 가져옴 empno로
         Date last=working1.getLastday(); //근무 상태에 있는 마지막으로 로그인 한 날을조회
@@ -167,6 +168,7 @@ public class CommuteController {
         Long commuteCount = deptService.countCommuteByDeptNo((long) deptno); //외출 카운트
         Long vacationCount = deptService.countVacationByDeptNo((long) deptno); //휴가 카운트
 
+        model.addAttribute("authority",authority);
         model.addAttribute("deptname", deptname);
         model.addAttribute("list", list);
         model.addAttribute("result", result);

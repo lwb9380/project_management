@@ -1,9 +1,6 @@
 package com.pro.project.dao;
 
-import com.pro.project.dto.Day;
-import com.pro.project.dto.Dept;
-import com.pro.project.dto.VacationDto;
-import com.pro.project.dto.Working;
+import com.pro.project.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -70,4 +67,6 @@ public interface SampleDao {
     public void halftime(String day,int empno, int month, String half);
 
     public void resettardy(int empno);
+
+    public List<DeptResult> getdeptinfo(int deptno);
 }
