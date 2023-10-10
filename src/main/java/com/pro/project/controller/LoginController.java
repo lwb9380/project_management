@@ -32,6 +32,21 @@ public class LoginController {
         return "index";
     }
 
+    @GetMapping("/")
+    public String form1(LoginCommand loginCommand, HttpSession session) {
+        if (loginCommand == null) {
+            loginCommand = new LoginCommand();
+        }
+        if(session.getAttribute("authInfo")!=null) {
+            if((boolean) session.getAttribute("authInfo")){
+                return "login/loginSuccess";
+            }
+            return "index";
+        }
+        return "index";
+    }
+
+
 
     @PostMapping("/login")
     public String submit(
