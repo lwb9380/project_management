@@ -14,7 +14,7 @@ public class LogoutController {
 
 
 		session.invalidate();
-		return"login/loginForm";
+		return"index";
 	}
 
 }
