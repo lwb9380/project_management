@@ -6,7 +6,7 @@
 <mapper namespace="com.pro.project.dao.MailDao">
 
     <select id="mailList" resultType="com.pro.project.dto.MailDto">
-        select * from mail where empno = #{param1}
+        select * from mail where empno = #{param1} order by date desc
     </select>
 
     <select id="selectMailDetail" resultType="com.pro.project.dto.MailDto">
@@ -28,6 +28,7 @@
     <select id="selectSenderName">
         select name from dept where empno=#{param1}
     </select>
+
 
     <insert id="sendMail">
         insert into mail (content, date, empno, s_name, title)

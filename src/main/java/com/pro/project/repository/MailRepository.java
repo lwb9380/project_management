@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MailRepository extends JpaRepository<Mail, Long> {
-    Page<Mail> findByEmpno(int empno, Pageable pageable);
+    Page<Mail> findByEmpnoOrderByDateDesc(int empno, Pageable pageable);
 
 }

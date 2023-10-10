@@ -9,6 +9,7 @@ import com.pro.project.service.StuService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,6 @@ public class MailController {
         model.addAttribute("mails", mailPage);
         return "mail/mailList";
     }
-
 
     @GetMapping("/mailDetail/{id}")
     public String mailDetail(@PathVariable Long id, Model model) {
@@ -125,5 +125,7 @@ public class MailController {
     public void mailsDelete(@RequestBody List<Long> selectedMailIds) {
             mailService.deleteMailsByIds(selectedMailIds);
     }
+
+
 
 }

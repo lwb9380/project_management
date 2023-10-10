@@ -36,32 +36,35 @@
 <body>
 
 <form action="/mailDelete" method="get">
-<table border="1">
-    <thead>
+<table align="center" cellpadding="0" cellspacing="0" width="600" th:each="mail : ${mails}">
     <tr>
-
+        <td>
+            <th:block th:text="${mail.title}"></th:block>
+        </td>
     </tr>
     <tr>
-        <th>Sender</th>
-        <th>Content</th>
-        <th>Title</th>
-        <th>Date</th>
+        <td>
+            <th:block th:text="${mail.sName}"></th:block>
+        </td>
     </tr>
-    </thead>
-    <tbody>
-    <tr th:each="mail : ${mails}">
-        <td th:text="${mail.sName}"></td>
-        <td th:text="${mail.content}"></td>
-        <td><a th:text="${mail.title}"></a></td>
-        <td th:text="${#temporals.format(mail.date, 'yyyy.MM.dd')}"></td>
-        <th><input type="hidden" th:value="${mail.id}" name="id"></th>
-        <input type="hidden" th:value="${mail.empno}" name="empno" />
+    <tr>
+        <td>
+            <th:block th:text="${#temporals.format(mail.date, 'HH:mm')}"></th:block>
+        </td>
     </tr>
-    </tbody>
+    <tr>
+        <td>
+            <th:block th:text="${mail.content}"></th:block>
+            <input type="hidden" th:value="${mail.id}" name="id">
+            <input type="hidden" th:value="${mail.empno}" name="empno" />
+        </td>
+    </tr>
 
 </table>
     <input type="submit" value="삭제" onclick="closeMessage()">
+    <input type="button" value="뒤로가기" onclick="history.back();" />
 </form>
+
 <script>
     function closeMessage() {
         alert("삭제되었습니다.");

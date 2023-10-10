@@ -6,7 +6,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/hi.css">
-
+<style>
+    .bbb {
+        text-decoration-line: none;
+        font-size: 20px;
+    }
+</style>
 </head>
 <body>
 <nav>
@@ -41,7 +46,6 @@
     <input value="퇴근" type="button" onclick="vac()">
     <br>
 
-
     <table border="1">
         <thead>
         <tr>
@@ -69,8 +73,6 @@
 
 </th:if>
 </th:block>
-
-
 
 <th:block th:if="${vacation}!='휴가'" >
     <div class="fff">
@@ -105,15 +107,7 @@
     </div>
 <br>
 <br>
-<!--    <table>-->
-<!--        <tr th:each="dto : ${emplist}">-->
-<!--            <td th:if="${sessionemp eq dto.empno}">-->
-<!--                <button type="button">-->
-<!--                    <a th:href="@{/mailList/{empno}(empno=${dto.empno})}">메일보기</a>-->
-<!--                </button>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
+
     <br>
     <br>
 
@@ -147,7 +141,6 @@
     <table border="1">
         <thead>
         <tr>
-
         <td>출근 전: <span th:text="${preWorkCount}"></span></td>
         <td>출근: <span th:text="${workCount}"></span></td>
         <td>퇴근: <span th:text="${leaveCount}"></span></td>
@@ -160,6 +153,30 @@
 
 </th:block>
 
+<th:block th:if="${not mail.empty}">
+    <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="bbb">전체 메일</a>
+    <table th:each="mail : ${mail}" th:unless="${mailStat.index > 3}" >
+        <tr>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <th:block th:text="${mail.sName}"></th:block>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{'/mailDetail/' + ${mail.id}}" class="bbb">
+                    <span th:text="${mail.title}"></span>
+                </a>
+                <th:block th:text="${#temporals.format(mail.date, 'MM.dd HH:mm')}"></th:block>
+            </td>
+        </tr>
+    </table>
+</th:block>
+<th:block th:if="${mail.empty}">
+    <p><h3>메일이 없습니다.</h3></p>
+</th:block>
 
 <script src="/js/hi.js"></script>
 <script th:inline="javascript">

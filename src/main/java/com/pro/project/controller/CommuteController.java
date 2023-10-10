@@ -3,6 +3,7 @@ package com.pro.project.controller;
 import com.pro.project.auth.AuthInfo;
 import com.pro.project.dto.Day;
 import com.pro.project.dto.Dept;
+import com.pro.project.dto.MailDto;
 import com.pro.project.dto.Working;
 import com.pro.project.service.DeptService;
 import com.pro.project.service.MailService;
@@ -125,7 +126,6 @@ public class CommuteController {
 
         int type=0; //디폴트값
 
-
         switch (doweek){
             case "월요일": type=day.get월요일();
                 break;
@@ -187,6 +187,9 @@ public class CommuteController {
 
         model.addAttribute("sessionemp", empno);
         model.addAttribute("emplist", emplist);
+
+        List<MailDto> mail = mailService.mailList(empno);
+        model.addAttribute("mail", mail);
 
         System.out.println("=======================");
         System.out.println(result);

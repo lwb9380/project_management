@@ -65,7 +65,7 @@ public class MailService {
 
     public Page<Mail> getMailPage(int empno, int page, int pageSize) {
         PageRequest pageRequest = PageRequest.of(page, pageSize);
-        return mailRepository.findByEmpno(empno, pageRequest);
+        return mailRepository.findByEmpnoOrderByDateDesc(empno, pageRequest);
     }
 
     public void deleteMailsByIds(List<Long> mailIds) {
