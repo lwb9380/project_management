@@ -138,16 +138,20 @@
         </tbody>
     </table>
 <!--   오유비 추가 코드 10월05일 부서 근태 현황을 카운트 해서 숫자로 나타냄-->
-
-<div>
-    <table border="1">
-        <thead>
+<br>
+    <center>
+        <a class = "highlighted">
+            <table>
         <tr>
-        <td>출근 전: <span th:text="${preWorkCount}"></span></td>
-        <td>출근: <span th:text="${workCount}"></span></td>
-        <td>퇴근: <span th:text="${leaveCount}"></span></td>
-        <td>외출: <span th:text="${commuteCount}"></span></td>
-        <td>휴가: <span th:text="${vacationCount}"></span></td>
+            <th colspan="5">근태현황</th>
+        </tr>
+                <td>출근 전:</td> <td><span th:text="${preWorkCount}"></span></td>
+                <td>출근:</td><td><span th:text="${workCount}"></span></td>
+        <tr>
+                <td>퇴근:</td><td> <span th:text="${leaveCount}"></span></td>
+                <td>외출:</td><td><span th:text="${commuteCount}"></span></td>
+        </tr>
+                <td>휴가:</td><td> <span th:text="${vacationCount}"></span></td>
         </tr>
         </thead>
     </table>
