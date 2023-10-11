@@ -6,6 +6,8 @@ import com.pro.project.dto.ScheduleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduleService {
 
@@ -16,20 +18,20 @@ public class ScheduleService {
         this.scheduleDao = scheduleDao;
     }
 
-    public void insertSchedule(int empno, int 월요일, int 화요일, int 수요일, int 목요일, int 금요일, int year, int month) {
-        scheduleDao.insertSchedule(empno, 월요일, 화요일, 수요일, 목요일, 금요일, year, month);
+    public void insertSchedule(int empno, int monday, int tuesday, int wednesday, int thursday, int friday, int year, int month) {
+        scheduleDao.insertSchedule(empno, monday, tuesday, wednesday, thursday, friday, year, month);
     }
 
     public Day selectDaycheck(int empno) {
         return scheduleDao.selectDaycheck(empno);
     }
 
-    public void updateSchedule(int 월요일, int 화요일, int 수요일, int 목요일, int 금요일, int empno) {
-        scheduleDao.updateSchedule(월요일, 화요일, 수요일, 목요일, 금요일, empno);
+    public void updateSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno) {
+        scheduleDao.updateSchedule(monday, tuesday, wednesday, thursday, friday, empno);
     }
 
-    public void insertScheduleRequest(int empno, int 월요일, int 화요일, int 수요일, int 목요일, int 금요일, int year, int month) {
-        scheduleDao.insertScheduleRequest(empno, 월요일, 화요일, 수요일, 목요일, 금요일, year, month);
+    public void insertScheduleRequest(int empno, int monday, int tuesday, int wednesday, int thursday, int friday, int year, int month) {
+        scheduleDao.insertScheduleRequest(empno, monday, tuesday, wednesday, thursday, friday, year, month);
     }
 
     public ScheduleRequest selectRequest(int empno) {
@@ -44,4 +46,12 @@ public class ScheduleService {
         scheduleDao.deleteScheduleRequest(empno);
     }
 
+    public ScheduleRequest checkDuplicate(int empno, int year, int month) {
+        return scheduleDao.checkDuplicate(empno, year, month);
+    }
+
+    public List<ScheduleRequest> scheduleRequestList(int empno) {
+        List<ScheduleRequest> scheduleRequestList = scheduleDao.scheduleRequestList(empno);
+        return scheduleRequestList;
+    }
 }

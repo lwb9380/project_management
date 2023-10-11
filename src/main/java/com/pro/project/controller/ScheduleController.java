@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @Log4j2
@@ -68,18 +69,73 @@ public class ScheduleController {
         int month = now.getMonthValue();
         int year = now.getYear();
 
+        String firstCase = "8시출근 - 17시퇴근";
+        String secondCase = "9시출근 - 18시퇴근";
+        String thirdCase = "10시출근 - 19시퇴근";
+
+
         Day day = scheduleService.selectDaycheck(empno);
         if(day!=null){
             int monday = day.getMonday();
+            switch(monday) {
+                case 1:
+                    model.addAttribute("monday", firstCase);
+                    break;
+                case 2:
+                    model.addAttribute("monday", secondCase);
+                    break;
+                case 3:
+                    model.addAttribute("monday", thirdCase);
+                    break;
+            }
             int tuesday = day.getTuesday();
+            switch(tuesday) {
+                case 1:
+                    model.addAttribute("tuesday", firstCase);
+                    break;
+                case 2:
+                    model.addAttribute("tuesday", secondCase);
+                    break;
+                case 3:
+                    model.addAttribute("tuesday", thirdCase);
+                    break;
+            }
             int wednesday = day.getWednesday();
+            switch(wednesday) {
+                case 1:
+                    model.addAttribute("wednesday", firstCase);
+                    break;
+                case 2:
+                    model.addAttribute("wednesday", secondCase);
+                    break;
+                case 3:
+                    model.addAttribute("wednesday", thirdCase);
+                    break;
+            }
             int thursday = day.getThursday();
+            switch(thursday) {
+                case 1:
+                    model.addAttribute("thursday", firstCase);
+                    break;
+                case 2:
+                    model.addAttribute("thursday", secondCase);
+                    break;
+                case 3:
+                    model.addAttribute("thursday", thirdCase);
+                    break;
+            }
             int friday = day.getFriday();
-            model.addAttribute("monday", monday);
-            model.addAttribute("tuesday", tuesday);
-            model.addAttribute("wednesday", wednesday);
-            model.addAttribute("thursday", thursday);
-            model.addAttribute("friday", friday);
+            switch(friday) {
+                case 1:
+                    model.addAttribute("friday", firstCase);
+                    break;
+                case 2:
+                    model.addAttribute("friday", secondCase);
+                    break;
+                case 3:
+                    model.addAttribute("friday", thirdCase);
+                    break;
+            }
         }
 
         model.addAttribute("empno", empno);
@@ -89,34 +145,17 @@ public class ScheduleController {
         return "schedule/showSimpleSchedule";
     }
 
-    //간단 스케줄 신청 조회
+    //스케줄 신청 조회
     @GetMapping("/showScheduleRequest")
     public String showScheduleRequest(HttpServletRequest request, Model model) {
+
         HttpSession session = request.getSession();
-        Long num = (Long) session.getAttribute("user");
+        Long num = (Long)session.getAttribute("user");
         int empno = num.intValue();
-        LocalDate now = LocalDate.now();
-        int month = now.getMonthValue();
-        int year = now.getYear();
 
-        ScheduleRequest scheduleRequest = scheduleService.selectRequest(empno);
-        if(scheduleRequest!=null){
-            int monday = scheduleRequest.getMonday();
-            int tuesday = scheduleRequest.getTuesday();
-            int wednesday = scheduleRequest.getWednesday();
-            int thursday = scheduleRequest.getThursday();
-            int friday = scheduleRequest.getFriday();
-            model.addAttribute("monday", monday);
-            model.addAttribute("tuesday", tuesday);
-            model.addAttribute("wednesday", wednesday);
-            model.addAttribute("thursday", thursday);
-            model.addAttribute("friday", friday);
-        }
-
+        List<ScheduleRequest> scheduleRequestList = scheduleService.scheduleRequestList(empno);
+        model.addAttribute("scheduleRequestList", scheduleRequestList);
         model.addAttribute("empno", empno);
-        model.addAttribute("month", month);
-        model.addAttribute("year", year);
-
         return "schedule/showScheduleRequest";
     }
 
@@ -200,18 +239,41 @@ public class ScheduleController {
         return "redirect:/showSchedule";
     }
 
-    //미래의 스케줄 신청하기
+    //모든 달 스케줄 신청하기
     @GetMapping("/updateSchedule")
     public String updateSchedule(HttpServletRequest request, Model model) {
-        return "";
-    }
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
 
+        LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+        model.addAttribute("empno", empno);
+        model.addAttribute("currentYear", currentYear);
+        return "schedule/updateSchedule";
+    }
     @PostMapping("/updateSchedule")
     public String updateSchedule(HttpServletRequest request,
                                  @RequestParam("monday") int monday, @RequestParam("tuesday") int tuesday,
                                  @RequestParam("wednesday") int wednesday, @RequestParam("thursday") int thursday,
-                                 @RequestParam("friday") int friday){
-        return "";
-    }
+                                 @RequestParam("friday") int friday, @RequestParam("year") int year,
+                                 @RequestParam("month") int month){
 
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
+
+        try {
+            ScheduleRequest scheduleRequest = scheduleService.checkDuplicate(empno, year, month);
+            if(scheduleRequest.getEmpno()==empno && scheduleRequest.getYear()==year && scheduleRequest.getMonth()==month) {
+                return "schedule/error";
+            } else {
+                scheduleService.insertScheduleRequest(empno, monday, tuesday, wednesday, thursday, friday, year, month);
+                return "redirect:/schedule";
+            }
+        } catch (NullPointerException e) {
+            scheduleService.insertScheduleRequest(empno, monday, tuesday, wednesday, thursday, friday, year, month);
+            return "redirect:/schedule";
+        }
+    }
 }

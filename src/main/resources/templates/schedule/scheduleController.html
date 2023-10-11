@@ -6,9 +6,10 @@
 </head>
 <body>
 <th:block th:text="|로그인한 empno : ${empno}|"/><br>
-<a href="/showSchedule">스케쥴보기</a><br>
-<a href="/showScheduleRequest">스케쥴신청보기</a><br>
+<a href="/showSchedule">이번 달 스케줄 보기</a><br>
+<a href="/showScheduleRequest">스케줄 신청 보기</a><br>
+<a href="/updateSchedule">스케줄 신청하기</a><br>
 <a href="/deleteSchedule">(임시)스케줄 삭제</a><br>
-<a href="/deleteScheduleRequest">(임시)스케줄 신청 삭제</a><br>
+<a href="/deleteScheduleRequest">(임시)스케줄 신청 삭제</a>(다른 empno까지 모두 삭제됨)<br>
 </body>
 </html>

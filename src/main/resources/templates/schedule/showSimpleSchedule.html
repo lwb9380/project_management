@@ -6,6 +6,7 @@
     }
     table {
         border : 1px solid;
+        text-align: center;
     }
 </style>
 <head>
@@ -14,14 +15,14 @@
 </head>
 <body>
 <div th:if="${monday != null}">
-    <th:block th:text="|${empno}님의 ${year}년 ${month}월 스케줄|"/>
     <table>
+        <caption th:text="|${empno}님의 ${year}년 ${month}월 스케줄|"></caption>
         <tr>
-            <td>월</td>
-            <td>화</td>
-            <td>수</td>
-            <td>목</td>
-            <td>금</td>
+            <td>월요일</td>
+            <td>화요일</td>
+            <td>수요일</td>
+            <td>목요일</td>
+            <td>금요일</td>
         </tr>
         <tr>
             <td th:text="${monday}"></td>

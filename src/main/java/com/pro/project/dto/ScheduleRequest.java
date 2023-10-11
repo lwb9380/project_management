@@ -14,7 +14,7 @@ public class ScheduleRequest {
     private int wednesday;
     private int thursday;
     private int friday;
-    private int month;
     private int year;
+    private int month;
 
 }

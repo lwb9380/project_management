@@ -7,7 +7,7 @@
 
     <!--스케쥴 인서트-->
     <insert id="insertSchedule">
-        insert into daycheck (empno, 월요일, 화요일, 수요일, 목요일, 금요일, year, month)
+        insert into daycheck (empno, monday, tuesday, wednesday, thursday, friday, year, month)
         values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
     </insert>
 
@@ -17,7 +17,7 @@
     </select>
 
     <update id="updateSchedule">
-        update daycheck set 월요일=#{param1}, 화요일=#{param2}, 수요일=#{param3}, 목요일=#{param4}, 금요일=#{param5}
+        update daycheck set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
         where empno = #{param6}
     </update>
 
@@ -30,6 +30,10 @@
         select * from schedule_request where empno = #{param1}
     </select>
 
+    <select id="scheduleRequestList" resultType="com.pro.project.dto.ScheduleRequest">
+        select * from schedule_request where empno = #{param1}
+    </select>
+
     <delete id="deleteSchedule">
         delete from daycheck where empno= #{param1}
     </delete>
@@ -37,5 +41,9 @@
     <delete id="deleteScheduleRequest">
         delete from schedule_request where empno = #{param1}
     </delete>
+
+    <select id="checkDuplicate" resultType="com.pro.project.dto.ScheduleRequest">
+        select * from schedule_request where empno = #{param1} and year = #{param2} and month = #{param3}
+    </select>
 
 </mapper>

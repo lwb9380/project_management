@@ -8,7 +8,16 @@
 <h1 th:text="|${empno}님 스케줄 신청|"/>
 <form action="/updateSchedule" method="post">
     <table style="text-align: center;">
-        <caption th:text="|${month}월|"></caption>
+        연도 선택 :
+        <select name="year" required>
+            <option th:each="num: ${#numbers.sequence(currentYear, 2099)}" th:value="${num}" th:text="|${num}년|">
+            </option>
+        </select>
+        월 선택 :
+        <select name="month" required>
+            <option th:each="num:${#numbers.sequence(1,12)}" th:value="${num}" th:text="|${num}월|">
+            </option>
+        </select>
         <tr>
             <td>월요일</td>
             <td>화요일</td>
