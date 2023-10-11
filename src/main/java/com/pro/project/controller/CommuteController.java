@@ -302,8 +302,6 @@ public class CommuteController {
                 vacation="아님";
             }
 
-
-
             if(vacation.equals("오전 반차")){
 
             stuService.updateWork(halfcometime.toString(),empno);

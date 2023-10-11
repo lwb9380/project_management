@@ -37,7 +37,6 @@
 
 <th:block th:if="${vacation == '휴가' || vacation == '무급'}">
 
-
     <p th:text="${working.name+' 님은 오늘 휴가 날입니다'}" ></p>
     <img th:src="@{/images/__${working.getName()}__.png}" alt="내 이미지"> <br> <br>
     <span  th:text="'출근 시각 '+${working.cometime}"></span> <br> <br>
@@ -158,23 +157,25 @@
 </div>
 
 </th:block>
-
+<div class="mail">
 <th:block th:if="${not mail.empty}">
-    <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="bbb">전체 메일</a>
+    <h3>&nbsp;&nbsp;전체 메일</h3>
     <table th:each="mail : ${mail}" th:unless="${mailStat.index > 3}" >
         <tr>
             <th></th>
         </tr>
-        <tr>
-            <td>
-                <th:block th:text="${mail.sName}"></th:block>
-            </td>
-        </tr>
-        <tr>
+        <tr class="sName">
             <td>
                 <a th:href="@{'/mailDetail/' + ${mail.id}}" class="bbb">
                     <span th:text="${mail.title}"></span>
                 </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;<th:block th:text="${mail.sName}"></th:block>
+            </td>
+            <td class="date_batch">
                 <th:block th:text="${#temporals.format(mail.date, 'MM.dd HH:mm')}"></th:block>
             </td>
         </tr>
@@ -183,6 +184,7 @@
 <th:block th:if="${mail.empty}">
     <p><h3>메일이 없습니다.</h3></p>
 </th:block>
+</div>
 
 <script src="/js/hi.js"></script>
 <script th:inline="javascript">

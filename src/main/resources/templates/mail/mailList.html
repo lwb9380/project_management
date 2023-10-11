@@ -23,6 +23,7 @@
         th {
             background-color: #f2f2f2;
             white-space: nowrap;
+            text-align: center;
         }
 
         th[colspan="5"] {
@@ -43,7 +44,7 @@
 <br>
 <th:block th:if="${not mails.empty}">
 총: <th:block th:text="${size}"></th:block>개의 메일
-<table border="1">
+<table>
     <thead>
     <tr>
         <th colspan="5">
@@ -54,15 +55,12 @@
         </th>
     </tr>
     <tr>
-        <th>Check</th><input type="checkbox" id="selectAllCheckbox" />
-        <th>Sender</th>
-        <th>Title</th>
-        <th>Date</th>
+        <input type="hidden" id="selectAllCheckbox" />
     </tr>
     </thead>
     <tbody>
     <tr th:each="mail : ${mails}">
-        <td><input type="checkbox" name="selectedMail" th:value="${mail.id}" onchange="updateSelectedCount()" /></td>
+        <td width="15px"><input type="checkbox" name="selectedMail" th:value="${mail.id}" onchange="updateSelectedCount()" /></td>
         <td th:text="${mail.sName}"></td>
         <td>
             <a th:href="@{'/mailDetail/' + ${mail.id}}">
@@ -95,6 +93,7 @@
     </div>
     <a href="/start"><input type="button" value="돌아가기"></a>
 </th:block>
+
 
 <script src="/js/mailListSelectDeleteMail.js"></script>
 
