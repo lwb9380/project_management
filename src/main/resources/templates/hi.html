@@ -112,10 +112,12 @@
     <br>
     <br>
 
-    <table border="1">
+    <table border="1" style="border-collapse: collapse;">
         <thead>
         <tr>
-            <th colspan="3"><span th:text="${deptname}"></span></th>
+            <th colspan="3" style="background-color: steelblue; color: white;">
+                <span th:text="${deptname}"></span>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -125,8 +127,8 @@
                 </tr><tr>
             </th:block>
             <!-- 각 사원 정보를 셀에 출력 -->
-            <td>
-                <img th:src="@{/images/__${dto.getName()}__.png}" alt="내 이미지"> <br>
+            <td style="border: 0px solid #000; padding: 5px; text-align: center;">
+                <img th:src="@{/images/__${dto.getName()}__.png}" alt="내 이미지"><br>
                 <span th:text="${dto.getName()}"></span> :
                 <span th:text="${dto.getIsworking()}"></span><br>
                 <a th:href="@{'/deptSendMail/' + ${dto.empno}}">
@@ -136,7 +138,8 @@
         </th:block>
         </tbody>
     </table>
-<!--   오유비 추가 코드 10월05일 부서 근태 현황을 카운트 해서 숫자로 나타냄-->
+
+    <!--   오유비 추가 코드 10월05일 부서 근태 현황을 카운트 해서 숫자로 나타냄-->
 <br>
     <center>
         <a class = "highlighted">
