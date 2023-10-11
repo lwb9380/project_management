@@ -489,24 +489,4 @@ public class CommuteController {
     }
 
 
-    @GetMapping("/mypage")
-    public String mypage(HttpServletRequest request, Model model){
-        HttpSession session=request.getSession();
-        Long num=(Long)session.getAttribute("user");
-        int empno=num.intValue();
-
-        int deptno=stuService.getDeptNo(empno);
-
-        String authority=stuService.getAuthority(empno);
-
-        model.addAttribute("authority",authority);
-        return "mypage";
-    }
-
-    @GetMapping("/logintest")
-    public String logintest(){
-        return "login/logintest";
-    }
-
-
 }

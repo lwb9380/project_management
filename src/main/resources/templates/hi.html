@@ -4,8 +4,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MainPage</title>
     <link rel="stylesheet" href="/css/hi.css">
+    <link rel="icon" type="image/png" href="/Login_v2/images/icons/favicon.ico"/>
+<style>
+    .bbb {
+        text-decoration-line: none;
+        font-size: 20px;
+    }
+</style>
     <link rel="stylesheet" href="/css/main.css">
 
 </head>
@@ -95,8 +102,6 @@
 <!--같은 버튼이나 화면 온로드 당시의 근무 상황에 따라 버튼의 밸류 변경 -->
 
 <input value="초기화" type="button" onclick="reset()">
-    <form action="/mypage" method="get">
-        <input type="submit" value="마이페이지 임시">
         <a th:href="@{/logout}" class="bbb">로그아웃</a>
     </form>
 </td>
