@@ -59,9 +59,10 @@
     </div>
 </nav>
 
-<input value="메일쓰기" type="button" onclick="location.href='/sendMail'">
+
 <br>
 <br>
+<div class="mailList_container">
 <th:block th:if="${not mails.empty}">
 총: <th:block th:text="${size}"></th:block>개의 메일
 <table>
@@ -69,7 +70,7 @@
     <tr>
         <th colspan="5">
         <span><span id="selectedCount">0</span>개의 메일</span>
-        <button type="button" onclick="deleteSelectedMails()">
+        <button type="button" onclick="deleteSelectedMails()" class="mailList_button">
             <a href="${'/mailDelete' + ${mail.id}}"></a>
             삭제</button>
         </th>
@@ -102,22 +103,22 @@
                 <!-- 다음 페이지로 이동하는 버튼 -->
                 <a th:if="${mails.hasNext()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number + 1})}">다음</a>
             </td>
+            <td>
+                <input value="메일쓰기" type="button" onclick="location.href='/sendMail'" class="mailList_button">
+            </td>
         </tr>
     </tbody>
-
 </table>
-
-
-    <a href="/start"><input type="button" value="돌아가기"></a>
+    <a href="/start"><input type="button" value="돌아가기" class="mailList_button"></a>
 </th:block>
 
 <th:block th:if="${mails.empty}">
     <div style="text-align: center; padding: 20px;">
         <p> 메일이 없습니다.</p>
     </div>
-    <a href="/start"><input type="button" value="돌아가기"></a>
+    <a href="/start"><input type="button" value="돌아가기" class="mailList_button"></a>
 </th:block>
-
+</div>
 
 <script src="/js/mailListSelectDeleteMail.js"></script>
 <link rel="stylesheet" href="/css/hi.css">

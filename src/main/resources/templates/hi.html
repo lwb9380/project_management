@@ -81,7 +81,7 @@
 
 <th:block th:if="${vacation != '휴가' && vacation != '무급'}">
     <div class="fff">
-    <table border="1">
+    <table>
 <td>
 
 <p th:text="${working.name+' 님의 오늘 근무 스케쥴은 '+result+' 입니다'}" ></p>
@@ -119,7 +119,7 @@
     <table border="1" style="border-collapse: collapse;">
         <thead>
         <tr>
-            <th colspan="2" style="background-color: steelblue; color: white;">
+            <th colspan="2" style="background-color: lightskyblue; color: white;">
                 <span th:text="${deptname}"></span>
             </th>
         </tr>
@@ -148,7 +148,7 @@
         <div class = "highlighted">
             <table width="300px">
         <tr>
-            <th colspan="5" style="background-color: steelblue; color: white;" class="stateNow">근태현황</th>
+            <th colspan="5" style="background-color: lightskyblue; color: white;" class="stateNow">근태현황</th>
         </tr>
                 <tr>
                 <td>출근 전</td> <td><span th:text="${preWorkCount}"></span></td>
