@@ -16,5 +16,7 @@ public class ScheduleRequest {
     private int friday;
     private int year;
     private int month;
+    private int deptno;
+    private String name;
 
 }

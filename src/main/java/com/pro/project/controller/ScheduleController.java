@@ -278,15 +278,9 @@ public class ScheduleController {
 
     //스케줄신청조회(어드민용)
     @GetMapping("/manageScheduleRequest")
-    public String manageScheduleRequest(HttpServletRequest request, Model model) {
-        //스케줄 신청조회하고 거기에 승인/거절 버튼 있어야됨.
-        //일단 조회페이지부터 불러와보자.
-        HttpSession session = request.getSession();
-        Long num = (Long)session.getAttribute("user");
-        int empno = num.intValue();
+    public String manageScheduleRequest(Model model) {
+        log.info(scheduleService.ScheduleList());
 
-        List<ScheduleRequest> scheduleRequestList = scheduleService.scheduleRequestList(empno);
-        model.addAttribute("scheduleRequestList", scheduleRequestList);
-        return "schedule/manageScheduleRequest";
+        return "schedule/error";
     }
 }

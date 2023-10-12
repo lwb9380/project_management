@@ -62,4 +62,12 @@ public class ScheduleService {
     public Dept deptByEmpno(int empno) {
         return scheduleDao.deptByEmpno(empno);
     }
+
+    public List<ScheduleRequest> ScheduleList() {
+        List<ScheduleRequest> scheduleList = scheduleDao.ScheduleList();
+        scheduleList.sort(Comparator.comparing(ScheduleRequest::getDeptno)
+                .thenComparing(ScheduleRequest::getYear)
+                .thenComparing(ScheduleRequest::getMonth));
+        return scheduleList;
+    }
 }

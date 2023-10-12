@@ -23,4 +23,6 @@ public interface ScheduleDao {
     public List<ScheduleRequest> scheduleRequestList(int empno);
 
     public Dept deptByEmpno(int empno);
+
+    public List<ScheduleRequest> ScheduleList();
 }
