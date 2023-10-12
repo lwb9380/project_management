@@ -46,9 +46,9 @@
     right: 20%;
     border-radius: 10%;
     margin-left: 10px;
+    width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
-    width: 300px;
     border: 1px solid #ccc; /* 테두리를 원하는 대로 지정하세요. */
 }
 .mail {

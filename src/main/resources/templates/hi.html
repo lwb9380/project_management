@@ -105,6 +105,7 @@
 
 <input value="초기화" type="button" onclick="reset()" class="main_button">
         <a th:href="@{/logout}" class="bbb">로그아웃</a>
+        <a href="/schedule" class="bbb">스케줄꼽사리</a>
 </td>
     </table>
     </div>
@@ -118,7 +119,7 @@
     <table border="1" style="border-collapse: collapse;">
         <thead>
         <tr>
-            <th colspan="2" style="background-color: lightskyblue; color: white;">
+            <th colspan="2" style="background-color: steelblue; color: white;">
                 <span th:text="${deptname}"></span>
             </th>
         </tr>
@@ -145,21 +146,52 @@
 <!--   오유비 추가 코드 10월05일 부서 근태 현황을 카운트 해서 숫자로 나타냄-->
 <br>
         <div class = "highlighted">
-            <table width="300px">
-        <tr>
-            <th colspan="5" style="background-color: lightskyblue; color: white;" class="stateNow">근태현황</th>
-        </tr>
+            <table class="depttable">
                 <tr>
-                <td>출근 전</td> <td><span th:text="${preWorkCount}"></span></td>
-                <td>출근</td><td><span th:text="${workCount}"></span></td>
+                    <th class = "stu_title" colspan="4" >근태현황</th>
+                <tr class="today" >
+                    <!--현재날짜-->
                 </tr>
-        <tr>
-                <td>퇴근</td><td> <span th:text="${leaveCount}"></span></td>
-                <td>외출</td><td><span th:text="${commuteCount}"></span></td>
-        </tr>
-                <tr>
-                <td>휴가</td><td> <span th:text="${vacationCount}"></span></td>
-        </tr>
+                </tr>
+
+                <tr  style="border-collapse: collapse" class="sss">
+
+                    <td class ="dept_td">
+                        출근 전
+                    </td>
+                    <td class ="dept_td">
+                        [[${preWorkCount}]]
+                    </td>
+                    <td class ="dept_td">
+                        출근
+                    </td>
+                    <td class ="dept_td">
+                        [[${workCount}]]
+                    </td>
+
+                </tr>
+                <tr class="sss">
+                    <td class ="dept_td">
+                        퇴근
+                    </td>
+                    <td class ="dept_td">
+                        [[${leaveCount}]]
+                    </td>
+                    <td class ="dept_td">
+                        외출
+                    </td>
+                    <td class ="dept_td">
+                        [[${commuteCount}]]
+                    </td>
+                </tr>
+                <tr  class="sss">
+                    <td class ="dept_td">
+                        휴가
+                    </td>
+                    <td class ="dept_td">
+                        [[${vacationCount}]]
+                    </td>
+                </tr>
             </table>
         </div>
 

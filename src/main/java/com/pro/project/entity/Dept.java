@@ -15,7 +15,6 @@ public class Dept {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long empno;         //사원
     private Long deptno;        //부서번호
     private String location;    //위치
     private String deptname;    //부서명
