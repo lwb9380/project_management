@@ -453,7 +453,7 @@ public class CommuteController {
 
             if(!tardy.equals("o")){
 
-
+                //여기다가 if 넣어서 연장근무 O면은 그거 넣어주기 내일
                 stuService.updateworktime(empno,month);
             } else if(tardy.equals("o")){
                 String commutetimestr=working.getCometime();
@@ -461,6 +461,10 @@ public class CommuteController {
                 // 시간 정보를 int로 추출
                 int commuteHour = commutetime.getHour();
                 int homeHour = hometime.getHour();
+
+
+
+
 
                 // 두 시간 값의 차 계산
                 int hourDifference = homeHour - commuteHour;
