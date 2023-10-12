@@ -332,7 +332,7 @@ public class ScheduleController {
         scheduleService.registeremp4(empno,month);
         scheduleService.registeremp6(empno,lastday);
 
-     return "hhhh";
+     return "schedule/registerpage";
     }
 
 }
