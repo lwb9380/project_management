@@ -46,4 +46,7 @@
         select * from schedule_request where empno = #{param1} and year = #{param2} and month = #{param3}
     </select>
 
+    <select id="deptByEmpno" resultType="com.pro.project.dto.Dept">
+        select * from dept where empno = #{param1}
+    </select>
 </mapper>

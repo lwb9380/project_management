@@ -1,6 +1,7 @@
 package com.pro.project.dao;
 
 import com.pro.project.dto.Day;
+import com.pro.project.dto.Dept;
 import com.pro.project.dto.ScheduleRequest;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,4 +21,6 @@ public interface ScheduleDao {
     public ScheduleRequest checkDuplicate(int empno, int year, int month);
 
     public List<ScheduleRequest> scheduleRequestList(int empno);
+
+    public Dept deptByEmpno(int empno);
 }

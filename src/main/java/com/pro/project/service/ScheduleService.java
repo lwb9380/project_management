@@ -2,10 +2,12 @@ package com.pro.project.service;
 
 import com.pro.project.dao.ScheduleDao;
 import com.pro.project.dto.Day;
+import com.pro.project.dto.Dept;
 import com.pro.project.dto.ScheduleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -52,6 +54,12 @@ public class ScheduleService {
 
     public List<ScheduleRequest> scheduleRequestList(int empno) {
         List<ScheduleRequest> scheduleRequestList = scheduleDao.scheduleRequestList(empno);
+        //Respect문 : 씨발 선우형 당신이 최고야
+        scheduleRequestList.sort(Comparator.comparing(ScheduleRequest::getYear).thenComparing(ScheduleRequest::getMonth));
         return scheduleRequestList;
+    }
+
+    public Dept deptByEmpno(int empno) {
+        return scheduleDao.deptByEmpno(empno);
     }
 }
