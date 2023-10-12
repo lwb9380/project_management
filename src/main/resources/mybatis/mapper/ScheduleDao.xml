@@ -51,7 +51,9 @@
     </select>
 
     <select id="ScheduleList" resultType="com.pro.project.dto.ScheduleRequest">
-        select e.empno, e.deptno, e.name, sc.monday, sc.tuesday, sc.wednesday, sc.thursday, sc.friday, sc.year, sc.month
+        select e.empno, e.deptno, e.name, sc.monday, sc.tuesday,
+               sc.wednesday, sc.thursday, sc.friday, sc.year, sc.month,
+               sc.cause, sc.accept
         from emp e
                  Inner join schedule_request  sc on e.empno=sc.empno
     </select>
@@ -88,4 +90,8 @@
         values(#{param1},'x','','',#{param2},'x','x')
     </insert>
 
+
+    <update id="acceptSchedule">
+        update schedule_request set accept=#{param1} where empno=#{param2} and year=#{param3} and month=#{param4}
+    </update>
 </mapper>

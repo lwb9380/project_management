@@ -87,4 +87,8 @@ public class ScheduleService {
         scheduleDao.registeremp6(empno,lastday);
     }
 
+
+    public void acceptSchedule(String accept, int empno, int year, int month) {
+        scheduleDao.acceptSchedule(accept, empno, year, month);
+    }
 }

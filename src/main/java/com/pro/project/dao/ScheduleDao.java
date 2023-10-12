@@ -37,4 +37,6 @@ public interface ScheduleDao {
     public void registeremp5(int empno, int month);
 
     public void registeremp6(int empno, String lastday);
+
+    public void acceptSchedule(String accept, int empno, int year, int month);
 }

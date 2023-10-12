@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public class ScheduleRequest {
     private int empno;
+    private int deptno;
     private int monday;
     private int tuesday;
     private int wednesday;
@@ -16,7 +17,10 @@ public class ScheduleRequest {
     private int friday;
     private int year;
     private int month;
-    private int deptno;
     private String name;
+
+
+    private String accept;
+    private String cause;
 
 }

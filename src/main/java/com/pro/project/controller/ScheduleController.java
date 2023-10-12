@@ -282,8 +282,22 @@ public class ScheduleController {
     @GetMapping("/manageScheduleRequest")
     public String manageScheduleRequest(Model model) {
         log.info(scheduleService.ScheduleList());
+        List<ScheduleRequest> scheduleList = scheduleService.ScheduleList();
+        model.addAttribute("scheduleList", scheduleList);
+        return "schedule/manageScheduleRequest";
+    }
 
-        return "schedule/error";
+    //스케줄 신청 승인하기
+    @PostMapping("/acceptSchedule")
+    public String acceptSchedule(@RequestParam("empno") int empno, @RequestParam("year") int year, @RequestParam("month") int month) {
+        scheduleService.acceptSchedule("accept", empno, year, month);
+        return "redirect:/manageScheduleRequest";
+    }
+
+    @PostMapping("/rejectSchedule")
+    public String rejectSchedule(@RequestParam("empno") int empno, @RequestParam("year") int year, @RequestParam("month") int month) {
+        scheduleService.acceptSchedule("reject", empno, year, month);
+        return "redirect:/manageScheduleRequest";
     }
 
     @GetMapping("/registerpage")
