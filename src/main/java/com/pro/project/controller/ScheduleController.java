@@ -5,7 +5,6 @@ import com.pro.project.dto.ScheduleRequest;
 import com.pro.project.service.ScheduleService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -283,4 +285,54 @@ public class ScheduleController {
 
         return "schedule/error";
     }
+
+    @GetMapping("/registerpage")
+    public String empRegist(){
+        return "schedule/registerpage";
+    }
+
+    @PostMapping("/registeremp")
+    public String registeremp(@RequestParam("Dept")String dept,@RequestParam("empno") int empno,
+                              @RequestParam("password") String password,@RequestParam("name") String name,
+                              @RequestParam("job")String job,@RequestParam("sal")int sal,
+                              @RequestParam("addr") String addr, @RequestParam("email") String email,
+                              @RequestParam("phone") String phone ){
+
+        int deptno=0;
+        String location="";
+        switch (dept){
+            case "영업팀":deptno=1100;
+            location="3F";
+            break;
+            case "블라블라팀":deptno=1600;
+                location="4F";
+            break;
+            case "블라블라블라팀":deptno=1800;
+                location="5F";
+            break;
+            case "3개는아쉬워팀":deptno=2220;
+                location="B1F";
+            break;
+        }
+
+        LocalDateTime today = LocalDateTime.now();
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        int month = today.getMonthValue();
+        int year = today.getYear();
+        String lastday = today.format(sdf);
+
+        try {
+            scheduleService.registeremp1(empno,job,sal,name,"view",deptno,addr,email,password,phone);
+        //사번 중복 검사
+        } catch (Exception e){
+            return "schedule/registerError";
+        }
+        scheduleService.registeremp2(empno,year,month);
+        scheduleService.registeremp3(empno,deptno,location,dept,name);
+        scheduleService.registeremp4(empno,month);
+        scheduleService.registeremp6(empno,lastday);
+
+     return "hhhh";
+    }
+
 }

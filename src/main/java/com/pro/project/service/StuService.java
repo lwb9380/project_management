@@ -113,4 +113,6 @@ public class StuService {
     public void resettardy(int empno){sampledao.resettardy(empno);}
 
     public List<DeptResult> getdeptinfo(int deptno){return sampledao.getdeptinfo(deptno);}
+
+
 }

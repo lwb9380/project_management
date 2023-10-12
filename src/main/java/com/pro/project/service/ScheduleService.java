@@ -70,4 +70,21 @@ public class ScheduleService {
                 .thenComparing(ScheduleRequest::getMonth));
         return scheduleList;
     }
+    public void registeremp1(int empno,String job, int sal, String name, String authority, int deptno, String addr, String email, String password, String phone)
+    {scheduleDao.registeremp1(empno, job, sal, name, authority, deptno, addr, email, password, phone);};
+
+    public void registeremp2(int empno,int year,int month )
+    {scheduleDao.registeremp2(empno,year,month);}
+
+    public void registeremp3(int empno, int deptno, String location, String deptname, String name)
+    {scheduleDao.registeremp3(empno,deptno,location,deptname,name);}
+
+    public void registeremp4(int empno, int month)
+    {scheduleDao.registeremp4(empno,month);
+    scheduleDao.registeremp5(empno,month);}
+
+    public void registeremp6(int empno, String lastday){
+        scheduleDao.registeremp6(empno,lastday);
+    }
+
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+신규 사원 등록
+
+
+
+<form action="/registeremp" method="post">
+
+
+    사번    <input type="number" name="empno" required> <br>
+    로그인 패스워드 <input type="text" name="password" required> <br>
+   이름  <input type="text" name="name" required> <br>
+
+    <select id="job" name="job" required>
+        <option value="">직책</option>
+        <option value="사원">salesman</option>
+        <option value="매니저">manager</option>
+        <option value="intern">intern</option>
+    </select> <br>
+
+    <select id="Dept" name="Dept" required>
+        <option value="">부서 선택</option>
+        <option value="영업팀">영업팀</option>
+        <option value="블라블라팀">블라블라팀</option>
+        <option value="블라블라블라팀">블라블라블라팀</option>
+        <option value="3개는아쉬워팀">3개는아쉬워팀</option>
+    </select>  <br>
+
+
+    연봉 <input type="number" name="sal" required> <br>
+
+
+    <hr>
+
+    개인정보 <br>
+
+ 주소    <input type="text" name="addr" required> <br>
+ 이메일  <input type="text" name="email" required> <br>
+ 전화번호  <input type="text" name="phone" required> <br>
+
+<input type="submit" value="등록">
+
+</form>
+
+</body>
+</html>

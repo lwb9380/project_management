@@ -34,7 +34,9 @@
         <th:block th:if="${authority}=='row'">
             <a href="/Vacationdept" class="link">Dept</a>
         </th:block>
-
+        <th:block th:if="${authority}=='admin'">
+            <a href="/registerpage" class="link">EmpRegist</a>
+        </th:block>
 
     </div>
 </nav>

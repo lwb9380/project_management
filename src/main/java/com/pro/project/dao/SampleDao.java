@@ -70,4 +70,5 @@ public interface SampleDao {
     public void resettardy(int empno);
 
     public List<DeptResult> getdeptinfo(int deptno);
+
 }

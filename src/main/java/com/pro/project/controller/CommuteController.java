@@ -1,10 +1,7 @@
 package com.pro.project.controller;
 
 import com.pro.project.auth.AuthInfo;
-import com.pro.project.dto.Day;
-import com.pro.project.dto.Dept;
-import com.pro.project.dto.MailDto;
-import com.pro.project.dto.Working;
+import com.pro.project.dto.*;
 import com.pro.project.service.DeptService;
 import com.pro.project.service.MailService;
 import com.pro.project.service.StuService;

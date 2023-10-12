@@ -43,6 +43,12 @@
         select * from dept where deptno=#{param1}
     </select>
 
+    <select id="ScheduleList" resultType="com.pro.project.dto.ScheduleRequest">
+        select emp.deptno, emp.name, schedule_request.monday, schedule_request.tuesday, schedule_request.wednesday, schedule_request.thursday, schedule_request.friday, schedule_request.year, schedule_request.month
+        from emp
+        Inner join schedule_request  on emp.empno=schedule_request.empno
+    </select>
+
     <select id="chul1" resultType="String">
         select ischul from working where empno=#{param1}
     </select>
