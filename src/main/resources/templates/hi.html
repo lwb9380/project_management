@@ -91,7 +91,7 @@
 <span id="text" th:text="'출근 시각 '+${working.cometime}"></span> <br> <br>
 <span id="text2" th:text="'퇴근 시각'+${working.gotime}"></span> <br> <br>
 <span id="nowtext" th:text="'현재 출근 상태:'+${working.isworking}"></span> <br> <br>
-    <span class="today"<!-- 현재 날짜 --></span> //현재 시간<span class="clock"></span><br> <br>
+    <span class="today"></span> <span class="clock"></span><br> <br><!--현재 날짜,시간 나타냄-->
 
 <input value="출근" type="button" onclick="makecommute()" class="main_button">
 <input value="퇴근" type="button" onclick="quitcommute()" class="main_button">

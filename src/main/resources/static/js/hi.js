@@ -115,13 +115,13 @@ function getToday() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     const days_num = todaydate.getDay();
 
-    const year = todaydate.getFullYear();
+    // const year = todaydate.getFullYear();
     const month = todaydate.getMonth() + 1;
     const date = todaydate.getDate();
     const day = days[days_num];
 
 
-    today.innerText = `${year}. ${month}. ${date} ${day}`;
+    today.innerText = ` ${month}. ${date} ${day}`;
 
 }
 
