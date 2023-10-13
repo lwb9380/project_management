@@ -1,6 +1,7 @@
 package com.pro.project.controller;
 
 import com.pro.project.dto.DeptResult;
+import com.pro.project.dto.Notice;
 import com.pro.project.dto.VacationDto;
 import com.pro.project.dto.Working;
 import com.pro.project.entity.Emp;
@@ -11,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -57,9 +60,18 @@ public class MyPageController {
         String deptname=stuService.deptlist(deptno).get(0).getDeptname();
         Working working=stuService.getlogininfo(empno);
 
+        try{
+            List<Notice> list3=stuService.getdeptNotice(deptno);
+            model.addAttribute("list3",list3);
+        } catch (Exception e){
+
+        }
+
+
 
         List<DeptResult> list2=stuService.getdeptinfo(deptno);
         int month=list2.get(0).getMonth();
+
         model.addAttribute("month",month);
         model.addAttribute("deptname",deptname);
         model.addAttribute("list2",list2);
@@ -130,6 +142,38 @@ public class MyPageController {
         stuService.deleteVacationRequest(id);
 
     return "hhhh";
+    }
+
+
+    @GetMapping("/insertnotice")
+    public String insertnot(){
+
+        return "insertNotice";
+    }
+
+
+    @PostMapping("/insertNotice")
+    public String insertcont(@RequestParam("title")String title, @RequestParam("content")String content, HttpServletRequest request){
+
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+
+        int deptno=stuService.getDeptNo(empno);
+
+        stuService.insertnotice(title,content,deptno);
+
+        return "finishnotice";
+    }
+
+
+    @GetMapping("/noticeDetail/{id}")
+    public String shownotice(@PathVariable int id,Model model){
+
+        Notice notice=stuService.getdeptNotice2(id);
+        model.addAttribute("notice",notice);
+        return "noticeonepage";
     }
 
 

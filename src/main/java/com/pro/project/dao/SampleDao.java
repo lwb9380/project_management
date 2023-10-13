@@ -77,4 +77,10 @@ public interface SampleDao {
 
     public String isextratoday(int empno);
 
+    public void insertnotice(String title, String content, int deptno);
+
+
+    public List<Notice> getdeptNotice (int deptno);
+
+    public Notice getdeptNotice2(int id);
 }

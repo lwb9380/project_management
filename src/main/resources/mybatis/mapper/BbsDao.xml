@@ -215,6 +215,23 @@
         select extrawork from working where empno=#{param1}
     </select>
 
+    <select id="getdeptNotice" resultType="com.pro.project.dto.Notice">
+
+        select id, title, content, deptno from notice where deptno=#{param1} or deptno=500
+
+    </select>
+
+    <select id="getdeptNotice2" resultType="com.pro.project.dto.Notice">
+
+        select id, title, content, deptno from notice where id=#{param1}
+
+    </select>
+
+    <insert id="insertnotice">
+        insert into notice (title,content,deptno)
+        values(#{param1},#{param2},#{param3})
+    </insert>
+
     <update id="updateextrawork">
         update monthresult set extraworktime=extraworktime+ #{param1} where empno=#{param2} and month=#{param3}
     </update>

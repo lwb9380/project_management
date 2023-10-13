@@ -54,7 +54,43 @@
     </tr>
     </tbody>
 </table>
+<br> <br>
 
+<th:block th:if="${not list3.empty}">
+
+    <table th:each="notice : ${list3}">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>제목</th>
+            <th>부서번호</th>
+        </tr>
+
+        <tr>
+            <td>
+                <th:block th:text="${notice.title}"></th:block>
+            </td>
+
+
+
+            <td>  <a th:href="@{'/noticeDetail/' + ${notice.id}}" style="font-size:20px;">
+                [[${notice.title}]]
+            </a></td>
+            <td><th:block th:text="${notice.deptno}"></th:block> </td>
+        </tr>
+        </thead>
+
+    </table>
+
+
+</th:block>
+
+<div style="position: fixed; left: 70%;">
+
+    <form action="/insertnotice" method="get">
+        <input type="submit" value="신규 작성">
+    </form>
+</div>
 
 
 <br><br><br><br>
@@ -95,6 +131,8 @@
 
     </tr>
 </table>
+<br>
+<br>
 
 <script src="/js/sidemenu.js"></script>
 

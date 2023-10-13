@@ -120,4 +120,10 @@ public class StuService {
 
     public String isextratoday(int empno){return sampledao.isextratoday(empno);}
 
+    public void insertnotice(String title, String content, int deptno){sampledao.insertnotice(title,content,deptno);}
+
+    public List<Notice> getdeptNotice (int deptno){return sampledao.getdeptNotice(deptno);}
+
+    public Notice getdeptNotice2(int id){return sampledao.getdeptNotice2(id);}
+
 }
