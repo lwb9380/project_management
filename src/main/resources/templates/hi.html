@@ -150,16 +150,16 @@
         <div class = "highlighted">
             <table class="depttable">
                 <tr>
-                    <th class = "stu_title" colspan="4" >근태현황</th>
-                <tr class="today" >
-                    <!--현재날짜-->
-                </tr>
-                </tr>
+                    <th class = "stu_title"  colspan="4" >근태현황</th>
+<!--                <tr class="today">-->
+<!--                    &lt;!&ndash; 현재 날짜 &ndash;&gt;-->
 
+<!--                </tr>-->
                 <tr  style="border-collapse: collapse" class="sss">
 
                     <td class ="dept_td">
                         출근 전
+
                     </td>
                     <td class ="dept_td">
                         [[${preWorkCount}]]
@@ -185,13 +185,18 @@
                     <td class ="dept_td">
                         [[${commuteCount}]]
                     </td>
-                </tr>
-                <tr  class="sss">
+                <tr class="sss">
                     <td class ="dept_td">
                         휴가
                     </td>
                     <td class ="dept_td">
                         [[${vacationCount}]]
+                    </td>
+                    <td class ="dept_td">
+                        총원
+                    </td>
+                    <td class ="dept_td">
+                        [[${countTotal}]]
                     </td>
                 </tr>
             </table>

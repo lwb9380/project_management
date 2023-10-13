@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeptRepository extends JpaRepository<Dept, Long> {
+     @Query("SELECT COUNT(d) FROM Dept d WHERE d.deptno = :deptno") //카운트된 직원들의 총 합
+    Long countTotal(@Param("deptno") Long deptno);
+
     @Query("SELECT COUNT(d) FROM Dept d WHERE d.deptno = :deptno AND d.isworking = '출근전'")
         //[출근전] 카운트
     Long countPreWork(@Param("deptno") Long deptno);

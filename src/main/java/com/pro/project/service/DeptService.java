@@ -12,7 +12,8 @@ public class DeptService {
 
     @Autowired
     DeptRepository deptRepository;
-
+     //직원들 총합
+    public Long countTotal(Long deptno){return deptRepository.countTotal(deptno);}
     //출근전
     public Long countPreWorkByDeptNo(Long deptno) {
         return deptRepository.countPreWork(deptno);

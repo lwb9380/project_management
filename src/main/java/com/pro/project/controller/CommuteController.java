@@ -184,6 +184,7 @@ public class CommuteController {
         Long leaveCount = deptService.countLeaveByDeptNo((long) deptno); //퇴근 카운트
         Long commuteCount = deptService.countCommuteByDeptNo((long) deptno); //외출 카운트
         Long vacationCount = deptService.countVacationByDeptNo((long) deptno); //휴가 카운트
+        Long countTotal = deptService.countTotal((long) deptno); //카운트의 총합
 
         model.addAttribute("authority",authority);
         model.addAttribute("deptname", deptname);
@@ -198,7 +199,7 @@ public class CommuteController {
         model.addAttribute("leaveCount", leaveCount);
         model.addAttribute("commuteCount", commuteCount);
         model.addAttribute("vacationCount", vacationCount);
-
+        model.addAttribute("countTotal",countTotal);
         // 여기부터 (범)
         List<Dept> emplist = mailService.selectEmpnoList(deptno);
 
