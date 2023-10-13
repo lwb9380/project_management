@@ -1,8 +1,9 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
 body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #fafafa;
@@ -16,17 +17,17 @@ h2 {
     color: #555;
     text-align: center;
     padding: 2em 0;
-    border-bottom: 2px solid #eaeaea;
+
 }
 form, table {
-    max-width: 80%;
+    max-width: 40%;
     margin: auto;
 }
 form {
     background: #fff;
     padding: 2em;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    /*box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);*/
+    border-radius: 20px;
     margin-bottom: 2em;
 }
 label, select, input, textarea, button {
@@ -41,7 +42,7 @@ select, input, textarea {
     margin-top: 5px;
 }
 button {
-    background: #5cb85c;
+    background: lightskyblue;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -50,7 +51,7 @@ button {
     display: inline-block;
 }
 button:hover {
-    background: #4cae4c;
+    background: steelblue;
 }
 table {
     border-collapse: collapse;

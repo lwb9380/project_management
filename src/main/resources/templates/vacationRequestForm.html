@@ -5,6 +5,7 @@
   <title>휴가 신청하기</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
   <link rel="stylesheet" href="/css/vacationForm.css">
+
   <style>
 
     @media (max-width: 768px) {
@@ -20,12 +21,12 @@
   </style>
 </head>
 <body>
-<h2>휴가 신청하기</h2>
+
 
 <!-- 휴가 신청 폼 -->
 <form action="/submit" method="post">
 
-
+  <h2>휴가 신청하기</h2>
   <!-- 로그인한 사용자의 empno 정보를 자동으로 불러옴 -->
   <input type="hidden" name="empno" th:value="${loggedInEmpno}">
   <p th:text="'사원 번호: ' + ${loggedInEmp.empno}"></p>
@@ -71,7 +72,9 @@
   <input type="number" id="vacationPeriod" name="vacationPeriod" required><br><br>
 
   <button type="submit">신청</button>
+  <button type="button" onclick="location.href='start'">HOME으로 돌아가기</button>
 </form>
+
 
 <script>
 
@@ -362,6 +365,9 @@
   });
 
 
+
 </script>
+
 </body>
+
 </html>
