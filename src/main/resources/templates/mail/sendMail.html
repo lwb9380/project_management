@@ -8,6 +8,28 @@
 </head>
 <body>
 
+<nav>
+    <div class="menu-btn">
+        <div class="line line--1"></div>
+        <div class="line line--2"></div>
+        <div class="line line--3"></div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/start" class="link">Home</a>
+        <!--        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>-->
+        <a href="/vacationRequest" class="link">Vacation Request</a>
+        <a href="/schedule" class="link">Schedule Request </a>
+
+        <th:block th:if="${authority}=='row'">
+            <a href="/Vacationdept" class="link">Dept</a>
+        </th:block>
+
+
+    </div>
+</nav>
+
+<div class="sm_container">
 <form action="/sendMail" method="post">
     <select name="dept" id="dept">
         <option value="">부서를 선택하세요</option>
@@ -15,22 +37,32 @@
             <option th:value="${dept.deptname}" th:text="${dept.deptname}"></option>
         </th:block>
     </select>
+    <br>
+    <br>
 
     <!-- 버튼을 클릭하여 empno를 가져오는 기능 실행 -->
-    <button type="button" onclick="getEmpnos()">사원 목록 가져오기</button>
-
+<!--    <button type="button" onclick="getEmpnos()">사원 목록 가져오기</button>-->
+    <input type="button" value="사원 목록 가져오기" onclick="getEmpnos()" class="sm_button">
+    <br>
+    <br>
     <!-- empno를 출력할 dropdown -->
     <select name="empno" id="empno">
         <option value="">사원을 선택하세요</option>
     </select>
-
+    <br>
+    <br>
     제목 <input type="text" name="title" required>
-    내용 <input type="text" name="content" required>
-    <input type="submit" value="보내기">
+    <br>
+    <br>
+    내용 <input type="text" name="content" style="width:800px;height:200px;" required>
+    <br>
+    &nbsp&nbsp&nbsp&nbsp<input type="submit" value="보내기" class="sm_button">
 </form>
-<a href="/start"><input type="button" value="돌아가기"></a>
-
+<a href="/start"><input type="button" value="돌아가기" class="sm_button"></a>
+</div>
 <script src="/js/selectEmpnoAjax.js"></script>
-
+<link rel="stylesheet" href="/css/sendMail.css">
+<link rel="stylesheet" href="/css/hi.css">
+<script src="/js/hi.js"></script>
 </body>
 </html>

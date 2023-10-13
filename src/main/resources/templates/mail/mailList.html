@@ -70,7 +70,7 @@
     <tr>
         <th colspan="5">
         <span><span id="selectedCount">0</span>개의 메일</span>
-        <button type="button" onclick="deleteSelectedMails()" class="mailList_button">
+        <button type="button" onclick="deleteSelectedMails()" class="mailList_button1">
             <a href="${'/mailDelete' + ${mail.id}}"></a>
             삭제</button>
         </th>
@@ -84,7 +84,7 @@
             <td width="15px"><input type="checkbox" name="selectedMail" th:value="${mail.id}" onchange="updateSelectedCount()" /></td>
             <td th:text="${mail.sName}"></td>
             <td>
-                <a th:href="@{'/mailDetail/' + ${mail.id}}">
+                <a th:href="@{'/mailDetail/' + ${mail.id}}" class="mailList_title">
                     <span th:text="${mail.title}"></span>
                 </a>
             </td>
@@ -93,15 +93,15 @@
         <tr>
             <td colspan="3" style="text-align: center">
                 <!-- 이전 페이지로 이동하는 버튼 -->
-                <a th:if="${mails.hasPrevious()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number - 1})}">이전</a>
+                <a th:if="${mails.hasPrevious()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number - 1})}" class="mailList_pnm">이전</a>
 
                 <!-- 페이지 번호 출력 -->
                 <span th:each="i : ${#numbers.sequence(0, mails.totalPages - 1)}">
-                        <a th:href="@{/mailList/{empno}(empno=${empno},page=${i})}" th:text="${i + 1}"></a>
+                        <a th:href="@{/mailList/{empno}(empno=${empno},page=${i})}" th:text="${i + 1}" class="mailList_pnm"></a>
                     </span>
 
                 <!-- 다음 페이지로 이동하는 버튼 -->
-                <a th:if="${mails.hasNext()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number + 1})}">다음</a>
+                <a th:if="${mails.hasNext()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number + 1})}" class="mailList_pnm">다음</a>
             </td>
             <td>
                 <input value="메일쓰기" type="button" onclick="location.href='/sendMail'" class="mailList_button">
@@ -121,8 +121,8 @@
 </div>
 
 <script src="/js/mailListSelectDeleteMail.js"></script>
-<link rel="stylesheet" href="/css/hi.css">
 <link rel="stylesheet" href="/css/mailList.css">
+<link rel="stylesheet" href="/css/hi.css">
 <script src="/js/hi.js"></script>
 </body>
 </html>

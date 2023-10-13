@@ -73,6 +73,7 @@ public class MailController {
         HttpSession session = request.getSession();
         Long num = (Long) session.getAttribute("user");
         int sEmpno = num.intValue();
+        System.out.println(sEmpno);
         String sName = mailService.selectSenderName(sEmpno);
         LocalDateTime date = LocalDateTime.now();
         mailService.sendMail(content, date, empno, sName, title);

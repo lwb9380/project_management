@@ -36,42 +36,53 @@
 </head>
 <body>
 
+<nav>
+    <div class="menu-btn">
+        <div class="line line--1"></div>
+        <div class="line line--2"></div>
+        <div class="line line--3"></div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/start" class="link">Home</a>
+        <!--        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>-->
+        <a href="/vacationRequest" class="link">Vacation Request</a>
+        <a href="/schedule" class="link">Schedule Request </a>
+
+        <th:block th:if="${authority}=='row'">
+            <a href="/Vacationdept" class="link">Dept</a>
+        </th:block>
+
+
+    </div>
+</nav>
+
+<div class="mailDetail_container">
 <form action="/mailDelete" method="get">
-<table align="center" cellpadding="0" cellspacing="0" width="600" th:each="mail : ${mails}">
-    <tr>
-        <td>
+<!--<table align="center" cellpadding="0" cellspacing="0" width="600" th:each="mail : ${mails}">-->
+    <th:block th:each="mail : ${mails}">
             <th:block th:text="${mail.title}"></th:block>
-        </td>
-    </tr>
-    <tr>
-        <td>
+        <hr>
             <th:block th:text="${mail.sName}"></th:block>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <th:block th:text="${#temporals.format(mail.date, 'HH:mm')}"></th:block>
-        </td>
-    </tr>
-    <tr>
-        <td>
+            &nbsp;&nbsp;&nbsp;<th:block th:text="${#temporals.format(mail.date, 'HH:mm')}"></th:block>
+        <hr>
             <th:block th:text="${mail.content}"></th:block>
+        <hr>
             <input type="hidden" th:value="${mail.id}" name="id">
             <input type="hidden" th:value="${mail.empno}" name="empno" />
-        </td>
-    </tr>
-
-</table>
-    <input type="submit" value="삭제" onclick="closeMessage()">
-    <input type="button" value="뒤로가기" onclick="history.back();" />
+    <input type="submit" value="삭제" onclick="closeMessage()" class="mailDetail_button">
+    <input type="button" value="뒤로가기" onclick="history.back();" class="mailDetail_button"/>
+    </th:block>
 </form>
-
+</div>
 <script>
     function closeMessage() {
         alert("삭제되었습니다.");
     }
 </script>
-
+<script src="/js/hi.js"></script>
+<link rel="stylesheet" href="/css/hi.css">
+<link rel="stylesheet" href="/css/mailDetail.css">
 </body>
 
 </html>

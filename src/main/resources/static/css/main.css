@@ -19,7 +19,7 @@
 }
 .stu_title { /*근태현황의 파란부분*/
     font-size: 20px; /*폰트 크기*/
-    background-color: steelblue; /*바 색상*/
+    background-color: lightskyblue; /*바 색상*/
     height: 55px; /*근태현황 바 크기*/
     color: white; /*글씨 색상*/
     border-radius: 10px; /*동그랗게*/
@@ -31,6 +31,7 @@
     left: 10%;
     width: 485px;
     height: 142px;
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
 }
 .dept_td{ /*부서 및 카운트 */
     width: 100px;font-weight: 500;

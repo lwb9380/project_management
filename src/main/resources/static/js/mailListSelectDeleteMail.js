@@ -86,7 +86,7 @@ function deleteSelectedMails() {
     // 선택된 메일이 없는 경우 알림을 표시하고 함수를 종료합니다.
     if (selectedCount === 0) {
         alert('선택된 메일이 없습니다.');
-        return;
+        return "mail/error";
     }
 
     // 사용자에게 메일 삭제 확인 메시지를 표시하고, 확인한 경우 삭제 요청을 서버로 보냅니다.
