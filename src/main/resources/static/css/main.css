@@ -7,7 +7,12 @@
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
     border-radius: 10%; /*동그랗게*/
-    border: 1px solid #ccc; /* 테두리를 원하는 대로 지정하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
+    text-align: center;
+    margin-bottom: 3px;
+    right: 40%;
+
+
 }
 .today {
 }
