@@ -53,9 +53,17 @@ public class MailController {
     }
 
     @GetMapping("/mailDetail/{id}")
-    public String mailDetail(@PathVariable Long id, Model model) {
+    public String mailDetail(@PathVariable Long id
+                            ,HttpServletRequest request
+                            ,Model model) {
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
+
         List<MailDto> mail = mailService.selectMailDetail(id);
+        List<MailDto> mailList = mailService.mailList(empno);
         model.addAttribute("mails", mail);
+        model.addAttribute("mailList", mailList);
         return "mail/mailDetail";
     }
 

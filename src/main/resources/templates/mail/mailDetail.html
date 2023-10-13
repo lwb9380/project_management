@@ -74,6 +74,14 @@
     <input type="button" value="뒤로가기" onclick="history.back();" class="mailDetail_button"/>
     </th:block>
 </form>
+        <table border="0" style="table-layout: fixed">
+            <tr th:each="ml: ${mailList}">
+                <td style="width: 20px">[[${ml.sName}]]</td>
+                <td style="width: 80%" >[[${ml.title}]]</td>
+                <td style="width: 20px">[[${#temporals.format(ml.date, 'MM.dd')}]]</td>
+            </tr>
+        </table>
+
 </div>
 <script>
     function closeMessage() {

@@ -14,9 +14,9 @@
 }
 
 .send_box {
-    background-color: lightskyblue;
     font-weight: 600;
-    width: 150px;
+    width: 300px;
+    font-size: 25px;
 }
 
 .dsm_button {
