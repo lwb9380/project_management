@@ -40,7 +40,7 @@
 
     </div>
 </nav>
-
+    <p class="today"></p>
 <th:block th:if="${vacation == '휴가' || vacation == '무급'}">
 
     <p th:text="${working.name+' 님은 오늘 휴가 날입니다'}" ></p>
@@ -83,21 +83,39 @@
 
 <th:block th:if="${vacation != '휴가' && vacation != '무급'}">
     <div class="fff">
-    <table>
-<td>
+    <table >
 
-<p th:text="${working.name+' 님의 오늘 근무 스케쥴은 '+result+' 입니다'}" ></p>
-    <img th:src="@{/images/__${working.getName()}__.png}" alt="내 이미지"> <br> <br>
-    <p th:text="${job}"></p> <br>
-<span id="text" th:text="'출근 시각 '+${working.cometime}"></span> <br> <br>
-<span id="text2" th:text="'퇴근 시각'+${working.gotime}"></span> <br> <br>
-<span id="nowtext" th:text="'현재 출근 상태:'+${working.isworking}"></span> <br> <br>
-    <span class="today"></span> <span class="clock"></span><br> <br><!--현재 날짜,시간 나타냄-->
+        <div style="position: fixed;margin-left: 11.5%;margin-top: 14px;font-size: 25px;">
+        <p>근무 스케쥴</p>
+        </div>
+        <div style="position: fixed;margin-left: 11.5%;margin-top: 55px;font-weight: 00;">
+            <p th:text="${result}" ></p>
+        </div>
 
-<input value="출근" type="button" onclick="makecommute()" class="main_button">
-<input value="퇴근" type="button" onclick="quitcommute()" class="main_button">
-<input value="연장근무" type="button" onclick="requestextrawork()" class="main_button">
+
+
+    <div style="margin-top:9%;margin-left: 7%;">
+  <a href="/logout" >  <img th:src="@{/images/__${working.getName()}__.png}" alt="내 이미지"  style="border-radius: 30%"> </a><br>
+    </div>
+        <div style="margin-top:3%;margin-left: 15%;font-size:20px;">
+        <span th:text="${working.name}"></span>
+        </div>
 <br>
+        <div style="margin-top:-5%;margin-left: 15%;font-size:20px;">
+        <p th:text="${job}"></p>
+        </div>
+
+        <div  style="display: flex ; margin-left: 45%; margin-top: -27%;font-size: 50px;">
+
+                <p class="clock"></p>
+            </div>
+
+        <div style="position:fixed;margin-left: 4%; margin-top: 1%">
+        <input value="출근" type="button" onclick="makecommute()" class="main_button">
+        <input value="퇴근" type="button" onclick="quitcommute()" class="main_button">
+
+<input value="연장근무" type="button" onclick="requestextrawork()" class="main_button">
+
 
 <th:block th:if="${working.isworking} =='외출'">
 <input id="takearestbutton1" value="복귀" type="button" onclick="takearest()" class="main_button">
@@ -106,13 +124,24 @@
 <th:block th:if="${working.isworking != '외출'}">
     <input id="takearestbutton" value="외출" type="button" onclick="takearest()" class="main_button">
 </th:block>
-<!--같은 버튼이나 화면 온로드 당시의 근무 상황에 따라 버튼의 밸류 변경 -->
+    </div>
 
-<input value="초기화" type="button" onclick="reset()" class="main_button">
+    <br>
+        <div style="position: fixed;margin-left:5%;margin-top: 3.5%">
+    <span id="text" th:text="'출근 시각 '+${working.cometime}"></span>&emsp;&emsp;
+    <span id="text2" th:text="'퇴근 시각'+${working.gotime}"></span>
+        </div>
+<br><br>
+        <div style="position: fixed;margin-left: 8%;margin-top: 3.5%">
+    <span id="nowtext" th:text="'현재 출근 상태:'+${working.isworking}"></span>
+        </div>
+            <!--같은 버튼이나 화면 온로드 당시의 근무 상황에 따라 버튼의 밸류 변경 -->
+
+<!--<input value="초기화" type="button" onclick="reset()" class="main_button">-->
 <!--        <a th:href="@{/logout}" class="bbb">로그아웃</a>-->
 </td>
     </table>
-    </div>
+
 <br>
 <br>
 
@@ -120,7 +149,7 @@
     <br>
 <div class="team">
 
-    <table style="border-collapse: collapse;">
+    <table border="1" style="border-collapse: collapse;">
         <thead>
         <tr>
             <th colspan="2" style="background-color: steelblue; color: white;">
