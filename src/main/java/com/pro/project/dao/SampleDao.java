@@ -73,4 +73,8 @@ public interface SampleDao {
 
     public String getjob(int empno);
 
+    public void requestextra(int empno);
+
+    public String isextratoday(int empno);
+
 }

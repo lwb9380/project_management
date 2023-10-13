@@ -383,6 +383,35 @@ public class CommuteController {
 
     }
 
+    @PostMapping("/requestextrawork")
+    @ResponseBody
+    public String requestextra(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        Long num=(Long)session.getAttribute("user");
+        int empno=num.intValue();
+
+        try{
+
+            String extra=stuService.isextratoday(empno);
+
+            if(extra.equals("x")){
+                stuService.requestextra(empno);
+                String rett="신청완료";
+                return rett;
+            } else {
+                String rett="이미신청";
+                return rett;
+            }
+
+
+        } catch (Exception e){
+
+            String error="신청 오류";
+            return error;
+        }
+
+    }
+
     @PostMapping("/quitcommute")
     @ResponseBody
     public String quitcommute(@RequestParam("result") String resultValue,HttpServletRequest request){

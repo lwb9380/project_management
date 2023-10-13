@@ -116,4 +116,8 @@ public class StuService {
 
     public String getjob(int empno){return sampledao.getjob(empno);}
 
+    public void requestextra(int empno){sampledao.requestextra(empno);}
+
+    public String isextratoday(int empno){return sampledao.isextratoday(empno);}
+
 }

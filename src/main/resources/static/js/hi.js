@@ -42,6 +42,22 @@ function makecommute() {
     });
 }
 
+function requestextrawork(){
+    $.ajax({
+        url:"/requestextrawork",
+        type: "Post",
+        dataType: "text"
+    }).done(function (rett){
+        if(rett ==="신청완료"){
+            alert("연장 근무 신청이 완료되었습니다.");
+        } else if(rett==="이미신청"){
+            alert("이미 신청되었습니다.")
+        }
+    }).fail(function (error){
+        alert(error);
+    });
+}
+
 function takearest() {
     $.ajax({
         url: "/takearest",

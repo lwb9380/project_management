@@ -67,6 +67,10 @@
 
     </update>
 
+    <update id="requestextra">
+        update working set extrawork='o' where empno=#{param1}
+    </update>
+
 
     <update id="updatelastday">
         update working set lastday=#{param1} where empno=#{param2}
