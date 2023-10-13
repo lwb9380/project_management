@@ -9,12 +9,10 @@
     border-radius: 10%; /*동그랗게*/
     border: 1px solid #ccc; /* 테두리를 원하는 대로 지정하세요. */
 }
-.today { /*날짜*/
-    font-size: 15px; /*폰트 크기*/
-    font-weight: 600; /*글 두깨*/
-    height : 20%;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 그림자 효과를 원한다면 추가하세요. */
-    line-height:50px; /*간격*/
+.today {
+}
+.clock{
+
 }
 .sss {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 그림자 효과를 원한다면 추가하세요. */
