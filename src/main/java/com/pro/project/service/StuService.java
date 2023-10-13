@@ -114,5 +114,6 @@ public class StuService {
 
     public List<DeptResult> getdeptinfo(int deptno){return sampledao.getdeptinfo(deptno);}
 
+    public String getjob(int empno){return sampledao.getjob(empno);}
 
 }

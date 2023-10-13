@@ -88,6 +88,7 @@
 
 <p th:text="${working.name+' 님의 오늘 근무 스케쥴은 '+result+' 입니다'}" ></p>
     <img th:src="@{/images/__${working.getName()}__.png}" alt="내 이미지"> <br> <br>
+    <p th:text="${job}"></p> <br>
 <span id="text" th:text="'출근 시각 '+${working.cometime}"></span> <br> <br>
 <span id="text2" th:text="'퇴근 시각'+${working.gotime}"></span> <br> <br>
 <span id="nowtext" th:text="'현재 출근 상태:'+${working.isworking}"></span> <br> <br>

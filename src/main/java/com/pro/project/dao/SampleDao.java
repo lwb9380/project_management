@@ -71,4 +71,6 @@ public interface SampleDao {
 
     public List<DeptResult> getdeptinfo(int deptno);
 
+    public String getjob(int empno);
+
 }

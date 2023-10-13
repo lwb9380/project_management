@@ -43,6 +43,10 @@
         select * from dept where deptno=#{param1}
     </select>
 
+    <select id="getjob" resultType="String">
+        select job from emp where empno=#{param1}
+    </select>
+
     <select id="ScheduleList" resultType="com.pro.project.dto.ScheduleRequest">
         select emp.deptno, emp.name, schedule_request.monday, schedule_request.tuesday, schedule_request.wednesday, schedule_request.thursday, schedule_request.friday, schedule_request.year, schedule_request.month
         from emp

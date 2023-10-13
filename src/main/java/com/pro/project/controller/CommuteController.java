@@ -186,6 +186,9 @@ public class CommuteController {
         Long vacationCount = deptService.countVacationByDeptNo((long) deptno); //휴가 카운트
         Long countTotal = deptService.countTotal((long) deptno); //카운트의 총합
 
+
+        String job=stuService.getjob(empno);
+        model.addAttribute("job",job);
         model.addAttribute("authority",authority);
         model.addAttribute("deptname", deptname);
         model.addAttribute("list", list);
@@ -281,7 +284,7 @@ public class CommuteController {
         LocalDateTime now = LocalDateTime.now();
         LocalTime time = now.toLocalTime();
 
-        if(time.isBefore(hometime)){
+        if(time.isAfter(halfcometime)){
             stuService.updatetardy(empno,month);
         } //요일에서 출근 시간 받아오고 출근 눌렀을 때의 시간이 출근 시간보다 늦으면 지각 체크
 
