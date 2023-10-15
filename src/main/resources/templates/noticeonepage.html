@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>공지사항 확인</title>
+    <style>
+        .noticeOP_container {
+            position: fixed;
+            left: 10%;
+            margin-top: 5%;
+            margin-right: 20%;
+            width: 80%;
+            height: 80%;
+        }
+    </style>
 </head>
 <body>
 
-<th:block th:text="${notice.title}"></th:block>
+<nav>
+    <div class="menu-btn">
+        <div class="line line--1"></div>
+        <div class="line line--2"></div>
+        <div class="line line--3"></div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/start" class="link">Home</a>
+        <!--        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>-->
+        <a href="/vacationRequest" class="link">Vacation Request</a>
+        <a href="/schedule" class="link">Schedule Request </a>
+
+        <th:block th:if="${authority}=='row'">
+            <a href="/Vacationdept" class="link">Dept</a>
+        </th:block>
 
 
-<th:block th:text="${notice.content}"></th:block>
+    </div>
+</nav>
 
+<div class="noticeOP_container">
+    [제목] <th:block th:text="${notice.title}"></th:block>
+    <hr style="width: 300px; margin-left: 0">
+    [내용] <th:block th:text="${notice.content}"></th:block>
+</div>
 
+<script src="/js/hi.js"></script>
+<link rel="stylesheet" href="/css/hi.css">
 </body>
 </html>

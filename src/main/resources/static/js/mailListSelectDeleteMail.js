@@ -39,6 +39,7 @@ function deleteSelectedMails() {
         }).then(response => {
             // 삭제 후에 필요한 동작 수행한다. (예: 리스트 리로드)
             location.reload();
+            alert("삭제되었습니다.");
         }).catch(error => {
             // 오류가 발생한 경우 콘솔에 오류 메시지를 출력한다.
             console.error('메일 삭제 중 오류 발생:', error);
@@ -73,40 +74,40 @@ selectAllCheckbox.addEventListener('change', function() {
 });
 
 // 선택된 메일을 삭제하는 함수
-function deleteSelectedMails() {
-    // 선택된 메일 체크박스들을 가져옵니다.
-    const selectedMailCheckboxes = document.querySelectorAll('input[name="selectedMail"]:checked');
-    // 선택된 메일의 ID를 배열로 반환합니다.
-    const selectedMailIds = Array.from(selectedMailCheckboxes).map(checkbox => checkbox.value);
-    // 선택된 메일 개수를 계산합니다.
-    const selectedCount = selectedMailCheckboxes.length;
-    // 선택된 메일 개수를 표시하는 HTML 요소를 가져옵니다.
-    const selectedCountElement = document.getElementById('selectedCount');
-
-    // 선택된 메일이 없는 경우 알림을 표시하고 함수를 종료합니다.
-    if (selectedCount === 0) {
-        alert('선택된 메일이 없습니다.');
-        return "mail/error";
-    }
-
-    // 사용자에게 메일 삭제 확인 메시지를 표시하고, 확인한 경우 삭제 요청을 서버로 보냅니다.
-    if (confirm('선택된 ' + selectedCount + '개의 메일을 삭제하시겠습니까?')) {
-        // 서버로 선택된 메일 ID 목록을 전달하여 삭제 처리를 요청합니다.
-        fetch('/deleteMails', {
-            method: 'POST',
-            // 선택된 메일 ID 목록을 JSON 형식으로 변환하여 전송합니다.
-            body: JSON.stringify(selectedMailIds),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            // 삭제 후에 필요한 동작을 수행합니다. (예: 리스트 리로드)
-            location.reload();
-        }).catch(error => {
-            // 오류가 발생한 경우 콘솔에 오류 메시지를 출력합니다.
-            console.error('메일 삭제 중 오류 발생:', error);
-        });
-    }
-}
+// function deleteSelectedMails() {
+//     // 선택된 메일 체크박스들을 가져옵니다.
+//     const selectedMailCheckboxes = document.querySelectorAll('input[name="selectedMail"]:checked');
+//     // 선택된 메일의 ID를 배열로 반환합니다.
+//     const selectedMailIds = Array.from(selectedMailCheckboxes).map(checkbox => checkbox.value);
+//     // 선택된 메일 개수를 계산합니다.
+//     const selectedCount = selectedMailCheckboxes.length;
+//     // 선택된 메일 개수를 표시하는 HTML 요소를 가져옵니다.
+//     const selectedCountElement = document.getElementById('selectedCount');
+//
+//     // 선택된 메일이 없는 경우 알림을 표시하고 함수를 종료합니다.
+//     if (selectedCount === 0) {
+//         alert('선택된 메일이 없습니다.');
+//         return "mail/error";
+//     }
+//
+//     // 사용자에게 메일 삭제 확인 메시지를 표시하고, 확인한 경우 삭제 요청을 서버로 보냅니다.
+//     if (confirm('선택된 ' + selectedCount + '개의 메일을 삭제하시겠습니까?')) {
+//         // 서버로 선택된 메일 ID 목록을 전달하여 삭제 처리를 요청합니다.
+//         fetch('/deleteMails', {
+//             method: 'POST',
+//             // 선택된 메일 ID 목록을 JSON 형식으로 변환하여 전송합니다.
+//             body: JSON.stringify(selectedMailIds),
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         }).then(response => {
+//             // 삭제 후에 필요한 동작을 수행합니다. (예: 리스트 리로드)
+//             location.reload();
+//         }).catch(error => {
+//             // 오류가 발생한 경우 콘솔에 오류 메시지를 출력합니다.
+//             console.error('메일 삭제 중 오류 발생:', error);
+//         });
+//     }
+// }
 
 

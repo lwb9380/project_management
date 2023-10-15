@@ -91,7 +91,7 @@
             <td th:text="${#temporals.format(mail.date, 'yyyy.MM.dd')}"></td>
         </tr>
         <tr>
-            <td colspan="3" style="text-align: center">
+            <th colspan="5" style="text-align: center">
                 <!-- 이전 페이지로 이동하는 버튼 -->
                 <a th:if="${mails.hasPrevious()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number - 1})}" class="mailList_pnm">이전</a>
 
@@ -102,14 +102,12 @@
 
                 <!-- 다음 페이지로 이동하는 버튼 -->
                 <a th:if="${mails.hasNext()}" th:href="@{/mailList/{empno}(empno=${empno},page=${mails.number + 1})}" class="mailList_pnm">다음</a>
-            </td>
-            <td>
-                <input value="메일쓰기" type="button" onclick="location.href='/sendMail'" class="mailList_button">
-            </td>
+            </th>
         </tr>
     </tbody>
 </table>
     <a href="/start"><input type="button" value="돌아가기" class="mailList_button"></a>
+    <input value="메일쓰기" type="button" onclick="location.href='/sendMail'" class="mailList_button">
 </th:block>
 
 <th:block th:if="${mails.empty}">
@@ -117,6 +115,7 @@
         <p> 메일이 없습니다.</p>
     </div>
     <a href="/start"><input type="button" value="돌아가기" class="mailList_button"></a>
+    <input value="메일쓰기" type="button" onclick="location.href='/sendMail'" class="mailList_button">
 </th:block>
 </div>
 

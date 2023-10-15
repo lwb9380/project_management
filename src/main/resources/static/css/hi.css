@@ -51,7 +51,7 @@
     right: 20%;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
-    border: 1px solid #ccc; /* 테두리를 원하는 대로 지정하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
     border-radius: 10%; /*동그랗게*/
 }
 .team_title {
@@ -68,11 +68,12 @@
     position: fixed;
     top: 55%;
     right: 40%;
-    width: 330px;
+    width: 350px;
+    height: 290px;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
     border-radius: 10%;
-    border: 1px solid #ccc; /* 테두리를 원하는 대로 지정하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
 }
 .recent_mail {
     margin-left: 5px;
@@ -258,17 +259,6 @@ a:hover {
 
 .date_batch {
     text-align: right;
-}
-
-.highlighted {
-    position: fixed;
-    top: 60%;
-    left: 10%;
-    width: 300px;
-    background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
-    text-align: center;
-    border-radius: 10%;
 }
 
 .stateNow {
