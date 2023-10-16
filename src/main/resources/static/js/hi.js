@@ -15,7 +15,7 @@ menuBtn.addEventListener('click', () => {
 
 
 function vac(){
-    alert("휴가중엔 출근, 퇴근을 기록할 수 없습니다.")
+    alert("휴가중엔 사용할 수 없는 기능입니다.")
 }
 
 
