@@ -99,8 +99,9 @@
     font-size: 20px; /*폰트 크기*/
     background-color: lightskyblue; /*바 색상*/
     height: 55px; /*근태현황 바 크기*/
-    width: 100%;
-    left: 20%;
+    width: 325px;
+    right: 40%;
+    top: 55%;
     color: white; /*글씨 색상*/
     border-radius: 10px; /*동그랗게*/
     /*text-align: center; 사용 안함 냅둬보기*/
@@ -311,6 +312,7 @@ a:hover {
 
 .main_notice {
     width: 325px;
+    height: 180px;
     right: 40%;
     top: 34%;
     position: fixed;

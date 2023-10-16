@@ -257,7 +257,7 @@
 
     <div class="mail">
         <th:block th:if="${not mail.empty}">
-            <table style="border-collapse: separate; border-spacing: 0 10px;">
+            <table style="border-collapse: collapse">
                 <thead>
                     <tr>
                         <th class="mail_box" colspan="4" >최근 온 메일</th>
@@ -265,7 +265,7 @@
                 </thead>
                 <tbody th:each="mail : ${mail}" th:unless="${mailStat.index > 3}">
                     <tr>
-                            <td>
+                            <td  style="padding: 2%;">
                                 <a th:href="@{'/mailDetail/' + ${mail.id}}" class="mail_title">
                                     [[${mail.title}]]
                                 </a>
@@ -291,23 +291,21 @@
 <div class="main_notice">
     <th:block th:if="${not list3.empty}">
 
-        <table>
+        <table style="border-collapse: collapse">
             <thead>
             <tr>
-                <th class="main_dept_notice">
-                    부서 공지사항
-                </th>
+                <th class="main_dept_notice" colspan="4">부서 공지사항</th>
             </tr>
             </thead>
-
+            <tbody>
             <tr th:each="notice : ${list3}">
-                <td>
-                    <br><a th:href="@{'/noticeDetail/' + ${notice.id}}" class="notice_button">
+                <td style="padding: 3%;">
+                    <a th:href="@{'/noticeDetail/' + ${notice.id}}" class="notice_button">
                         [공지] [[${notice.title}]]
                 </a>
                 </td>
             </tr>
-
+            </tbody>
         </table>
     </th:block>
 </div>
