@@ -172,20 +172,19 @@
     <table border="0" style="border-collapse: collapse;">
         <thead>
         <tr>
-            <th colspan="2" style="background-color: lightskyblue; color: white;">
-                <span th:text="${deptname}"></span>
-            </th>
+            <th class="dept_name" colspan="4">[[${deptname}]]</th>
         </tr>
         </thead>
         <tbody>
         <th:block th:each="dto, iterStat : ${list}">
             <!-- 매 세 번째 요소마다 새로운 행을 시작 -->
             <th:block th:if="${iterStat.index % 2 == 0}">
-                </tr><tr>
+                <tr>
             </th:block>
             <!-- 각 사원 정보를 셀에 출력 -->
-            <td style="border: 0px solid #000; padding: 5px; text-align: center;">
-                <img th:src="@{/images/__${dto.getName()}__.png}" alt="내 이미지"><br>
+            <td style="border: 0 solid #000; padding: 5px; text-align: center; width: 150px;">
+                <br>
+                <img th:src="@{/images/__${dto.getName()}__.png}" alt="내 이미지" style="border-radius: 20%;"><br>
                 <span th:text="${dto.getName()}"></span> :
                 <span th:text="${dto.getIsworking()}"></span><br>
                 <a th:href="@{'/deptSendMail/' + ${dto.empno}}">
@@ -280,7 +279,7 @@
         </th:block>
 
         <th:block th:if="${mail.empty}">
-            <p><h3>메일이 없습니다.</h3></p>
+            <h3>메일이 없습니다.</h3>
         </th:block>
     </div>
 

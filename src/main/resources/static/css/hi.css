@@ -68,8 +68,17 @@
     height: 40px; /*근태현황 바 크기*/
     color: white; /*글씨 색상*/
     border-radius: 10px; /*동그랗게*/
-
 }
+
+.dept_name {
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+    /*text-align: center; 사용 안함 냅둬보기*/
+}
+
 .mail {
     margin-left: 5px;
     margin-bottom: 3px;
@@ -256,6 +265,18 @@ a:hover {
 .mail_title {
     display: block;
     text-decoration-line: none;
+    width: 200px;
+    height: 20px;
+    font-weight: 800;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.mail_title:hover {
+    display: block;
+    text-decoration-line: underline;
     width: 200px;
     height: 20px;
     font-weight: 800;
