@@ -52,8 +52,7 @@
 
     <select id="ScheduleList" resultType="com.pro.project.dto.ScheduleRequest">
         select e.empno, e.deptno, e.name, sc.monday, sc.tuesday,
-               sc.wednesday, sc.thursday, sc.friday, sc.year, sc.month,
-               sc.cause, sc.accept
+               sc.wednesday, sc.thursday, sc.friday, sc.year, sc.month, sc.accept
         from emp e
                  Inner join schedule_request  sc on e.empno=sc.empno
     </select>

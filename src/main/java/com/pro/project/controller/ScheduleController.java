@@ -59,14 +59,19 @@ public class ScheduleController {
         return "redirect:/schedule";
     }
 
-
-    //간단 스케줄 조회
-    @GetMapping("/showSchedule")
-    public String showSchedule(HttpServletRequest request, Model model) {
+    //스케줄 신청 조회
+    @GetMapping("/showScheduleRequest")
+    public String showScheduleRequest(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        Long num = (Long) session.getAttribute("user");
+        Long num = (Long)session.getAttribute("user");
         int empno = num.intValue();
 
+        //이번달 스케줄 조회
+        List<ScheduleRequest> scheduleRequestList = scheduleService.scheduleRequestList(empno);
+        model.addAttribute("scheduleRequestList", scheduleRequestList);
+        model.addAttribute("empno", empno);
+
+        //신청조회
         LocalDate now = LocalDate.now();
         int month = now.getMonthValue();
         int year = now.getYear();
@@ -140,23 +145,10 @@ public class ScheduleController {
             }
         }
 
-        model.addAttribute("empno", empno);
+        String empName = scheduleService.getName(empno);
+        model.addAttribute("name", empName);
         model.addAttribute("month", month);
         model.addAttribute("year", year);
-
-        return "schedule/showSimpleSchedule";
-    }
-
-    //스케줄 신청 조회
-    @GetMapping("/showScheduleRequest")
-    public String showScheduleRequest(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        Long num = (Long)session.getAttribute("user");
-        int empno = num.intValue();
-
-        List<ScheduleRequest> scheduleRequestList = scheduleService.scheduleRequestList(empno);
-        model.addAttribute("scheduleRequestList", scheduleRequestList);
-        model.addAttribute("empno", empno);
         return "schedule/showScheduleRequest";
     }
 

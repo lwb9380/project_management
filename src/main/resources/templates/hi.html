@@ -29,13 +29,13 @@
         <a href="/start" class="link">Home</a>
         <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>
         <a href="/vacationRequest" class="link">Vacation Request</a>
-        <a href="/schedule" class="link">Schedule Request </a>
-
         <th:block th:if="${authority}=='row'">
             <a href="/Vacationdept" class="link">Dept</a>
+            <a href="/showScheduleRequest" class="link">Schedule Request </a>
         </th:block>
         <th:block th:if="${authority}=='admin'">
             <a href="/registerpage" class="link">EmpRegist</a>
+            <a href="/manageScheduleRequest" class="link">Schedule Request</a>
         </th:block>
 
     </div>

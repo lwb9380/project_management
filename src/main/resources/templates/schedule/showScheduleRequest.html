@@ -113,9 +113,37 @@
     </script>
 </head>
 <body>
-<div th:if="${!scheduleRequestList.isEmpty()}">
-    <th:block th:text="|${empno}님의 스케줄 신청|"/>
+<!-- 현재 스케줄 조회 -->
+<div th:if="${monday != null}">
     <table>
+        <caption th:text="|${name}님의 ${year}년 ${month}월 스케줄|"></caption>
+        <tr>
+            <td>월요일</td>
+            <td>화요일</td>
+            <td>수요일</td>
+            <td>목요일</td>
+            <td>금요일</td>
+        </tr>
+        <tr>
+            <td th:text="${monday}"></td>
+            <td th:text="${tuesday}"></td>
+            <td th:text="${wednesday}"></td>
+            <td th:text="${thursday}"></td>
+            <td th:text="${friday}"></td>
+        </tr>
+    </table>
+</div>
+<div th:unless="${monday != null}">
+    <th:block th:text="|${name}님의 ${month}월 스케줄|"/><br>
+    아직 스케줄이 확정되지 않았습니다.<br>
+    <a href="/newSchedule">신청하기</a>
+    <a href="/insertSchedule">(임시)바로 등록하기</a><br>
+    <a href="/schedule">뒤로가기</a>
+</div>
+<!--신청조회-->
+<div th:if="${!scheduleRequestList.isEmpty()}">
+    <table>
+        <caption th:text="|${name}님의 스케줄 신청|"></caption>
         <tr>
             <td>년</td>
             <td>월</td>
@@ -171,13 +199,12 @@
             </td>
         </tr>
     </table>
-    <a href="/schedule">돌아가기</a><br>
 </div>
 <div th:unless="${!scheduleRequestList.isEmpty()}">
-    <th:block th:text="|${empno}님의 스케줄 신청|"/><br>
+    <th:block th:text="|${name}님의 스케줄 신청|"/><br>
     아직 스케줄을 신청하지 않았습니다.<br>
-    <a href="/updateSchedule">스케줄 신청하기</a>
-    <a href="/schedule">돌아가기</a><br>
 </div>
+<a href="/updateSchedule">스케줄 신청하기</a><br>
+<a href="/start">뒤로가기</a><br>
 </body>
 </html>
