@@ -29,11 +29,11 @@
 
   <h2>휴가 신청하기</h2>
 
-  <img th:src="@{/images/__${loggedInEmpName}__.png}" alt="내 이미지">
+  <img th:src="@{/images/__${loggedInName}__.png}" alt="내 이미지">
 
   <!-- 로그인한 사용자의 empname 정보를 자동으로 불러옴 -->
-  <input type="hidden" name="empname" th:value="${loggedInEmpName}">
-  <p th:text="'사원 이름: ' + ${loggedInEmp.empname}"></p>
+  <input type="hidden" name="empname" th:value="${loggedInName}">
+  <p th:text="'사원 이름: ' + ${loggedInEmp.name}"></p>
 
 
   <!-- 로그인한 사용자의 empno 정보를 자동으로 불러옴 -->

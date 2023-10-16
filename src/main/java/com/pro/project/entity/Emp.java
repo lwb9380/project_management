@@ -22,7 +22,7 @@ public class Emp {
     @Column(length = 50, nullable = false)
     private String phone;
     @Column(length = 50, nullable = false)
-    private String empname;
+    private String name;
     @Column(length = 50, nullable = false)
     private Long deptno;
     @Column(length = 50, nullable = false)
