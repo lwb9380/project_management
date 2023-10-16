@@ -125,6 +125,7 @@ html, body {
     width: 100%;
     margin: 0;
     overflow: hidden;
+    background-color: lightskyblue;
 }
 
 nav {
@@ -362,6 +363,56 @@ a:hover {
     text-overflow:ellipsis;
     white-space: nowrap;
 }
+
+.lunch {
+    position: fixed;
+    right: 40%;
+    top: 10%;
+    width: 325px;
+    height: 200px;
+    background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
+    border-radius: 10%; /*동그랗게*/
+}
+
+.lunch_box {
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    width: 325px;
+    right: 40%;
+    top: 55%;
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+
+}
+
+.monthly_button {
+    display: block;
+    text-decoration-line: none;
+    width: 200px;
+    height: 20px;
+    font-weight: 800;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.monthly_button:hover {
+    display: block;
+    text-decoration-line: underline;
+    width: 200px;
+    height: 20px;
+    font-weight: 800;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+
 hr.hr-2 {
     border: 0;
     margin-top: -0.5%;

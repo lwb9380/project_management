@@ -1,0 +1,60 @@
+.sc_container {
+    position: fixed;
+    left: 10%;
+    margin-top: 5%;
+    margin-right: 20%;
+    width: 80%;
+    height: 80%;
+}
+
+.sc_name {
+    position: fixed;
+    text-align: center;
+    top: 10%;
+    right: 50%;
+}
+
+.sc_button {
+    background: #1AAB8A;
+    color: #fff;
+    border:none;
+    position:relative;
+    text-decoration: none;
+    height:60px;
+    font-size:20px;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+}
+
+.sc_button:hover {
+    background:#fff;
+    color:#1AAB8A;
+}
+
+.sc_button:before, .sc_button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+}
+.sc_button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+.sc_button:hover:before, .sc_button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}
+
+.sc_buttons {
+    position: fixed;
+    top: 15%;
+}
