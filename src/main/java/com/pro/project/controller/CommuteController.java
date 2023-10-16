@@ -187,7 +187,25 @@ public class CommuteController {
         Long countTotal = deptService.countTotal((long) deptno); //카운트의 총합
 
 
+        try{
+            List<Notice> list3=stuService.getdeptNotice(deptno);
+
+            if(list3.size()>3){
+                for(int i=0;i<list.size()-2;i++){
+                    list3.remove(0);
+                }
+            }
+
+
+            model.addAttribute("list3",list3);
+        } catch (Exception e){
+
+        }
+
+
+
         String job=stuService.getjob(empno);
+
         model.addAttribute("job",job);
         model.addAttribute("authority",authority);
         model.addAttribute("deptname", deptname);
@@ -390,6 +408,9 @@ public class CommuteController {
         Long num=(Long)session.getAttribute("user");
         int empno=num.intValue();
 
+        Working working=stuService.getlogininfo(empno);
+
+
         try{
 
             String extra=stuService.isextratoday(empno);
@@ -398,7 +419,11 @@ public class CommuteController {
                 stuService.requestextra(empno);
                 String rett="신청완료";
                 return rett;
-            } else {
+            } else if(working.getIschul().equals("oo")) {
+                String rett="이미퇴근";
+                return rett;
+            }else{
+
                 String rett="이미신청";
                 return rett;
             }

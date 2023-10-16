@@ -58,7 +58,7 @@
 
 <th:block th:if="${not list3.empty}">
 
-    <table th:each="notice : ${list3}">
+    <table >
         <thead>
         <tr>
             <th>Id</th>
@@ -66,12 +66,10 @@
             <th>부서번호</th>
         </tr>
 
-        <tr>
+        <tr th:each="notice : ${list3}">
             <td>
-                <th:block th:text="${notice.title}"></th:block>
+                <th:block th:text="${notice.id}"></th:block>
             </td>
-
-
 
             <td>  <a th:href="@{'/noticeDetail/' + ${notice.id}}" style="font-size:20px;">
                 [[${notice.title}]]

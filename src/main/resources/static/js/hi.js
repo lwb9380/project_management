@@ -34,7 +34,7 @@ function makecommute() {
         } else {
             // 출근 처리 결과를 표시
             alert("출근하셨습니다.");
-            $("#nowtext").text("현재 출근 상태: 출근");
+            $("#nowtext").text("현재 상태: 출근");
             $("#text").text("출근 시각 "+response);
         }
     }).fail(function (error) {
@@ -52,6 +52,8 @@ function requestextrawork(){
             alert("연장 근무 신청이 완료되었습니다.");
         } else if(rett==="이미신청"){
             alert("이미 신청되었습니다.")
+        } else if(rett==="이미퇴근"){
+            alert("이미 퇴근하셨습니다.")
         }
     }).fail(function (error){
         alert(error);
@@ -76,7 +78,7 @@ function takearest() {
             $("#takearestbutton1").val("복귀");
         } else if(response==="복귀"){
             alert("복귀하셨습니다.")
-            $("#nowtext").text("현재 출근 상태: 출근");
+            $("#nowtext").text("현재 상태: 출근");
             $("#takearestbutton").val("외출");
             $("#takearestbutton1").val("외출");
         } else if(response==="이미"){
@@ -104,7 +106,7 @@ function quitcommute() {
         } else {
             // 출근 처리 결과를 표시
             alert("퇴근하셨습니다");
-            $("#nowtext").text("현재 출근 상태: 퇴근");
+            $("#nowtext").text("현재 상태: 퇴근");
             $("#text2").text("퇴근 시각 "+response);
         }
     }).fail(function (error) {

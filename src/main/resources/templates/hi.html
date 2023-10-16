@@ -129,11 +129,11 @@
     <br>
         <div style="position: fixed;margin-left:5%;margin-top: 3.5%">
     <span id="text" th:text="'출근 시각 '+${working.cometime}"></span>&emsp;&emsp;
-    <span id="text2" th:text="'퇴근 시각'+${working.gotime}"></span>
+    <span id="text2" th:text="'퇴근 시각 '+${working.gotime}"></span>
         </div>
 <br><br>
         <div style="position: fixed;margin-left: 8%;margin-top: 3.5%">
-    <span id="nowtext" th:text="'현재 출근 상태:'+${working.isworking}"></span>
+    <span id="nowtext" th:text="'현재 상태: '+${working.isworking}"></span>
         </div>
             <!--같은 버튼이나 화면 온로드 당시의 근무 상황에 따라 버튼의 밸류 변경 -->
 
@@ -260,6 +260,35 @@
             <p><h3>메일이 없습니다.</h3></p>
         </th:block>
     </div>
+
+<div style="left: 42%; top: 40%; position: fixed">
+    <th:block th:if="${not list3.empty}">
+
+        <table >
+            <thead>
+
+            <tr>
+                <a style="text-align: center;font-size:20px ">부서 공지사항</a>
+            </tr>
+
+            <tr th:each="notice : ${list3}">
+                <td>
+                    <th:block th:text="·"></th:block>
+                </td>
+
+                <td>  <a th:href="@{'/noticeDetail/' + ${notice.id}}" style="font-size:20px;">
+                    [[${notice.title}]]
+                </a></td>
+            </tr>
+            </thead>
+
+        </table>
+
+
+    </th:block>
+</div>
+
+
 <script src="/js/hi.js"></script>
 <script th:inline="javascript">
     var resultValue = /*[[${result}]]*/ '';
