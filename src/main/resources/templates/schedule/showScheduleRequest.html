@@ -117,6 +117,7 @@
         });
     </script>
 </head>
+
 <body>
 <!-- 현재 스케줄 조회 -->
 <div th:if="${monday != null}">
@@ -141,9 +142,9 @@
 <div th:unless="${monday != null}">
     <th:block th:text="|${name}님의 ${month}월 스케줄|"/><br>
     아직 스케줄이 확정되지 않았습니다.<br>
-    <a href="/newSchedule">신청하기</a>
-    <a href="/insertSchedule">(임시)바로 등록하기</a><br>
-    <a href="/schedule">뒤로가기</a>
+    <a href="/newSchedule">이번달 스케줄 신청하기</a>
+<!--    현재 empno로 바로 등록하기-->
+<!--    <a href="/insertSchedule">(임시)바로 등록하기</a><br>-->
 </div>
 <!--신청조회-->
 <div th:if="${!scheduleRequestList.isEmpty()}">
@@ -194,11 +195,15 @@
                 <th:block th:case="*">검토중</th:block>
             </td>
             <td th:switch="${scheduleRequestList.accept}">
-                <th:block th:case="'accept'">-</th:block>
-                <form action="/rejectCheck" method="post">
+                <form action="/rejectCheck" th:case="'accept'" method="post">
                     <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
                     <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
-                    <input type="submit" th:case="'reject'" value="확인">
+                    <input type="submit" value="목록 삭제">
+                </form>
+                <form action="/rejectCheck" th:case="'reject'" method="post">
+                    <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
+                    <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
+                    <input type="submit" value="확인">
                 </form>
                 <a th:case="*" class="edit-link" href="javascript:void(0)">수정하기</a>
             </td>

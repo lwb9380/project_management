@@ -6,6 +6,7 @@ import com.pro.project.service.ScheduleService;
 import lombok.extern.log4j.Log4j2;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -205,6 +206,9 @@ public class ScheduleController {
         HttpSession session = request.getSession();
         Long num = (Long) session.getAttribute("user");
         int empno = num.intValue();
+        String name = scheduleService.getName(empno);
+        log.info(name+"======================================");
+        model.addAttribute("name", name);
 
         LocalDate now = LocalDate.now();
         int month = now.getMonthValue();
@@ -239,6 +243,9 @@ public class ScheduleController {
         HttpSession session = request.getSession();
         Long num = (Long) session.getAttribute("user");
         int empno = num.intValue();
+        String name = scheduleService.getName(empno);
+        log.info(name+"======================================");
+        model.addAttribute("name", name);
 
         LocalDate now = LocalDate.now();
         int currentYear = now.getYear();
@@ -251,7 +258,7 @@ public class ScheduleController {
                                  @RequestParam("monday") int monday, @RequestParam("tuesday") int tuesday,
                                  @RequestParam("wednesday") int wednesday, @RequestParam("thursday") int thursday,
                                  @RequestParam("friday") int friday, @RequestParam("year") int year,
-                                 @RequestParam("month") int month){
+                                 @RequestParam("month") int month, Model model){
 
         HttpSession session = request.getSession();
         Long num = (Long) session.getAttribute("user");
@@ -303,10 +310,14 @@ public class ScheduleController {
         int currentYear = now.getYear();
         int currentMonth = now.getMonthValue();
 
+        Day day = scheduleService.selectDaycheck(empno);
         if(currentMonth==month && currentYear==year) {
-            scheduleService.updateCurrentSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+            if(day==null) {
+                scheduleService.insertSchedule(empno, monday, tuesday, wednesday, thursday, friday, year, month);
+            } else {
+                scheduleService.updateCurrentSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+            }
         }
-
         return "redirect:/manageScheduleRequest";
     }
 
