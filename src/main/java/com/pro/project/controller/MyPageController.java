@@ -5,16 +5,20 @@ import com.pro.project.dto.Notice;
 import com.pro.project.dto.VacationDto;
 import com.pro.project.dto.Working;
 import com.pro.project.entity.Emp;
+import com.pro.project.entity.VacationRequest;
 import com.pro.project.repository.MyPageRepository;
 import com.pro.project.service.MailService;
 import com.pro.project.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,7 +58,6 @@ public class MyPageController {
         int empno=num.intValue();
         int deptno=stuService.getDeptNo(empno);
         String authority=stuService.getAuthority(empno);
-
         List<VacationDto> list=stuService.getVacationRequest(deptno);
 
         String deptname=stuService.deptlist(deptno).get(0).getDeptname();
@@ -79,6 +82,7 @@ public class MyPageController {
         model.addAttribute("working", working);
         return "showrequest";
     }
+
 
     @PostMapping("/repulse")
     public String repulse(@RequestParam("id")int id){

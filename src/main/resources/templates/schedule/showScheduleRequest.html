@@ -13,12 +13,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var formAdded = false;
-            //태그 선택자와 해당 태그를 클릭했을때 실행됨
+            var $formRow;
+
             $("a.edit-link").click(function () {
-                // Get the parent row
-                if(!formAdded) {
-                    var parentRow = $(this).closest("tr");
-                    // Create a new row with an input form
+                var parentRow = $(this).closest("tr");
+
+                // formAdded가 true라면 폼이 이미 추가된 것이므로 제거합니다.
+                if (formAdded) {
+                    $formRow.remove();
+                    formAdded = false;
+                } else {
                     var formRow = `
                         <tr>
                             <td colspan="2">
@@ -65,6 +69,7 @@
 
                     // parentRow 다음에 formRow 추가하기
                     parentRow.after(formRow);
+                    $formRow = parentRow.next();
                     formAdded = true;
 
                     $("#submit-btn").click(function(event) {

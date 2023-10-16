@@ -1,6 +1,7 @@
 package com.pro.project.repository;
 
 import com.pro.project.entity.Dept;
+import com.pro.project.entity.Emp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -60,6 +61,8 @@ public interface DeptRepository extends JpaRepository<Dept, Long> {
     @Query("SELECT COUNT(d) FROM Dept d WHERE (d.deptno = :deptno OR d.deptno = 1200) AND d.isworking = '휴가'")
     Long countVacation1200(@Param("deptno") Long deptno);
 
+//    Emp findByEmpno(Long empno);
+//    Dept findByDeptno(Long deptno);
 
 }
 

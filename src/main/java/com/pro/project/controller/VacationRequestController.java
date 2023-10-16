@@ -1,6 +1,7 @@
 package com.pro.project.controller;
 
 import com.pro.project.entity.*;
+import com.pro.project.repository.DeptRepository;
 import com.pro.project.repository.EmpRepository;
 import com.pro.project.service.VacationRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class VacationRequestController {
     private final EmpRepository empRepository;
 
     @Autowired
+    private DeptRepository deptRepository;
+
+
+    @Autowired
     private HttpSession session;  // HttpSession을 주입받습니다.
 
     @Autowired
@@ -50,16 +55,29 @@ public class VacationRequestController {
         model.addAttribute("vacationRequest", new VacationRequest());
 
 
+
+
         // 로그인한 사용자의 정보를 가져올 때 사용
         Emp loggedInEmp = empRepository.findById(loggedInEmpno).orElse(null);
         if (loggedInEmp != null) {
             model.addAttribute("loggedInEmp", loggedInEmp);
+
+            // 로그인한 사용자의 empname 정보를 가져옴
+            String loggedInEmpName = loggedInEmp.getEmpname(); // 이 부분은 Emp 엔터티의 구조에 따라서 적절한 메서드를 호출
+            model.addAttribute("loggedInEmpName", loggedInEmpName);
+
+
+
 
             // 로그인한 사용자의 deptno 정보를 가져올 때 사용
 
             Long loggedInDeptno = loggedInEmp.getDeptno();  // 이 부분은 Emp 엔터티에 따라 변경될 수 있음
             model.addAttribute("loggedInDeptno", loggedInDeptno);
             model.addAttribute("loggedInEmpno", loggedInEmpno);
+
+
+
+
 
         }
 

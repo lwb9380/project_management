@@ -28,6 +28,8 @@ public class Emp {
     @Column(length = 50, nullable = false)
     private String email;
 
+
+
     public boolean matchPassword(String password) {
         return this.password.equals(password);
     }

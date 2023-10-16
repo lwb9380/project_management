@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>스케줄 신청</title>
+    <link rel="stylesheet" href="/css/updateSchedule.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <script>
         function checkDate(event) {
             var selectedYear = parseInt(document.getElementsByName('year')[0].value);
@@ -19,22 +21,33 @@
                 return false;
             }
         }
+
     </script>
 </head>
 <body>
-<h1 th:text="|${empno}님 스케줄 신청|"/>
+
 <form action="/updateSchedule" method="post">
+
+    <h1 th:text="|${empno}님 스케줄 신청|"/>
+    <table style="text-align: center; " class="no-border-table">
+        <tr class="no-border">
+            <td colspan="5">연도 선택 :
+                <select name="year" class="short-select" required>
+                    <option th:each="num: ${#numbers.sequence(currentYear, 2099)}" th:value="${num}" th:text="|${num}년|">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr class="no-border">
+            <td colspan="5">월 선택 :
+                <select name="month" class="short-select" required>
+                    <option th:each="num:${#numbers.sequence(1,12)}" th:value="${num}" th:text="|${num}월|">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        </table>
     <table style="text-align: center;">
-        연도 선택 :
-        <select name="year" required>
-            <option th:each="num: ${#numbers.sequence(currentYear, 2099)}" th:value="${num}" th:text="|${num}년|">
-            </option>
-        </select>
-        월 선택 :
-        <select name="month" required>
-            <option th:each="num:${#numbers.sequence(1,12)}" th:value="${num}" th:text="|${num}월|">
-            </option>
-        </select>
         <tr>
             <td>월요일</td>
             <td>화요일</td>
@@ -45,14 +58,14 @@
         <tr>
             <td>
                 <select name="monday" required>
-                    <option value="1">8시출근-17시퇴근</option>
-                    <option value="2">9시출근-18시퇴근</option>
-                    <option value="3">10시출근-19시퇴근</option>
+                    <option value="1">8시 출근 - 17시 퇴근</option>
+                    <option value="2">9시 출근 - 18시 퇴근</option>
+                    <option value="3">10시 출근 - 19시 퇴근</option>
                 </select>
             </td>
             <td>
                 <select name="tuesday" required>
-                    <option value="1">8시출근-17시퇴근</option>
+                    <option value="1">8시출근 - 17시퇴근</option>
                     <option value="2">9시출근-18시퇴근</option>
                     <option value="3">10시출근-19시퇴근</option>
                 </select>
