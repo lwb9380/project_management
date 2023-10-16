@@ -40,7 +40,6 @@
 
     </div>
 </nav>
-    <p class="today"></p>
 
 
 <th:block th:if="${vacation != '휴가' && vacation != '무급'}">
@@ -266,6 +265,7 @@
                 <tbody th:each="mail : ${mail}" th:unless="${mailStat.index > 3}">
                     <tr>
                             <td  style="padding: 2%;">
+                                <hr>
                                 <a th:href="@{'/mailDetail/' + ${mail.id}}" class="mail_title">
                                     [[${mail.title}]]
                                 </a>
@@ -274,9 +274,7 @@
                     <tr>
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;<th:block th:text="${mail.sName}"></th:block>
-                        </td>
-                        <td class="date_batch">
-                            <th:block th:text="${#temporals.format(mail.date, 'yyyy.MM.dd')}"></th:block>
+                            <a style="position: fixed; right: 40%; font-size: 7px">[[${#temporals.format(mail.date, 'yyyy.MM.dd')}]]</a>
                         </td>
                     </tr>
                 </tbody>
@@ -301,7 +299,7 @@
             <tr th:each="notice : ${list3}">
                 <td style="padding: 3%;">
                     <a th:href="@{'/noticeDetail/' + ${notice.id}}" class="notice_button">
-                        [[${notice.witch}]] [[${notice.title}]]
+                        <[[${notice.witch}]]> [[${notice.title}]]
                 </a>
                 </td>
             </tr>

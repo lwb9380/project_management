@@ -2,15 +2,51 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>스케쥴 관리</title>
 </head>
 <body>
-<th:block th:text="|로그인한 empno : ${empno}|"/><br>
-<a href="/showSchedule">이번 달 스케줄 보기</a><br>
-<a href="/showScheduleRequest">스케줄 신청 보기</a><br>
-<a href="/updateSchedule">스케줄 신청하기</a><br>
-<a href="/manageScheduleRequest">스케줄 신청 승인/거절하기</a><br>
-<a href="/deleteSchedule">(임시)스케줄 삭제</a><br>
-<a href="/deleteScheduleRequest">(임시)스케줄 신청 삭제</a>(다른 empno까지 모두 삭제됨)<br>
+
+<nav>
+    <div class="menu-btn">
+        <div class="line line--1"></div>
+        <div class="line line--2"></div>
+        <div class="line line--3"></div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/start" class="link">Home</a>
+        <!--        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>-->
+        <a href="/vacationRequest" class="link">Vacation Request</a>
+        <a href="/schedule" class="link">Schedule Request </a>
+
+        <th:block th:if="${authority}=='row'">
+            <a href="/Vacationdept" class="link">Dept</a>
+        </th:block>
+
+
+    </div>
+</nav>
+
+<div class="sc_name">
+    <h2>스케쥴 관리</h2>
+</div>
+
+<div class="sc_container">
+    <div class="sc_buttons">
+        <br>
+<a href="/showSchedule" class="sc_button">이번 달 스케줄 보기</a><br><br>
+<a href="/showScheduleRequest" class="sc_button">스케줄 신청 보기</a><br><br>
+<a href="/updateSchedule" class="sc_button">스케줄 신청하기</a><br><br>
+<a href="/manageScheduleRequest" class="sc_button">스케줄 신청 승인/거절하기</a><br><br>
+<a href="/deleteSchedule" class="sc_button">(임시)스케줄 삭제</a><br><br>
+<a href="/deleteScheduleRequest" class="sc_button">(임시)스케줄 신청 삭제</a>(다른 empno까지 모두 삭제됨)<br><br>
+    </div>
+
+</div>
+
+<script src="/js/hi.js"></script>
+<link rel="stylesheet" href="/css/hi.css">
+<link rel="stylesheet" href="/css/scheduleController.css">
+
 </body>
 </html>

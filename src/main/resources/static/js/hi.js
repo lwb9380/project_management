@@ -126,24 +126,6 @@ function reset() {
     });
 }
 
-const today = document.querySelector(".today");
-
-function getToday() {
-    const todaydate = new Date();
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
-    const days_num = todaydate.getDay();
-
-    // const year = todaydate.getFullYear();
-    const month = todaydate.getMonth() + 1;
-    const date = todaydate.getDate();
-    const day = days[days_num];
-
-
-    today.innerText = ` ${month}. ${date} ${day}`;
-
-}
-
-getToday();
 
 const clock = document.querySelector(".clock");
 function getClock() {
