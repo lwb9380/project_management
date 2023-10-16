@@ -83,7 +83,7 @@
     margin-left: 5px;
     margin-bottom: 3px;
     position: fixed;
-    top: 55%;
+    top: 57%;
     right: 40%;
     width: 325px;
     height: 290px;
@@ -106,6 +106,12 @@
     border-radius: 10px; /*동그랗게*/
     /*text-align: center; 사용 안함 냅둬보기*/
 }
+.mail_text{
+    position: fixed;
+    top: 61%;
+    left: 42.5%;
+}
+
 
 .state {
     position: fixed;
@@ -298,7 +304,7 @@ a:hover {
 }
 
 .date_batch {
-    right: 3%;
+    right: 500px;
 }
 
 .stateNow {
@@ -355,4 +361,10 @@ a:hover {
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+}
+hr.hr-2 {
+    border: 0;
+    margin-top: -0.5%;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }

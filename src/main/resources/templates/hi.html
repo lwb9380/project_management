@@ -216,7 +216,7 @@
                         </span>
                         <span class="dept_count2">
                         [[${workCount}]]
-                        </span>     <br><hr class="hr-1">
+                        </span>     <br><hr class="hr-1"> <!--가로줄-->
                     </td>
 
                 </tr>
@@ -264,8 +264,8 @@
                 </thead>
                 <tbody th:each="mail : ${mail}" th:unless="${mailStat.index > 3}">
                     <tr>
-                            <td  style="padding: 2%;">
-                                <hr>
+                            <td >
+                                <hr class="hr-2"> <!--가로줄-->
                                 <a th:href="@{'/mailDetail/' + ${mail.id}}" class="mail_title">
                                     [[${mail.title}]]
                                 </a>
@@ -299,7 +299,7 @@
             <tr th:each="notice : ${list3}">
                 <td style="padding: 3%;">
                     <a th:href="@{'/noticeDetail/' + ${notice.id}}" class="notice_button">
-                        <[[${notice.witch}]]> [[${notice.title}]]
+                        [[${notice.witch}]] [[${notice.title}]]
                 </a>
                 </td>
             </tr>
