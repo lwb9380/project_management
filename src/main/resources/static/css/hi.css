@@ -85,7 +85,7 @@
     position: fixed;
     top: 55%;
     right: 40%;
-    width: 350px;
+    width: 325px;
     height: 290px;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
@@ -95,6 +95,17 @@
 .recent_mail {
     margin-left: 5px;
 }
+.mail_box {
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    width: 100%;
+    left: 20%;
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+    /*text-align: center; 사용 안함 냅둬보기*/
+}
+
 .state {
     position: fixed;
     top: 63%;
@@ -110,7 +121,6 @@ html, body {
 }
 
 nav {
-
     position: absolute;
     top: 0;
     left: 0px;

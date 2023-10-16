@@ -254,11 +254,16 @@
                 </tr>
             </table>
         </div>
+
     <div class="mail">
         <th:block th:if="${not mail.empty}">
-            <h3>&nbsp;&nbsp;최근 온 메일</h3>
-            <table th:each="mail : ${mail}" th:unless="${mailStat.index > 3}" >
-                <tbody>
+            <table style="border-collapse: separate; border-spacing: 0 10px;">
+                <thead>
+                    <tr>
+                        <th class="mail_box" colspan="4" >최근 온 메일</th>
+                    </tr>
+                </thead>
+                <tbody th:each="mail : ${mail}" th:unless="${mailStat.index > 3}">
                     <tr>
                             <td>
                                 <a th:href="@{'/mailDetail/' + ${mail.id}}" class="mail_title">
@@ -279,7 +284,7 @@
         </th:block>
 
         <th:block th:if="${mail.empty}">
-            <h3>메일이 없습니다.</h3>
+            <h3 style="text-align: center">메일이 없습니다.</h3>
         </th:block>
     </div>
 
