@@ -4,31 +4,39 @@
     <meta charset="UTF-8">
     <title>DeptMail</title>
     <link rel="icon" type="image/png" href="/Login_v2/images/icons/sendmail.png"/>
+    <style>
+        body {
+            background-color: lightskyblue;
+        }
+    </style>
 </head>
 
-<nav>
-    <div class="menu-btn">
-        <div class="line line--1"></div>
-        <div class="line line--2"></div>
-        <div class="line line--3"></div>
-    </div>
 
-    <div class="nav-links">
-        <a href="/start" class="link">Home</a>
-        <!--        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>-->
-        <a href="/vacationRequest" class="link">Vacation Request</a>
-        <a href="/schedule" class="link">Schedule Request </a>
-
-        <th:block th:if="${authority}=='row'">
-            <a href="/Vacationdept" class="link">Dept</a>
-        </th:block>
-
-
-    </div>
-</nav>
 
 
 <body>
+<div class="big_box">
+    <nav>
+        <div class="menu-btn">
+            <div class="line line--1"></div>
+            <div class="line line--2"></div>
+            <div class="line line--3"></div>
+        </div>
+
+        <div class="nav-links">
+            <a href="/start" class="link">Home</a>
+            <!--        <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>-->
+            <a href="/vacationRequest" class="link">Vacation Request</a>
+            <a href="/schedule" class="link">Schedule Request </a>
+
+            <th:block th:if="${authority}=='row'">
+                <a href="/Vacationdept" class="link">Dept</a>
+            </th:block>
+
+
+        </div>
+    </nav>
+
 <div class="deptSendMail_container">
     <div class="dsm_send">
 <p th:text="${empno}+'에게 메일 보내기'" class="send_box"></p>
@@ -48,6 +56,7 @@
 
 </form>
     </div>
+</div>
 </div>
 <script src="/js/hi.js"></script>
 <link rel="stylesheet" href="/css/mailDSM.css">
