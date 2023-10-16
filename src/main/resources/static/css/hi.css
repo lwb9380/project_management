@@ -47,12 +47,20 @@
 }
 .team {
     position: fixed;
-    top: 8%;
+    top:10%;
     right: 20%;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
     border: 0; /* 테두리를 원하는 대로 지정하세요. */
     border-radius: 10%; /*동그랗게*/
+}
+.team_bar{
+   top: 10%;
+    width: 240px;
+    height: 30px;
+    background-color: lightskyblue; /*바 색상*/
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
 }
 .team_title {
     font-size: 20px; /*폰트 크기*/
