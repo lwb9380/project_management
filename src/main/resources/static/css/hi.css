@@ -71,12 +71,24 @@
 }
 
 .dept_name {
+    position: fixed;
+    padding: 13px;
     font-size: 20px; /*폰트 크기*/
     background-color: lightskyblue; /*바 색상*/
+    top:8%;
+    width: 15.7%;
     height: 55px; /*근태현황 바 크기*/
     color: white; /*글씨 색상*/
     border-radius: 10px; /*동그랗게*/
     /*text-align: center; 사용 안함 냅둬보기*/
+}
+.dept_title{
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 0 solid #000;
+    padding: 5px;
+    text-align: center;
+    width: 300px;
 }
 
 .mail {
@@ -367,7 +379,7 @@ a:hover {
 .lunch {
     position: fixed;
     right: 40%;
-    top: 10%;
+    top: 8%;
     width: 325px;
     height: 200px;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
