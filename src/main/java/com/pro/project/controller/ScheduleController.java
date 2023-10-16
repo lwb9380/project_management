@@ -200,43 +200,6 @@ public class ScheduleController {
         return "schedule/insertScheduleCheck";
     }
 
-    //이번달 없는 사원 스케줄 신청
-    @GetMapping("/newSchedule")
-    public String newSchedule(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        Long num = (Long) session.getAttribute("user");
-        int empno = num.intValue();
-        String name = scheduleService.getName(empno);
-        log.info(name+"======================================");
-        model.addAttribute("name", name);
-
-        LocalDate now = LocalDate.now();
-        int month = now.getMonthValue();
-        int year = now.getYear();
-
-        model.addAttribute("empno", empno);
-        model.addAttribute("month", month);
-        model.addAttribute("year", year);
-
-        return "schedule/newSchedule";
-    }
-    @PostMapping("/newSchedule")
-    public String newSchedulePost(HttpServletRequest request,
-                                  @RequestParam("monday") int monday, @RequestParam("tuesday") int tuesday,
-                                  @RequestParam("wednesday") int wednesday, @RequestParam("thursday") int thursday,
-                                  @RequestParam("friday") int friday) {
-        HttpSession session = request.getSession();
-        Long num = (Long) session.getAttribute("user");
-        int empno = num.intValue();
-
-        LocalDate now = LocalDate.now();
-        int month = now.getMonthValue();
-        int year = now.getYear();
-
-        scheduleService.insertScheduleRequest(empno, monday, tuesday, wednesday, thursday, friday, year, month);
-        return "redirect:/showSchedule";
-    }
-
     //모든 달 스케줄 신청하기
     @GetMapping("/updateSchedule")
     public String updateSchedule(HttpServletRequest request, Model model) {
