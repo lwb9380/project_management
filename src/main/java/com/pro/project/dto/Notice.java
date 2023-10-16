@@ -14,4 +14,6 @@ public class Notice {
     private String title;
     private String content;
     private int deptno;
+
+    private String witch;
 }

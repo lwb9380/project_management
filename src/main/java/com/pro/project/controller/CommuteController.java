@@ -191,11 +191,20 @@ public class CommuteController {
             List<Notice> list3=stuService.getdeptNotice(deptno);
 
             if(list3.size()>3){
-                for(int i=0;i<list.size()-2;i++){
+                for(int i=0;i<list3.size()-2;i++){
                     list3.remove(0);
                 }
             }
+                
+            for(int i=0;i<list3.size();i++){
+                if(list3.get(i).getDeptno()==500){
+                    list3.get(i).setWitch("전체 공지");
+                }else {
+                    list3.get(i).setWitch("부서 공지");
+                }
+            }
 
+            System.out.println(list3);
 
             model.addAttribute("list3",list3);
         } catch (Exception e){

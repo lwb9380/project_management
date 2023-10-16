@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Mainpage</title>
     <link rel="stylesheet" href="/css/hi.css">
-    <link rel="icon" type="image/png" href="/Login_v2/images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="/Login_v2/images/icons/home.png">
 <style>
     .bbb {
         text-decoration-line: none;
@@ -114,7 +114,7 @@
                     <p>근무 스케쥴</p>
                 </div>
                 <div style="position: fixed;margin-left: 11.5%;margin-top: 55px;font-weight: 00;">
-                    <p th:text="${result}" ></p>
+                    <p > 휴가중</p>
                 </div>
 
 
@@ -301,7 +301,7 @@
             <tr th:each="notice : ${list3}">
                 <td style="padding: 3%;">
                     <a th:href="@{'/noticeDetail/' + ${notice.id}}" class="notice_button">
-                        [공지] [[${notice.title}]]
+                        [[${notice.witch}]] [[${notice.title}]]
                 </a>
                 </td>
             </tr>
