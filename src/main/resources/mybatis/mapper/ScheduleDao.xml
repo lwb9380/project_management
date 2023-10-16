@@ -106,4 +106,10 @@
         update schedule_request set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
         where empno=#{param6} and year=#{param7} and month=#{param8}
     </update>
+
+    <update id="updateCurrentSchedule">
+        update daycheck set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
+        where empno=#{param6} and year=#{param7} and month=#{param8}
+    </update>
+
 </mapper>

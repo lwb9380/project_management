@@ -4,6 +4,7 @@ import com.pro.project.dto.Day;
 import com.pro.project.dto.ScheduleRequest;
 import com.pro.project.service.ScheduleService;
 import lombok.extern.log4j.Log4j2;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -294,8 +295,18 @@ public class ScheduleController {
 
     //스케줄 신청 승인하기
     @PostMapping("/acceptSchedule")
-    public String acceptSchedule(@RequestParam("empno") int empno, @RequestParam("year") int year, @RequestParam("month") int month) {
+    public String acceptSchedule(@RequestParam("empno") int empno, @RequestParam("year") int year, @RequestParam("month") int month,
+                                 @RequestParam("monday") int monday, @RequestParam("tuesday") int tuesday, @RequestParam("wednesday") int wednesday,
+                                 @RequestParam("thursday") int thursday, @RequestParam("friday") int friday) {
         scheduleService.acceptSchedule("accept", empno, year, month);
+        LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+        int currentMonth = now.getMonthValue();
+
+        if(currentMonth==month && currentYear==year) {
+            scheduleService.updateCurrentSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+        }
+
         return "redirect:/manageScheduleRequest";
     }
 

@@ -45,4 +45,5 @@ public interface ScheduleDao {
     public String getName(int empno);
 
     public void changeSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month);
+    public void updateCurrentSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month);
 }

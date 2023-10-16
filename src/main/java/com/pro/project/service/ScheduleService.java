@@ -102,4 +102,7 @@ public class ScheduleService {
     public void changeSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month) {
         scheduleDao.changeSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
     }
+    public void updateCurrentSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month) {
+        scheduleDao.updateCurrentSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+    }
 }
