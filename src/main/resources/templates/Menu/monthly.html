@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>월별 식단표</title>
+</head>
+<body>
+<h1>월별 식단표</h1>
+<table>
+    <thead>
+    <tr>
+<!--        <th>날짜</th>-->
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- monthlyMenu에 있는 데이터를 7일 단위로 반복하며 표시 -->
+    <tr th:each="week, iterStat : ${#numbers.sequence(0, monthlyMenu.size(), 7)}">
+<!--        <td th:text="${monthlyMenu[iterStat.index].month}"></td>-->
+<!--        <td th:each="menu : ${monthlyMenu.subList(iterStat)}"-->
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 1}" th:text="${menu.menu}"></td>
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 2}" th:text="${menu.menu}"></td>
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 3}" th:text="${menu.menu}"></td>
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 4}" th:text="${menu.menu}"></td>
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 5}" th:text="${menu.menu}"></td>
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 6}" th:text="${menu.menu}"></td>
+        <td th:each="menu : ${monthlyMenu.subList(iterStat.index, iterStat.index + 7)}" th:if="${menu.dw == 7}" th:text="${menu.menu}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
