@@ -288,30 +288,27 @@
         </th:block>
     </div>
 
-<div style="left: 42%; top: 40%; position: fixed">
+<div class="main_notice">
     <th:block th:if="${not list3.empty}">
 
-        <table >
+        <table>
             <thead>
-
             <tr>
-                <a style="text-align: center;font-size:20px ">부서 공지사항</a>
-            </tr>
-
-            <tr th:each="notice : ${list3}">
-                <td>
-                    <th:block th:text="·"></th:block>
-                </td>
-
-                <td>  <a th:href="@{'/noticeDetail/' + ${notice.id}}" style="font-size:20px;">
-                    [[${notice.title}]]
-                </a></td>
+                <th class="main_dept_notice">
+                    부서 공지사항
+                </th>
             </tr>
             </thead>
 
+            <tr th:each="notice : ${list3}">
+                <td>
+                    <br><a th:href="@{'/noticeDetail/' + ${notice.id}}" class="notice_button">
+                        [공지] [[${notice.title}]]
+                </a>
+                </td>
+            </tr>
+
         </table>
-
-
     </th:block>
 </div>
 

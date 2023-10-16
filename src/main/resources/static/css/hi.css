@@ -309,9 +309,48 @@ a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
 }
 
+.main_notice {
+    width: 325px;
+    right: 40%;
+    top: 34%;
+    position: fixed;
+    background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
+    border-radius: 10%;
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
+}
 
+.main_dept_notice {
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    width: 325px;
+    left: 20%;
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+    /*text-align: center; 사용 안함 냅둬보기*/
+}
 
+.notice_button {
+    display: block;
+    text-decoration-line: none;
+    width: 200px;
+    height: 20px;
+    font-weight: 800;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
 
-
-
-
+.notice_button:hover {
+    display: block;
+    text-decoration-line: underline;
+    width: 200px;
+    height: 20px;
+    font-weight: 800;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
