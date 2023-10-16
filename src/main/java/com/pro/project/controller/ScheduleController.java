@@ -82,8 +82,9 @@ public class ScheduleController {
         String secondCase = "9시출근 - 18시퇴근";
         String thirdCase = "10시출근 - 19시퇴근";
 
+        //현재 시간에 대하여.
+        Day day = scheduleService.selectOneDayCheck(empno, year, month);
 
-        Day day = scheduleService.selectDaycheck(empno);
         if(day!=null){
             int monday = day.getMonday();
             switch(monday) {
@@ -263,25 +264,30 @@ public class ScheduleController {
         return "schedule/manageScheduleRequest";
     }
 
-    //스케줄 신청 승인하기
+    //어드민 신청 조회 중 해당 데이터만 accept로 만들기
     @PostMapping("/acceptSchedule")
-    public String acceptSchedule(@RequestParam("empno") int empno, @RequestParam("year") int year, @RequestParam("month") int month,
-                                 @RequestParam("monday") int monday, @RequestParam("tuesday") int tuesday, @RequestParam("wednesday") int wednesday,
-                                 @RequestParam("thursday") int thursday, @RequestParam("friday") int friday) {
-        scheduleService.acceptSchedule("accept", empno, year, month);
-        LocalDate now = LocalDate.now();
-        int currentYear = now.getYear();
-        int currentMonth = now.getMonthValue();
-
-        Day day = scheduleService.selectDaycheck(empno);
-        if(currentMonth==month && currentYear==year) {
-            if(day==null) {
-                scheduleService.insertSchedule(empno, monday, tuesday, wednesday, thursday, friday, year, month);
-            } else {
-                scheduleService.updateCurrentSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
-            }
-        }
+    public String acceptSchedule(@RequestParam String accept, @RequestParam int empno, @RequestParam int year, @RequestParam int month) {
+        scheduleService.acceptSchedule(accept, empno, year, month);
         return "redirect:/manageScheduleRequest";
+    }
+
+    @PostMapping("/applySchedule")
+    public String applySchedule(HttpServletRequest request, @RequestParam int monday, @RequestParam int tuesday,
+                                @RequestParam int wednesday, @RequestParam int thursday, @RequestParam int friday,
+                                @RequestParam int year, @RequestParam int month){
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
+
+        //1. 승인된 데이터에서 바로 daycheck 인서트.
+        if(scheduleService.selectOneDayCheck(empno, year, month)==null) {
+            scheduleService.insertSchedule(empno, monday, tuesday, wednesday, thursday, friday, year, month);
+            scheduleService.rejectCheck(empno, year, month);
+            return "redirect:/showScheduleRequest";
+        } else {
+            return "schedule/error";
+        }
+        //2. scheduleRequest에 있던 데이터는 삭제하기
     }
 
     @PostMapping("/rejectSchedule")
@@ -349,5 +355,6 @@ public class ScheduleController {
 
      return "schedule/registerpage";
     }
+
 
 }

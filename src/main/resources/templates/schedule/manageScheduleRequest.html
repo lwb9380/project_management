@@ -59,17 +59,14 @@
         <td>
             <th:block th:if="${sc.accept==null}">
                 <form action="/acceptSchedule" method="post">
+                    <input type="hidden" name="accept" value="accept">
                     <input type="hidden" name="empno" th:value="${sc.empno}">
                     <input type="hidden" name="year" th:value="${sc.year}">
                     <input type="hidden" name="month" th:value="${sc.month}">
-                    <input type="hidden" name="monday" th:value="${sc.monday}">
-                    <input type="hidden" name="tuesday" th:value="${sc.tuesday}">
-                    <input type="hidden" name="wednesday" th:value="${sc.wednesday}">
-                    <input type="hidden" name="thursday" th:value="${sc.thursday}">
-                    <input type="hidden" name="friday" th:value="${sc.friday}">
                     <input type="submit" value="승인">
                 </form>
                 <form action="/rejectSchedule" method="post">
+                    <input type="hidden" name="accept" value="reject">
                     <input type="hidden" name="empno" th:value="${sc.empno}">
                     <input type="hidden" name="year" th:value="${sc.year}">
                     <input type="hidden" name="month" th:value="${sc.month}">

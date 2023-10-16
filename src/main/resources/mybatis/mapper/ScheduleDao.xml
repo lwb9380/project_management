@@ -16,6 +16,10 @@
         select * from daycheck where empno = #{param1}
     </select>
 
+    <select id="selectOneDayCheck" resultType="com.pro.project.dto.Day">
+        select * from daycheck where empno = #{param1} and year = #{param2} and month = #{param3}
+    </select>
+
     <update id="updateSchedule">
         update daycheck set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
         where empno = #{param6}
@@ -111,5 +115,10 @@
         update daycheck set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
         where empno=#{param6} and year=#{param7} and month=#{param8}
     </update>
+
+    <delete id="deleteOldDayCheck">
+        delete from daycheck
+        where empno = #{param1} and ((year &lt; #{param2}) or year=#{param2} and month &lt; #{param3})
+    </delete>
 
 </mapper>

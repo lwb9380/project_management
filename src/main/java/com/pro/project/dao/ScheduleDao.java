@@ -46,4 +46,8 @@ public interface ScheduleDao {
 
     public void changeSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month);
     public void updateCurrentSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month);
+
+    public Day selectOneDayCheck(int empno, int year, int month);
+
+    public void deleteOldDayCheck(int empno, int year, int month);
 }

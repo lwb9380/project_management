@@ -83,13 +83,6 @@
                         var getMonth = $(parentRow).find("td:eq(1)").text();
                         var selectedMonth = parseInt(getMonth);
 
-                        console.log(selectedMonday);
-                        console.log(selectedTuesday);
-                        console.log(selectedWednesday);
-                        console.log(selectedThursday);
-                        console.log(selectedFriday);
-                        console.log(selectedYear);
-                        console.log(selectedMonth);
                         $.ajax({
                             type: "POST",
                             url: "/changeSchedule",
@@ -142,10 +135,8 @@
 <div th:unless="${monday != null}">
     <th:block th:text="|${name}님의 ${month}월 스케줄|"/><br>
     아직 스케줄이 확정되지 않았습니다.<br>
-<!--    현재 empno로 바로 등록하기-->
-<!--    <a href="/insertSchedule">(임시)바로 등록하기</a><br>-->
 </div>
-<!--신청조회-->
+<!--기존 신청 조회-->
 <div th:if="${!scheduleRequestList.isEmpty()}">
     <table>
         <caption th:text="|${name}님의 스케줄 신청|"></caption>
@@ -194,10 +185,49 @@
                 <th:block th:case="*">검토중</th:block>
             </td>
             <td th:switch="${scheduleRequestList.accept}">
-                <form action="/rejectCheck" th:case="'accept'" method="post">
+                <th:block th:case="'accept'">
+                    <th:block th:if="${scheduleRequestList.year==year}">
+                        <th:block th:if="${scheduleRequestList.month==month}">
+                            <!--현재 데이터-->
+                            <form action="/applySchedule" method="post">
+                                <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
+                                <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
+                                <input type="hidden" name="monday" th:value="${scheduleRequestList.monday}">
+                                <input type="hidden" name="tuesday" th:value="${scheduleRequestList.tuesday}">
+                                <input type="hidden" name="wednesday" th:value="${scheduleRequestList.wednesday}">
+                                <input type="hidden" name="thursday" th:value="${scheduleRequestList.thursday}">
+                                <input type="hidden" name="friday" th:value="${scheduleRequestList.friday}">
+                                <input type="submit" value="적용하기">
+                            </form>
+                        </th:block>
+                        <th:block th:if="${scheduleRequestList.month<month}">
+                            <!--과거 데이터-->
+                            <form action="/rejectCheck" method="post" onsubmit="alert('더 이상 유효하지 않는 요청이므로 삭제됩니다.')">
+                                <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
+                                <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
+                                <input type="submit" value="적용하기">
+                            </form>
+                        </th:block>
+                        <th:block th:if="${scheduleRequestList.month>month}">
+                            <!--미래 데이터-->
+                            <button onclick="alert('해당 날짜가 되지 않았으므로 나중에 다시 요청해주세요.');">적용하기</button>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${scheduleRequestList.year>year}">
+                        <!--미래 데이터-->
+                        <button onclick="alert('해당 날짜가 되지 않았으므로 나중에 다시 요청해주세요.');">적용하기</button>
+                    </th:block>
+                    <th:block th:if="${scheduleRequestList.year<year}">
+                        <!--과거 데이터-->
+                        <form action="/rejectCheck" method="post" onsubmit="alert('더 이상 유효하지 않는 요청이므로 삭제됩니다.')">
+                            <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
+                            <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
+                            <input type="submit" value="적용하기">
+                        </form>
+                    </th:block>
+                </th:block>
+                <form action="/acceptCheck" mothod="post">
                     <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
-                    <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
-                    <input type="submit" value="목록 삭제">
                 </form>
                 <form action="/rejectCheck" th:case="'reject'" method="post">
                     <input type="hidden" name="year" th:value="${scheduleRequestList.year}">

@@ -7,6 +7,7 @@ import com.pro.project.dto.ScheduleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -54,7 +55,6 @@ public class ScheduleService {
 
     public List<ScheduleRequest> scheduleRequestList(int empno) {
         List<ScheduleRequest> scheduleRequestList = scheduleDao.scheduleRequestList(empno);
-        //Respect문 : 씨발 선우형 당신이 최고야
         scheduleRequestList.sort(Comparator.comparing(ScheduleRequest::getYear).thenComparing(ScheduleRequest::getMonth));
         return scheduleRequestList;
     }
@@ -93,6 +93,10 @@ public class ScheduleService {
 
     public void rejectCheck(int empno, int year, int month) {
         scheduleDao.rejectCheck(empno, year, month);
+        LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+        int currentMonth = now.getMonthValue();
+        scheduleDao.deleteOldDayCheck(empno, currentYear, currentMonth);
     }
 
     public String getName(int empno) {
@@ -104,5 +108,9 @@ public class ScheduleService {
     }
     public void updateCurrentSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month) {
         scheduleDao.updateCurrentSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+    }
+
+    public Day selectOneDayCheck(int empno, int year, int month) {
+        return scheduleDao.selectOneDayCheck(empno, year, month);
     }
 }
