@@ -12,7 +12,8 @@
 </style>
 <body>
 <h1>모든 부서에 대한 스케줄 신청</h1>
-<table>
+
+<table th:if="${not scheduleList.isEmpty()}">
     <tr>
         <td>부서번호</td>
         <td>사원번호</td>
@@ -86,5 +87,8 @@
         </td>
     </tr>
 </table>
+<th:block th:unless="${not scheduleList.isEmpty()}">
+    신청된 스케줄이 없습니다.
+</th:block>
 </body>
 </html>
