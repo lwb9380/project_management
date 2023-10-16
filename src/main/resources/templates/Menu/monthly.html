@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>월별 식단표</title>
+    <title>주간별 식단표</title>
 </head>
 <body>
-<h1>월별 식단표</h1>
-<table>
+<h1>주간별 식단표</h1>
+<table border="1">
     <thead>
     <tr>
-        <th>날짜</th>
         <th>일</th>
         <th>월</th>
         <th>화</th>
@@ -20,16 +19,19 @@
     </thead>
     <tbody>
     <!-- monthlyMenu에 있는 데이터를 반복하며 표시 -->
-    <tr th:each="menu : ${monthlyMenu}">
-        <td th:text="${menu.month}"></td>
-        <td th:text="${menu.day}"></td>
-        <td th:if="${menu.dw == 1}" th:text="${menu.menu}"></td>
-        <td th:if="${menu.dw == 2}" th:text="${menu.menu}"></td>
-        <td th:if="${menu.dw == 3}" th:text="${menu.menu}"></td>
-        <td th:if="${menu.dw == 4}" th:text="${menu.menu}"></td>
-        <td th:if="${menu.dw == 5}" th:text="${menu.menu}"></td>
-        <td th:if="${menu.dw == 6}" th:text="${menu.menu}"></td>
-        <td th:if="${menu.dw == 7}" th:text="${menu.menu}"></td>
+    <tr>
+        <td th:each="menu : ${weeklyMenu}">
+            <th:block th:text="${menu.day}"></th:block>
+        </td>
+    </tr>
+    <tr>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 1}" th:text="${menu.menu}" style="width: 70px;"></td>
+        <td  th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 2}" th:text="${menu.menu}"></td>
+        <td  th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 3}" th:text="${menu.menu}"></td>
+        <td  th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 4}" th:text="${menu.menu}"></td>
+        <td  th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 5}" th:text="${menu.menu}"></td>
+        <td  th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 6}" th:text="${menu.menu}"></td>
+        <td  th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 7}" th:text="${menu.menu}"></td>
     </tr>
     </tbody>
 </table>

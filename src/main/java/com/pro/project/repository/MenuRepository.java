@@ -13,6 +13,6 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     List<Menu> findByDw(DayOfWeek dw);
     List<Menu> findByMonth(int month);
 
-
+    List<Menu> findByWeekNum(int weekNum);
     List<Menu> findByYearAndMonthAndDay(int year, int Month, int dayOfMonth);
 }

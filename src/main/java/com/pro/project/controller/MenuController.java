@@ -37,17 +37,12 @@ public class MenuController {
     }
     @GetMapping("/monthly")
     public String showMonthlyMenu(Model model) {
-        int a = LocalDateTime.now().getMonthValue();
-        List<Menu> monthlyMenu = menuRepository.findByMonth(a);
-        model.addAttribute("monthlyMenu", monthlyMenu);
-        System.out.println(monthlyMenu);
+        List<Menu> weeklyMenu = menuRepository.findByWeekNum(42);
+
+        model.addAttribute("weeklyMenu", weeklyMenu);
+        System.out.println(weeklyMenu);
         return "Menu/monthly";
     }
-
-
-
-
-
 
 
 
