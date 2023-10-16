@@ -24,7 +24,6 @@
         <td>목요일</td>
         <td>금요일</td>
         <td>승인여부</td>
-        <td>승인/거절 사유</td>
     </tr>
     <tr th:each="sc : ${scheduleList}">
         <td>[[${sc.deptno}]]</td>
@@ -78,14 +77,6 @@
                 <th:block th:unless="${sc.accept.equals('accept')}">
                     거절됨
                 </th:block>
-            </th:block>
-        </td>
-        <td>[[${sc.cause}]]
-            <th:block th:if="${sc.cause==null}">
-                -
-            </th:block>
-            <th:block th:unless="${sc.cause==null}">
-                [[${sc.cause}]]
             </th:block>
         </td>
     </tr>

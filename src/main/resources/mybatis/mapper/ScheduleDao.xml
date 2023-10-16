@@ -94,4 +94,17 @@
     <update id="acceptSchedule">
         update schedule_request set accept=#{param1} where empno=#{param2} and year=#{param3} and month=#{param4}
     </update>
+
+    <delete id="rejectCheck">
+        delete from schedule_request where empno=#{param1} and year=#{param2} and month=#{param3}
+    </delete>
+
+    <select id="getName" resultType="String">
+        select name from emp where empno=#{param1}
+    </select>
+
+    <update id="changeSchedule">
+        update schedule_request set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
+        where empno=#{param6} and year=#{param7} and month=#{param8}
+    </update>
 </mapper>

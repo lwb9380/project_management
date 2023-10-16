@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script>
+        function checkDate(event) {
+            var selectedYear = parseInt(document.getElementsByName('year')[0].value);
+            var selectedMonth = parseInt(document.getElementsByName('month')[0].value);
+
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var currentMonth = currentDate.getMonth() + 1;
+
+            if(selectedYear > currentYear || (selectedYear === currentYear && selectedMonth >= currentMonth)) {
+                return true;
+            } else {
+                alert('올바른 시간을 선택해주세요.');
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 <h1 th:text="|${empno}님 스케줄 신청|"/>
@@ -63,7 +80,7 @@
             </td>
         </tr>
     </table>
-    <input type="submit" value="신청하기">
+    <button type="submit" onclick="return checkDate()">신청하기</button>
 </form>
 </body>
 </html>

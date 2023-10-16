@@ -39,4 +39,10 @@ public interface ScheduleDao {
     public void registeremp6(int empno, String lastday);
 
     public void acceptSchedule(String accept, int empno, int year, int month);
+
+    public void rejectCheck(int empno, int year, int month);
+
+    public String getName(int empno);
+
+    public void changeSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month);
 }

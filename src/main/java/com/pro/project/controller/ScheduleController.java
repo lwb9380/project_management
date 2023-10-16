@@ -277,6 +277,19 @@ public class ScheduleController {
             return "redirect:/schedule";
         }
     }
+    @PostMapping("/changeSchedule")
+    public String changeSchedule(HttpServletRequest request,
+                                 @RequestParam("monday") int monday, @RequestParam("tuesday") int tuesday,
+                                 @RequestParam("wednesday") int wednesday, @RequestParam("thursday") int thursday,
+                                 @RequestParam("friday") int friday, @RequestParam("year") int year,
+                                 @RequestParam("month") int month) {
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
+
+        scheduleService.changeSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+        return "redirect:/showScheduleRequest";
+    }
 
     //스케줄신청조회(어드민용)
     @GetMapping("/manageScheduleRequest")
@@ -298,6 +311,17 @@ public class ScheduleController {
     public String rejectSchedule(@RequestParam("empno") int empno, @RequestParam("year") int year, @RequestParam("month") int month) {
         scheduleService.acceptSchedule("reject", empno, year, month);
         return "redirect:/manageScheduleRequest";
+    }
+
+    @PostMapping("/rejectCheck")
+    public String rejectCheck(HttpServletRequest request,
+                              @RequestParam("year") int year, @RequestParam("month") int month) {
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
+        scheduleService.rejectCheck(empno, year, month);
+
+        return "redirect:/showScheduleRequest";
     }
 
     @GetMapping("/registerpage")

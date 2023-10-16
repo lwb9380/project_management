@@ -1,16 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <style>
-    td {
-        border: 1px solid;
-    }
-    table {
+    table, td {
         border : 1px solid;
+        text-align: center;
     }
 </style>
 <head>
     <meta charset="UTF-8">
     <title>showSimpleSchedule</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var formAdded = false;
+            //태그 선택자와 해당 태그를 클릭했을때 실행됨
+            $("a.edit-link").click(function () {
+                // Get the parent row
+                if(!formAdded) {
+                    var parentRow = $(this).closest("tr");
+                    // Create a new row with an input form
+                    var formRow = `
+                        <tr>
+                            <td colspan="2">
+                            </td>
+                            <td>
+                                <select name="monday" id="monday" required>
+                                    <option value="1">8시출근-17시퇴근</option>
+                                    <option value="2">9시출근-18시퇴근</option>
+                                    <option value="3">10시출근-19시퇴근</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="tuesday" id="tuesday" required>
+                                    <option value="1">8시출근-17시퇴근</option>
+                                    <option value="2">9시출근-18시퇴근</option>
+                                    <option value="3">10시출근-19시퇴근</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="wednesday" id="wednesday" required>
+                                    <option value="1">8시출근-17시퇴근</option>
+                                    <option value="2">9시출근-18시퇴근</option>
+                                    <option value="3">10시출근-19시퇴근</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="thursday" id="thursday" required>
+                                    <option value="1">8시출근-17시퇴근</option>
+                                    <option value="2">9시출근-18시퇴근</option>
+                                    <option value="3">10시출근-19시퇴근</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="friday" id="friday" required>
+                                    <option value="1">8시출근-17시퇴근</option>
+                                    <option value="2">9시출근-18시퇴근</option>
+                                    <option value="3">10시출근-19시퇴근</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="submit" value="제출" id="submit-btn">
+                            </td>
+                        </tr>`;
+
+                    // parentRow 다음에 formRow 추가하기
+                    parentRow.after(formRow);
+                    formAdded = true;
+
+                    $("#submit-btn").click(function(event) {
+                        var selectedMonday = parseInt($("#monday").val());
+                        var selectedTuesday = parseInt($("#tuesday").val());
+                        var selectedWednesday = parseInt($("#wednesday").val());
+                        var selectedThursday = parseInt($("#thursday").val());
+                        var selectedFriday = parseInt($("#friday").val());
+                        var getYear = $(parentRow).find("td:eq(0)").text();
+                        var selectedYear = parseInt(getYear);
+                        var getMonth = $(parentRow).find("td:eq(1)").text();
+                        var selectedMonth = parseInt(getMonth);
+
+                        console.log(selectedMonday);
+                        console.log(selectedTuesday);
+                        console.log(selectedWednesday);
+                        console.log(selectedThursday);
+                        console.log(selectedFriday);
+                        console.log(selectedYear);
+                        console.log(selectedMonth);
+                        $.ajax({
+                            type: "POST",
+                            url: "/changeSchedule",
+                            data: {
+                                monday: selectedMonday,
+                                tuesday: selectedTuesday,
+                                wednesday: selectedWednesday,
+                                thursday: selectedThursday,
+                                friday: selectedFriday,
+                                year: selectedYear,
+                                month: selectedMonth
+                            },
+                            success: function(response) {
+                                console.log("AJAX request successful:", response);
+                                location.reload();
+                            },
+                            error: function (error) {
+                                console.error("AJAX request error:", error);
+                            }
+                        });
+                    });
+                }
+            });
+
+        });
+    </script>
 </head>
 <body>
 <div th:if="${!scheduleRequestList.isEmpty()}">
@@ -24,6 +124,8 @@
             <td>수요일</td>
             <td>목요일</td>
             <td>금요일</td>
+            <td>진행상태</td>
+            <td>수정하기</td>
         </tr>
         <tr th:each="scheduleRequestList : ${scheduleRequestList}">
             <td th:text="${scheduleRequestList.year}"></td>
@@ -52,6 +154,20 @@
                 <th:block th:case="1">8시출근 - 17시퇴근</th:block>
                 <th:block th:case="2">9시출근 - 18시퇴근</th:block>
                 <th:block th:case="3">10시출근 - 19시퇴근</th:block>
+            </td>
+            <td th:switch="${scheduleRequestList.accept}">
+                <th:block th:case="'accept'">승인됨</th:block>
+                <th:block th:case="'reject'">거절됨</th:block>
+                <th:block th:case="*">검토중</th:block>
+            </td>
+            <td th:switch="${scheduleRequestList.accept}">
+                <th:block th:case="'accept'">-</th:block>
+                <form action="/rejectCheck" method="post">
+                    <input type="hidden" name="year" th:value="${scheduleRequestList.year}">
+                    <input type="hidden" name="month" th:value="${scheduleRequestList.month}">
+                    <input type="submit" th:case="'reject'" value="확인">
+                </form>
+                <a th:case="*" class="edit-link" href="javascript:void(0)">수정하기</a>
             </td>
         </tr>
     </table>

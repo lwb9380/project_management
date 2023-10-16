@@ -18,9 +18,6 @@ public class ScheduleRequest {
     private int year;
     private int month;
     private String name;
-
-
     private String accept;
-    private String cause;
 
 }

@@ -87,8 +87,19 @@ public class ScheduleService {
         scheduleDao.registeremp6(empno,lastday);
     }
 
-
     public void acceptSchedule(String accept, int empno, int year, int month) {
         scheduleDao.acceptSchedule(accept, empno, year, month);
+    }
+
+    public void rejectCheck(int empno, int year, int month) {
+        scheduleDao.rejectCheck(empno, year, month);
+    }
+
+    public String getName(int empno) {
+        return scheduleDao.getName(empno);
+    }
+
+    public void changeSchedule(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month) {
+        scheduleDao.changeSchedule(monday, tuesday, wednesday, thursday, friday, empno, year, month);
     }
 }
