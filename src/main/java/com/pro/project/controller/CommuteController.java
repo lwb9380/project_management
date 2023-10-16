@@ -191,7 +191,7 @@ public class CommuteController {
             List<Notice> list3=stuService.getdeptNotice(deptno);
 
             if(list3.size()>3){
-                for(int i=0;i<list3.size()-2;i++){
+                for(int i=list3.size();i>3;i--){
                     list3.remove(0);
                 }
             }
