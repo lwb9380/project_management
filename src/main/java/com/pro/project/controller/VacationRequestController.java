@@ -63,6 +63,8 @@ public class VacationRequestController {
             model.addAttribute("loggedInEmp", loggedInEmp);
 
             // 로그인한 사용자의 empname 정보를 가져옴
+            String loggedInEmpName = loggedInEmp.getName(); // 이 부분은 Emp 엔터티의 구조에 따라서 적절한 메서드를 호출
+            model.addAttribute("loggedInEmpName", loggedInEmpName);
             String loggedInName = loggedInEmp.getName(); // 이 부분은 Emp 엔터티의 구조에 따라서 적절한 메서드를 호출
             model.addAttribute("loggedInName", loggedInName);
 
