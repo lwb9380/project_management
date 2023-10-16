@@ -307,11 +307,34 @@
         </table>
     </th:block>
 </div>
+    <!--민수 식단 기능 추가 직전이라 주석처리 후 넣음-->
+<!--    <h1 th:text="'오늘(' + ${currentDayOfWeek} + ')의 식단'"></h1>-->
+<!--    <div th:if="${menus}">-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>메뉴</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="menu : ${menus}">-->
+<!--                <td th:text="${menu.menu}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+<!--    <div th:if="${not notmenus}">-->
+
+<!--    </div>-->
+
+<!--    <a th:href="@{/monthly}">월별 식단 보기</a>-->
 
 <script src="/js/hi.js"></script>
 <script th:inline="javascript">
     var resultValue = /*[[${result}]]*/ '';
     // 이거 윗줄 회색글씨 절대 지우면 안됨
+
 </script>
 </div>
 </body>

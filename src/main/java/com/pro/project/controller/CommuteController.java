@@ -2,6 +2,8 @@ package com.pro.project.controller;
 
 import com.pro.project.auth.AuthInfo;
 import com.pro.project.dto.*;
+import com.pro.project.entity.Menu;
+import com.pro.project.repository.MenuRepository;
 import com.pro.project.service.DeptService;
 import com.pro.project.service.MailService;
 import com.pro.project.service.StuService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,6 +27,8 @@ import java.util.List;
 @Controller
 @Slf4j
 public class CommuteController {
+    @Autowired
+    private MenuRepository menuRepository;
 
     @Autowired
     StuService stuService;
@@ -78,7 +83,11 @@ public class CommuteController {
         String lastday=sdf.format(last);
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd");
         Date toda=new Date();  //오늘 날짜를 조회
-
+        LocalDate today2 = LocalDate.now();
+        DayOfWeek currentDayOfWeek = today2.getDayOfWeek();
+        List<Menu> todayMenu = menuRepository.findByYearAndMonthAndDay(
+                today2.getYear(), today2.getMonthValue(), today2.getDayOfMonth()
+        );
         String today=sdf.format(toda);
         String todaysday=sdf2.format(toda);
         //두 날짜를 데이트포맷으로 깔끔하게 정리함 원활한 비교를 위해
@@ -177,7 +186,7 @@ public class CommuteController {
                 iterator.remove();
             }
         }// 이터레이터로 반복문을 돌려서 내 부서 리스트에 로그인 한 본인의 정보가 들어가지 않게 함. 본인은 메인페이지에 크게 나오기 때문
-
+        String dayOfWeekName = currentDayOfWeek.toString(); // 요일 이름 가져오기
         String deptname = list.get(0).getDeptname();
         Long preWorkCount = deptService.countPreWorkByDeptNo((long) deptno);  //출근전 카운트
         Long workCount = deptService.countWorkByDeptNo((long) deptno); //출근 카운트
@@ -185,6 +194,7 @@ public class CommuteController {
         Long commuteCount = deptService.countCommuteByDeptNo((long) deptno); //외출 카운트
         Long vacationCount = deptService.countVacationByDeptNo((long) deptno); //휴가 카운트
         Long countTotal = deptService.countTotal((long) deptno); //카운트의 총합
+
 
 
         try{
@@ -236,8 +246,14 @@ public class CommuteController {
         model.addAttribute("sessionemp", empno);
         model.addAttribute("emplist", emplist);
 
+
         List<MailDto> mail = mailService.mailList(empno);
         model.addAttribute("mail", mail);
+
+        // 여기부터 (민)
+        model.addAttribute("menus", todayMenu);
+        model.addAttribute("notmenus", todayMenu.isEmpty());
+        model.addAttribute("currentDayOfWeek", dayOfWeekName);
 
         System.out.println("=======================");
         System.out.println(result);
@@ -555,6 +571,8 @@ public class CommuteController {
         return responseData;
 
     }
+
+
 
 
 }
