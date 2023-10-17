@@ -213,7 +213,7 @@
                 <tr class="sss">
 
                     <td class ="dept_td">
-                        <div class='v-line'></div>
+                        <hr class="hr_rotate">
                         <span class="dept_id">
                         출근 전
                     </span>
@@ -283,7 +283,7 @@
                     <tr>
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;<th:block th:text="${mail.sName}"></th:block>
-                            <a style="position: fixed; right: 35%; font-size: 7px">[[${#temporals.format(mail.date, 'yyyy.MM.dd')}]]</a>
+                            <a style="position: fixed; right: 35%; font-size: 10px">[[${#temporals.format(mail.date, 'yyyy.MM.dd')}]]</a>
                         </td>
                     </tr>
                 </tbody>
@@ -331,10 +331,17 @@
                 <table style="border-collapse: collapse;" class="lunch_table">
                     <thead>
                     <tr>
-                        <th class="lunch_box" colspan="4">오늘([[${currentDayOfWeek}]])의 식단</th>
+                        <th>
+                        <div class="dropdown">
+                            <button class="drop_button">오늘([[${currentDayOfWeek}]])의 식단</button>
+                            <div class="dropdown-content">
+                                <a th:href="@{/weekly}">주간별 식단 보기</a>
+                            </div>
+                        </div>
+                        </th>
                     </tr>
                     </thead>
-                    <tbody th:each="menu : ${menus}" style="text-align: left;">
+                    <tbody th:each="menu : ${menus}" style="text-align: center;">
                     <tr>
                         <th style="padding-top: 6px;"><a style="font-size: 17px;">[[${menu.menu1}]]</a></th>
                     </tr>
@@ -352,9 +359,6 @@
             <th:block th:each="menu : ${menus}">
                 <p class="kcal">총 칼로리 : [[${menu.kcal}]]</p>
             </th:block>
-
-
-        <a th:href="@{/weekly}" class="weekly_button">주간별 식단 보기</a>
         </div>
 
 <script src="/js/hi.js"></script>

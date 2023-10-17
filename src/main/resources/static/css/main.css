@@ -3,12 +3,12 @@
     top: 60%;
     left: 18.1%;
     width: 480px;
-    height: 270px;
+    height: 262px;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
     text-align: center;
     right: 40%;
-    border-radius: 15px; /*동그랗게*/
+    border-radius: 10%; /*동그랗게*/
 
 
 }
@@ -73,6 +73,15 @@ hr.hr-1 {
     left: 30%;
     top: 64%;
 }
+.hr_rotate {
+    position: fixed;
+    transform: rotate(90deg);
+    width: 190px;
+    top: 73.8%;
+    left: 25.2%;
+    background: linear-gradient(to left, transparent, rgba(0,0,0,.5), transparent);
+}
+
 .mail_null{
     padding: 25%;
     text-align: center;
