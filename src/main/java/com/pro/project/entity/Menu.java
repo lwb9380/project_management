@@ -34,6 +34,20 @@ public class Menu {
     @Column(length = 50, nullable = true)
     private String menu;
 
+    @Column(length = 50, nullable = true)
+    private String menu1;
+
+    @Column(length = 50, nullable = true)
+    private String menu2;
+
+    @Column(length = 50, nullable = true)
+    private String menu3;
+
+    @Column(length = 50, nullable = true)
+    private String menu4;
+
+
+
     @Column(name = "week_num", length = 50, nullable = true)
     private Integer weekNum;
 }

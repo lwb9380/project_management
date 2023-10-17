@@ -313,27 +313,27 @@
     <div class="lunch">
 <!--    민수 식단 기능 추가 직전이라 주석처리 후 넣음-->
 
-    <div th:if="${menus}">
-        <table style="border-collapse: collapse">
-            <thead>
-            <tr>
-                <th class="lunch_box">오늘([[${currentDayOfWeek}]]) 의 식단
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="menu : ${menus}">
-                <td th:text="${menu.menu}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+        <h1 th:text="'오늘(' + ${currentDayOfWeek} + ')의 식단'"></h1>
+        <div th:if="${menus}">
+            <table>
+                <thead>
+                <tr>
+                    <th>메뉴</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="menu : ${menus}">
+                    <td th:text="${menu.menu}"></td>
+                    <td th:text="${menu.menu1}"></td>
+                    <td th:text="${menu.menu2}"></td>
+                    <td th:text="${menu.menu3}"></td>
+                    <td th:text="${menu.menu4}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div th:if="${not notmenus}">
-
-    </div>
-
-    <a th:href="@{/monthly}" class="monthly_button">주간별 식단 보기</a>
+    <a th:href="@{/weekly}" class="monthly_button">주간별 식단 보기</a>
 
     </div>
 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>주간별 식단표</title>
+</head>
+<body>
+<h1>주간별 식단표</h1>
+<table border="1" style="width: 700px">
+    <thead>
+    <tr>
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- monthlyMenu에 있는 데이터를 반복하며 표시 -->
+    <tr>
+        <td th:each="menu : ${weeklyMenu}" style="text-align: center">
+            <th:block th:text="${menu.day}"></th:block>
+        </td>
+    </tr>
+    <tr>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 1}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 2}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 3}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 4}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 5}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 6}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 7}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
