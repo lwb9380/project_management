@@ -46,8 +46,9 @@ public class Menu {
     @Column(length = 50, nullable = true)
     private String menu4;
 
-
-
     @Column(name = "week_num", length = 50, nullable = true)
     private Integer weekNum;
+
+    @Column(length = 50, nullable = true)
+    private String kcal;
 }

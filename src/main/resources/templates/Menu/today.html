@@ -14,11 +14,12 @@
         </thead>
         <tbody>
         <tr th:each="menu : ${menus}">
-            <td th:text="${menu.menu}"></td>
+
             <td th:text="${menu.menu1}"></td>
             <td th:text="${menu.menu2}"></td>
             <td th:text="${menu.menu3}"></td>
             <td th:text="${menu.menu4}"></td>
+            <th>총칼로리<td th:text="${menu.kcal}"></td></th>
         </tr>
         </tbody>
     </table>

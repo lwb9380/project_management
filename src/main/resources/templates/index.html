@@ -41,7 +41,10 @@
 				<center><img th:src="@{/images/logo.jpg}" alt="로고"></center>
 
 				<br>
-				<div th:if="${error}" class="error-message" th:text="${error}"></div>
+				<div th:if="${error}" class="error-message">
+					<span th:text="${error}" class="error-text" style="color: red;"></span> <!-- 에러 메시지를 빨간색으로 설정 -->
+				</div>
+
 				<!-- 이메일 입력 필드 -->
 				<div class="wrap-input100 validate-input">
 					<label for="empno">직원 번호</label>
