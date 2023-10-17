@@ -1,27 +1,19 @@
 .lunch {
     position: fixed;
     right: 35%;
-    top: 8%;
+    top: 8.4%;
     width: 325px;
     height: 200px;
     background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
-    border-radius: 10px; /*동그랗게*/
+    border-radius: 10%; /*동그랗게*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
     border: 0; /* 테두리를 원하는 대로 지정하세요. */
 }
 
-.lunch_box {
-    font-size: 20px; /*폰트 크기*/
-    background-color: lightskyblue; /*바 색상*/
-    height: 55px; /*근태현황 바 크기*/
-    width: 325px;
-    right: 35%;
-    top: 55%;
-    color: white; /*글씨 색상*/
-    border-radius: 10px; /*동그랗게*/
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
-    border: 0; /* 테두리를 원하는 대로 지정하세요. */
-
+.lunch_table {
+    position: fixed;
+    top: 7.8%;
+    right: 34.9%;
 }
 
 .weekly_button {
@@ -67,6 +59,7 @@ h1 {
     width: 700px;
     text-align: center;
     border-radius: 50%;
+    box-shadow: 20px 20px 5px grey;
 }
 
 .kcal {
@@ -78,4 +71,52 @@ h1 {
     right: 36%;
 }
 
+.drop_button {
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    width: 326px;
+    right: 35%;
+    top: 55%;
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 325px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    text-align: center;
+}
+
+.dropdown-content:hover {
+    background-color: #ddd;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .drop_button {
+    background-color: steelblue;
+}
 
