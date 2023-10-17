@@ -20,6 +20,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -347,9 +348,18 @@ public class CommuteController {
             }
 
             if(vacation.equals("오전 반차")){
+                LocalTime tardytime=halfcometime.plusHours(5);
+                String halrtime=time.toString().substring(0,5);
 
-            stuService.updateWork(halfcometime.toString(),empno);
-            stuService.resettardy(empno);
+                if(time.isAfter(tardytime)){
+                    stuService.updateWork(halrtime,empno);
+
+                } else {
+                    stuService.updateWork(halfcometime.toString(),empno);
+                    stuService.resettardy(empno);
+                }
+
+
 
             } else{
 
