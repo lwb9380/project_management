@@ -1,0 +1,136 @@
+/* showScheduleRequest.css */
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #f6f6f6;
+
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 14px;  /* Adjusted font size */
+}
+
+a {
+    text-decoration: none;
+    color: #007aff;
+    cursor: pointer;
+    font-size: 14px;  /* Adjusted font size */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+    border-color: #e0e0e0;  /* 연한 회색으로 변경 */
+    width: 100%;
+    max-width: 1200px;
+    margin: 2% auto;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+td, th {
+    padding: 12px 16px;
+    /*border-bottom: 1px solid #e7e7e7;*/
+    border-color: #e0e0e0;  /* 연한 회색으로 변경 */
+    font-size: 14px;  /* Adjusted font size */
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+caption {
+    padding: 10px;
+    background-color: #f6f6f6;
+    font-weight: bold;
+    text-align: left;
+    font-size: 16px;  /* Adjusted font size for table caption */
+}
+
+select {
+    padding: 6px 10px;
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;  /* Adjusted font size */
+}
+
+input[type="submit"] {
+    padding: 8px 16px;
+    background-color: lightskyblue;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;  /* Adjusted font size */
+}
+
+input[type="submit"]:hover {
+    background-color: steelblue;
+}
+
+.edit-link {
+    background-color: lightskyblue;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;  /* Adjusted font size */
+}
+
+.edit-link:hover {
+    background-color: steelblue;
+}
+
+div {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2% auto;
+    background-color: #fff;
+    padding: 16px;
+    /*box-shadow: 0 1px 2px rgba(0,0,0,0.1);*/
+}
+
+/* 버튼에 대한 기본 스타일 */
+.button {
+    padding: 8px 16px;
+    background-color: lightskyblue;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;  /* Adjusted font size */
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.button:hover {
+    background-color: steelblue;
+}
+
+/* 버튼들을 감싸는 div에 대한 스타일 */
+.buttons-wrapper {
+    /*border: none;       // buttons-wrapper의 테두리 제거*/
+    /*outline: none;      // buttons-wrapper의 아웃라인 제거*/
+    /*margin: 0;*/
+    background-color: transparent;
+    text-align: center; /* 버튼들을 가운데로 정렬 */
+    margin-top: 20px; /* 테이블 밑의 간격 조절 */
+}
+
+.schedule_div {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2% auto;
+    background-color: #fff;
+    padding: 16px;
+box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+
+

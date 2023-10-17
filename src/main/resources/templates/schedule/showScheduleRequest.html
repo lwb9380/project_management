@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>showSimpleSchedule</title>
+    <link rel="stylesheet" href="/css/showScheduleRequest.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -132,7 +133,7 @@
         </tr>
     </table>
 </div>
-<div th:unless="${monday != null}">
+<div th:unless="${monday != null}" class="schedule_div">
     <th:block th:text="|${name}님의 ${month}월 스케줄|"/><br>
     아직 스케줄이 확정되지 않았습니다.<br>
 </div>
@@ -210,12 +211,12 @@
                         </th:block>
                         <th:block th:if="${scheduleRequestList.month>month}">
                             <!--미래 데이터-->
-                            <button onclick="alert('해당 날짜가 되지 않았으므로 나중에 다시 요청해주세요.');">적용하기</button>
+                            <button class="button" onclick="alert('해당 날짜가 되지 않았으므로 나중에 다시 요청해주세요.');">적용하기</button>
                         </th:block>
                     </th:block>
                     <th:block th:if="${scheduleRequestList.year>year}">
                         <!--미래 데이터-->
-                        <button onclick="alert('해당 날짜가 되지 않았으므로 나중에 다시 요청해주세요.');">적용하기</button>
+                        <button class="button" onclick="alert('해당 날짜가 되지 않았으므로 나중에 다시 요청해주세요.');">적용하기</button>
                     </th:block>
                     <th:block th:if="${scheduleRequestList.year<year}">
                         <!--과거 데이터-->
@@ -238,12 +239,31 @@
             </td>
         </tr>
     </table>
+
 </div>
-<div th:unless="${!scheduleRequestList.isEmpty()}">
+<div th:unless="${!scheduleRequestList.isEmpty()}" class="schedule_div">
     <th:block th:text="|${name}님의 스케줄 신청|"/><br>
     아직 스케줄을 신청하지 않았습니다.<br>
 </div>
-<a href="/updateSchedule">스케줄 신청하기</a><br>
-<a href="/start">뒤로가기</a><br>
+
+<script type="text/javascript">
+    // ... [기존의 스크립트는 생략] ...
+
+    $(document).ready(function() {
+        // "스케줄 신청하기" 버튼 클릭 시
+        $("#btnUpdateSchedule").click(function() {
+            window.location.href = "/updateSchedule";
+        });
+
+        // "뒤로가기" 버튼 클릭 시
+        $("#btnGoBack").click(function() {
+            window.location.href = "/start";
+        });
+    });
+</script>
+<div class="buttons-wrapper">
+    <button class="button" id="btnUpdateSchedule">스케줄 신청하기</button>
+    <button class="button" id="btnGoBack">뒤로가기</button>
+</div>
 </body>
 </html>

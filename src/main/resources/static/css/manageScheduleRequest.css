@@ -1,0 +1,125 @@
+/* manageScheduleRequest.css */
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;  /* 부드러운 배경색 */
+    margin: 0;
+    padding: 0;
+    color: #555;  /* 조금 더 부드러운 텍스트 색상 */
+}
+
+a {
+    text-decoration: none;
+    color: #007aff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #2c3e50;  /* 보다 진한 제목 색상 */
+    font-weight: 600;  /* 두껍게 */
+}
+
+table {
+    border: 1px solid #e0e0e0;  /* 테이블 전체 테두리 색상 조정 */
+    border-collapse: collapse;
+    /*border-color: #e0e0e0;  !* 연한 회색으로 변경 *!*/
+    width: 85%;
+    max-width: 1300px;
+    margin: 2% auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);  /* 더 부드러운 그림자 효과 */
+}
+
+td, th {
+    padding: 14px 18px;
+
+    border-bottom: 1px solid #e0e0e0;  /* 연한 회색으로 변경 */
+    text-align: center;
+}
+
+/* 추가: 테이블의 마지막 행에서는 하단 테두리를 제거 */
+tr:last-child td {
+    border-bottom: none;
+}
+
+caption {
+    padding: 10px;
+    background-color: #f6f6f6;
+    font-weight: bold;
+    text-align: left;
+}
+
+select {
+    padding: 7px 11px;
+    border: 1px solid #e1e1e1;
+    background-color: #fff;
+    color: #555;
+}
+
+input[type="submit"] {
+    padding: 7px 14px;
+    background-color: lightskyblue;
+    border: none;
+    color: #fff;
+    border-radius: 5px;  /* 라운드 효과 조금 더 확대 */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);  /* 버튼에도 그림자 효과 추가 */
+    transition: background-color 0.3s, transform 0.3s;  /* 버튼 클릭 시 약간의 움직임 효과 추가 */
+}
+
+input[type="submit"]:hover {
+    background-color: steelblue;
+}
+
+input[type="submit"]:active {
+    transform: translateY(2px);  /* 버튼 클릭 시 아래로 움직임 */
+}
+
+.edit-link {
+    background-color: lightskyblue;
+    padding: 7px 14px;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.edit-link:hover {
+    background-color: steelblue;
+}
+
+.edit-link:active {
+    transform: translateY(2px);
+}
+
+div {
+    width: 85%;
+    max-width: 1300px;
+    margin: 2% auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.btn {
+    display: block; /* 블록 요소로 만들어 전체 가로폭을 차지하게 함 */
+    margin: 0 auto; /* 가로 방향으로 중앙에 위치하도록 함 */
+    padding: 10px 20px; /* 버튼 내부의 패딩 설정 */
+    background-color: lightskyblue; /* 버튼의 배경색 */
+    color: white; /* 버튼의 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    cursor: pointer; /* 마우스를 올렸을 때 손 모양 커서로 변경 */
+    text-decoration: none; /* 텍스트 밑줄 제거 */
+}
+
+.btn:hover {
+    background-color: steelblue;
+}

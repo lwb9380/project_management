@@ -1,0 +1,53 @@
+/* error.css */
+
+/* 기본 배경 및 폰트 설정 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; /* 기존의 설정을 삭제합니다. */
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column; /* 이 줄을 추가합니다. */
+}
+
+/* 메인 컨텐츠 스타일 */
+.content {
+    background-color: #ffffff;
+    padding: 40px 60px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+h1 {
+    color: #e74c3c; /* 에러 메시지를 빨간색으로 강조 */
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+/* 본문 스타일 */
+p {
+    margin: 0;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* 링크 스타일 */
+a {
+    background-color: lightskyblue;
+    padding: 7px 14px;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: steelblue;
+    color: #fff;
+}

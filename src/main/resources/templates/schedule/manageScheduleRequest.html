@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/manageScheduleRequest.css">
 </head>
 <style>
-    table ,td {
-        border: 1px solid black;
+    table, td {
+        border: 1px solid #e0e0e0;
         text-align: center;
     }
 </style>
@@ -83,10 +84,12 @@
             </th:block>
         </td>
     </tr>
+
+
 </table>
 <th:block th:unless="${not scheduleList.isEmpty()}">
     신청된 스케줄이 없습니다.
 </th:block>
-<br><a href="/start">돌아가기</a>
+<button onclick="location.href='/start'" class="btn">돌아가기</button>
 </body>
 </html>
