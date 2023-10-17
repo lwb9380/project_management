@@ -41,51 +41,49 @@
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 2}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 3}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 4}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 5}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 6}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 7}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
             [[${menu.menu4}]]<br>
-            [[${menu.kcal}]]<br>
         </td>
     </tr>
+        <tr>
+        <td th:each="menu : ${weeklyMenu}" style="text-align: right">
+            [[${menu.kcal}]]
+        </td>
+        </tr>
     </tbody>
 </table>
 

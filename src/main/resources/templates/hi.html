@@ -14,7 +14,7 @@
         font-size: 20px;
     }
     body {
-        background-color: lightskyblue;
+        background-color: cornflowerblue;
     }
 </style>
     <link rel="stylesheet" href="/css/main.css">
@@ -347,6 +347,9 @@
                     </tr>
                     </tbody>
                 </table>
+            <th:block th:each="menu : ${menus}">
+                <p class="kcal">총 칼로리 : [[${menu.kcal}]]</p>
+            </th:block>
 
 
         <a th:href="@{/weekly}" class="weekly_button">주간별 식단 보기</a>
