@@ -3,7 +3,6 @@
 body {
     font-family: 'Noto Sans', sans-serif;
     background-color: #f6f6f6;
-
     margin: 0;
     padding: 0;
     color: #333;
@@ -17,15 +16,11 @@ a {
     font-size: 14px;  /* Adjusted font size */
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 table {
     border-collapse: collapse;
     border-color: #e0e0e0;  /* 연한 회색으로 변경 */
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2% auto;
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -44,9 +39,9 @@ tr:hover {
 
 caption {
     padding: 10px;
-    background-color: #f6f6f6;
+    background-color: #fff;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     font-size: 16px;  /* Adjusted font size for table caption */
 }
 
@@ -88,7 +83,7 @@ input[type="submit"]:hover {
 
 div {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2% auto;
     background-color: #fff;
     padding: 16px;
@@ -98,7 +93,7 @@ div {
 /* 버튼에 대한 기본 스타일 */
 .button {
     padding: 8px 16px;
-    background-color: lightskyblue;
+    background-color: skyblue;
     border: none;
     color: #fff;
     border-radius: 4px;
@@ -115,9 +110,6 @@ div {
 
 /* 버튼들을 감싸는 div에 대한 스타일 */
 .buttons-wrapper {
-    /*border: none;       // buttons-wrapper의 테두리 제거*/
-    /*outline: none;      // buttons-wrapper의 아웃라인 제거*/
-    /*margin: 0;*/
     background-color: transparent;
     text-align: center; /* 버튼들을 가운데로 정렬 */
     margin-top: 20px; /* 테이블 밑의 간격 조절 */
@@ -125,11 +117,11 @@ div {
 
 .schedule_div {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2% auto;
     background-color: #fff;
     padding: 16px;
-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 

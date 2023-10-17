@@ -234,11 +234,11 @@ public class ScheduleController {
                 return "schedule/error";
             } else {
                 scheduleService.insertScheduleRequest(empno, monday, tuesday, wednesday, thursday, friday, year, month);
-                return "redirect:/schedule";
+                return "redirect:/showScheduleRequest";
             }
         } catch (NullPointerException e) {
             scheduleService.insertScheduleRequest(empno, monday, tuesday, wednesday, thursday, friday, year, month);
-            return "redirect:/schedule";
+            return "redirect:/showScheduleRequest";
         }
     }
     @PostMapping("/changeSchedule")
