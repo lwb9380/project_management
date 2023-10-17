@@ -289,7 +289,15 @@
         </th:block>
 
         <th:block th:if="${mail.empty}">
-            <h3 style="text-align: center; margin-top: 40%;">메일이 없습니다.</h3>
+            <table style="border-collapse: collapse">
+                <thead>
+                <tr>
+                    <th class="mail_null_title" colspan="4" >최근 온 메일</th>
+                </tr>
+                <tr> <td class="mail_null">메일이 없습니다.</td></tr>
+                </thead>
+
+            </table>
         </th:block>
     </div>
 
@@ -336,9 +344,6 @@
                     </tr>
                     <tr>
                         <th style="padding-top: 6px;"><a style="font-size: 17px;">[[${menu.menu4}]]</a></th>
-                    </tr>
-                    <tr>
-                        <th>총칼로리<td th:text="${menu.kcal}"></td></th>
                     </tr>
                     </tbody>
                 </table>

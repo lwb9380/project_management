@@ -73,6 +73,20 @@ hr.hr-1 {
     left: 30%;
     top: 64%;
 }
-
+.mail_null{
+    padding: 25%;
+    text-align: center;
+}
+.mail_null_title{
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    width: 325px;
+    right: 35%;
+    top: 55%;
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+    /*text-align: center; 사용 안함 냅둬보기*/
+}
 
 
