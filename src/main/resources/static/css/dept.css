@@ -21,9 +21,20 @@ tr:nth-child(even) {
 
 /* 휴가 승인/반려 버튼 스타일 */
 input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 5px 10px;
+    background-color: lightskyblue;
     border: none;
+    color: black;
+    padding: 5px 15px;
+    margin: 4px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     cursor: pointer;
+    border-radius: 10%;
 }
+
+input[type="submit"]:hover {
+    background: steelblue;
+    color: white;
+}
+

@@ -22,6 +22,7 @@
 </head>
 <body>
 <div class="big_box">
+
 <nav>
     <div class="menu-btn">
         <div class="line line--1"></div>
@@ -30,6 +31,7 @@
     </div>
 
     <div class="nav-links">
+        <a class="link"><img th:src="@{/images/longlonglogo.png}" alt="로고" style="position: relative; height: 150px; width: 250px; "></a>
         <a href="/start" class="link">Home</a>
         <a th:href="@{/mailList/{empno}(empno=${working.empno})}" class="link"> Mail </a>
         <a href="/vacationRequest" class="link">Vacation Request</a>
