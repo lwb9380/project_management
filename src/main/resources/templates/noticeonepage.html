@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항 확인</title>
+    <link rel="stylesheet" href="/css/hi.css">
     <style>
-        .noticeOP_container {
-            position: fixed;
-            left: 10%;
-            margin-top: 5%;
-            margin-right: 20%;
-            width: 80%;
-            height: 80%;
+        .bbb {
+            text-decoration-line: none;
+            font-size: 20px;
+        }
+        body {
+            background-color: lightskyblue;
         }
     </style>
+    <link rel="stylesheet" href="/css/hi.css">
 </head>
 <body>
+<div class="big_box">
 
 <nav>
     <div class="menu-btn">
@@ -37,13 +39,16 @@
     </div>
 </nav>
 
-<div class="noticeOP_container">
+<div class="notice_container">
     [제목] <th:block th:text="${notice.title}"></th:block>
-    <hr style="width: 300px; margin-left: 0">
+    <hr>
     [내용] <th:block th:text="${notice.content}"></th:block>
+    <hr>
+
+    <input type="button" value="뒤로가기" onclick="history.back();" class="notice_back"/>
 </div>
 
 <script src="/js/hi.js"></script>
-<link rel="stylesheet" href="/css/hi.css">
+</div>
 </body>
 </html>
