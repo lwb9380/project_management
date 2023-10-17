@@ -35,11 +35,14 @@
         <a href="/vacationRequest" class="link">Vacation Request</a>
         <th:block th:if="${authority}=='row'">
             <a href="/Vacationdept" class="link">Dept</a>
-            <a href="/showScheduleRequest" class="link">Schedule Request </a>
         </th:block>
         <th:block th:if="${authority}=='admin'">
             <a href="/registerpage" class="link">EmpRegist</a>
             <a href="/manageScheduleRequest" class="link">Manage Request</a>
+        </th:block>
+
+        <th:block th:if="${authority}!='admin'">
+            <a href="/showScheduleRequest" class="link">Schedule Request </a>
         </th:block>
 
     </div>
