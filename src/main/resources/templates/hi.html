@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Mainpage</title>
     <link rel="stylesheet" href="/css/hi.css">
+    <link rel="stylesheet" href="/css/lunch.css">
     <link rel="icon" type="image/png" href="/Login_v2/images/icons/home.png">
 <style>
     .bbb {
@@ -17,6 +18,7 @@
     }
 </style>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lunch.css">
 
 </head>
 <body>
@@ -310,32 +312,34 @@
     </th:block>
 </div>
 
-    <div class="lunch">
 <!--    민수 식단 기능 추가 직전이라 주석처리 후 넣음-->
 
-        <h1 th:text="'오늘(' + ${currentDayOfWeek} + ')의 식단'"></h1>
-        <div th:if="${menus}">
-            <table>
-                <thead>
-                <tr>
-                    <th>메뉴</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="menu : ${menus}">
-                    <td th:text="${menu.menu}"></td>
-                    <td th:text="${menu.menu1}"></td>
-                    <td th:text="${menu.menu2}"></td>
-                    <td th:text="${menu.menu3}"></td>
-                    <td th:text="${menu.menu4}"></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="lunch">
+                <table style="border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                        <th class="lunch_box" colspan="4">오늘([[${currentDayOfWeek}]])의 식단</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="menu : ${menus}" style="text-align: left;">
+                    <tr>
+                        <th style="padding-top: 6px;"><a style="font-size: 17px;">[[${menu.menu1}]]</a></th>
+                    </tr>
+                    <tr>
+                        <th style="padding-top: 6px;"><a style="font-size: 17px;">[[${menu.menu2}]]</a></th>
+                    </tr>
+                    <tr>
+                        <th style="padding-top: 6px;"><a style="font-size: 17px;">[[${menu.menu3}]]</a></th>
+                    </tr>
+                    <tr>
+                        <th style="padding-top: 6px;"><a style="font-size: 17px;">[[${menu.menu4}]]</a></th>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+        <a th:href="@{/weekly}" class="weekly_button">주간별 식단 보기</a>
         </div>
-
-    <a th:href="@{/weekly}" class="monthly_button">주간별 식단 보기</a>
-
-    </div>
 
 <script src="/js/hi.js"></script>
 <script th:inline="javascript">

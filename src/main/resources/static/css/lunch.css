@@ -1,0 +1,80 @@
+.lunch {
+    position: fixed;
+    right: 35%;
+    top: 8%;
+    width: 325px;
+    height: 200px;
+    background-color: white; /* 배경색상을 원하는 대로 지정하세요. */
+    border-radius: 10px; /*동그랗게*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
+}
+
+.lunch_box {
+    font-size: 20px; /*폰트 크기*/
+    background-color: lightskyblue; /*바 색상*/
+    height: 55px; /*근태현황 바 크기*/
+    width: 325px;
+    right: 35%;
+    top: 55%;
+    color: white; /*글씨 색상*/
+    border-radius: 10px; /*동그랗게*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과를 원한다면 추가하세요. */
+    border: 0; /* 테두리를 원하는 대로 지정하세요. */
+
+}
+
+.weekly_button {
+    text-align: right;
+    text-decoration: none;
+    font-size: 12px;
+    position: fixed;
+    top: 15%;
+    right: 36%;
+}
+
+.weekly_button:hover {
+    text-decoration: underline;
+}
+
+.weeklyPage_button {
+    background-color: lightskyblue;
+    border: none;
+    color: black;
+    padding: 5px 15px;
+    margin: 4px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+.weeklyPage_button:hover {
+    background: steelblue;
+    color: white;
+}
+
+.weekly_container {
+    position: fixed;
+    left: 30%;
+    top: 10%;
+}
+
+h1 {
+    background-color: lightskyblue;
+    color: white;
+    width: 700px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+table {
+    width:80%;
+    border:1px solid black;
+    border-collapse:collapse;
+}
+
+th, td {
+    border:1px solid black;
+}
