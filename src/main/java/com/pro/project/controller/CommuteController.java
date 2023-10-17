@@ -123,8 +123,8 @@ public class CommuteController {
         //만약 오늘이 한 달 스케쥴 테이블에 기록된 휴가 날이라면 vacation update로 dept와 working 테이블에 휴가 정보를 업데이트함
 
 
-
-
+        System.out.println("=================================");
+        System.out.println(vacation);
 
         String doweek=stuService.getdoweek();
         //오늘이 무슨 요일인지 받아옴
@@ -434,31 +434,38 @@ public class CommuteController {
         int empno=num.intValue();
 
         Working working=stuService.getlogininfo(empno);
-
-
-        try{
-
-            String extra=stuService.isextratoday(empno);
-
-            if(extra.equals("x")){
-                stuService.requestextra(empno);
-                String rett="신청완료";
-                return rett;
-            } else if(working.getIschul().equals("oo")) {
-                String rett="이미퇴근";
-                return rett;
-            }else{
-
-                String rett="이미신청";
-                return rett;
-            }
-
-
-        } catch (Exception e){
-
-            String error="신청 오류";
+        
+        
+        if(working.getTardy().equals("o")){
+            String error="지각";
             return error;
+        } else{
+            try{
+
+                String extra=stuService.isextratoday(empno);
+
+                if(extra.equals("x")){
+                    stuService.requestextra(empno);
+                    String rett="신청완료";
+                    return rett;
+                } else if(working.getIschul().equals("oo")) {
+                    String rett="이미퇴근";
+                    return rett;
+                }else{
+
+                    String rett="이미신청";
+                    return rett;
+                }
+
+
+            } catch (Exception e){
+
+                String error="신청 오류";
+                return error;
+            }
         }
+
+
 
     }
 

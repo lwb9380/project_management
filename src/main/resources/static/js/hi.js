@@ -54,6 +54,8 @@ function requestextrawork(){
             alert("이미 신청되었습니다.")
         } else if(rett==="이미퇴근"){
             alert("이미 퇴근하셨습니다.")
+        } else if(rett==="지각"){
+            alert("지각한 날에는 연장근무를 할 수 없습니다.")
         }
     }).fail(function (error){
         alert(error);

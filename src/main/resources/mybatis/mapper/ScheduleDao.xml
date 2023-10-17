@@ -63,8 +63,8 @@
 
 
     <insert id="registeremp1">
-        insert into emp (empno, job, sal, name, authority, deptno, addr, email, password, phone,empname)
-        values (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10},'empname');
+        insert into emp (empno, job, sal, name, authority, deptno, addr, email, password, phone)
+        values (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10});
 
     </insert>
 
