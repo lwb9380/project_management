@@ -134,7 +134,10 @@
     </table>
 </div>
 <div th:unless="${monday != null}" class="schedule_div">
-    <th:block th:text="|${name}님의 ${month}월 스케줄|"/><br>
+    <a style="font-size:24px">[[|${name}님의 ${month}월 스케줄|]]</a>
+    <br>
+    <br>
+    <br>
     아직 스케줄이 확정되지 않았습니다.<br>
 </div>
 <!--기존 신청 조회-->
@@ -242,13 +245,14 @@
 
 </div>
 <div th:unless="${!scheduleRequestList.isEmpty()}" class="schedule_div">
-    <th:block th:text="|${name}님의 스케줄 신청|"/><br>
+    <a style="font-size:24px">[[|${name}님의 스케줄 신청|]]</a>
+    <br>
+    <br>
+    <br>
     아직 스케줄을 신청하지 않았습니다.<br>
 </div>
 
 <script type="text/javascript">
-    // ... [기존의 스크립트는 생략] ...
-
     $(document).ready(function() {
         // "스케줄 신청하기" 버튼 클릭 시
         $("#btnUpdateSchedule").click(function() {
