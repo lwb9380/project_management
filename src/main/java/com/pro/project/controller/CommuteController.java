@@ -574,13 +574,21 @@ public class CommuteController {
             //지각한 날은 연장 근무 기록이 불가능 하게 해둠.
 
 
-            String newtoday="day"+LocalDate.now().getDayOfMonth();
-            String vacation= stuService.checkvacation(newtoday,empno);
-            if(vacation.equals("오후 반차")){
-                stuService.updatego(hometime.toString(),empno);
-            } else{
                 stuService.updatego(tttime,empno);
+        }
+        String newtoday="day"+LocalDate.now().getDayOfMonth();
+        String vacation= stuService.checkvacation(newtoday,empno);
+        System.out.println("==========================================");
+        System.out.println(vacation);
+        if(vacation.equals("오후 반차")){
 
+            boolean canIgoHome2=time.isAfter(hometime.minusHours(5));
+            System.out.println(canIgoHome2);
+            if(canIgoHome2){
+                stuService.updatego(hometime.toString(),empno);
+                responseData=tttime;
+            } else{
+                responseData="아직못감";
             }
 
         }

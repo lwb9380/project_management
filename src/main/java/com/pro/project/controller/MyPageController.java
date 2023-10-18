@@ -145,7 +145,7 @@ public class MyPageController {
         mailService.sendMail("휴가 신청이 승인되었습니다", LocalDateTime.now(), empno, "관리자", "휴가 신청 결과");
         stuService.deleteVacationRequest(id);
 
-    return "hhhh";
+    return "redirect:/Vacationdept";
     }
 
 
