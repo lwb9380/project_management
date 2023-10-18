@@ -65,21 +65,23 @@ hr.hr-1 {
     left: 30%;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
-.v-line {
-    position: fixed;
-    border-left: 1px solid black; /* 형태와 두께를 조절하세요 */
-    height: 200px;
-    background: linear-gradient(to bottom, transparent, #000, transparent);
-    left: 30%;
-    top: 64%;
-}
+/*.v-line {*/
+/*    position: fixed;*/
+/*    border-left: 1px solid black; !* 형태와 두께를 조절하세요 *!*/
+/*    height: 200px;*/
+/*    background: linear-gradient(to bottom, transparent, #000, transparent);*/
+/*    left: 30%;*/
+/*    top: 64%;*/
+/*}*/
 .hr_rotate {
     position: fixed;
     transform: rotate(90deg);
-    width: 190px;
-    top: 73.8%;
-    left: 25.2%;
-    background: linear-gradient(to left, transparent, rgba(0,0,0,.5), transparent);
+    width: 220px;
+    border: 0;
+    height: 1px;
+    top: 75%;
+    left: 24.3%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 .mail_null{
