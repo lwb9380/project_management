@@ -325,13 +325,13 @@ public class ScheduleController {
             case "영업팀":deptno=1100;
             location="3F";
             break;
-            case "블라블라팀":deptno=1600;
+            case "전산팀":deptno=1600;
                 location="4F";
             break;
-            case "블라블라블라팀":deptno=1800;
+            case "인사팀":deptno=1800;
                 location="5F";
             break;
-            case "3개는아쉬워팀":deptno=2220;
+            case "생산팀":deptno=2220;
                 location="B1F";
             break;
         }
