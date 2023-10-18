@@ -445,35 +445,41 @@ public class CommuteController {
 
         Working working=stuService.getlogininfo(empno);
         
-        
-        if(working.getTardy().equals("o")){
-            String error="지각";
-            return error;
+        if(working.getIschul().equals("oo")){
+            String rett="이미퇴근";
+            return rett;
         } else{
-            try{
-
-                String extra=stuService.isextratoday(empno);
-
-                if(extra.equals("x")){
-                    stuService.requestextra(empno);
-                    String rett="신청완료";
-                    return rett;
-                } else if(working.getIschul().equals("oo")) {
-                    String rett="이미퇴근";
-                    return rett;
-                }else{
-
-                    String rett="이미신청";
-                    return rett;
-                }
-
-
-            } catch (Exception e){
-
-                String error="신청 오류";
+            if(working.getTardy().equals("o")){
+                String error="지각";
                 return error;
+            } else{
+                try{
+
+                    String extra=stuService.isextratoday(empno);
+
+                    if(extra.equals("x")){
+                        stuService.requestextra(empno);
+                        String rett="신청완료";
+                        return rett;
+                    } else if(working.getIschul().equals("oo")) {
+                        String rett="이미퇴근";
+                        return rett;
+                    }else{
+
+                        String rett="이미신청";
+                        return rett;
+                    }
+
+
+                } catch (Exception e){
+
+                    String error="신청 오류";
+                    return error;
+                }
             }
         }
+
+
 
 
 
@@ -586,6 +592,7 @@ public class CommuteController {
             System.out.println(canIgoHome2);
             if(canIgoHome2){
                 stuService.updatego(hometime.toString(),empno);
+                stuService.updateworktime(empno,month);
                 responseData=tttime;
             } else{
                 responseData="아직못감";
