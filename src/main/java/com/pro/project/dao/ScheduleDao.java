@@ -50,4 +50,15 @@ public interface ScheduleDao {
     public Day selectOneDayCheck(int empno, int year, int month);
 
     public void deleteOldDayCheck(int empno, int year, int month);
+
+    public void deleteAllScheduleRequest();
+
+    public void deleteAllSchedule();
+
+    public void ex1(int empno);
+    public void ex2(int empno);
+
+    public List<ScheduleRequest> allSchedule();
+
+    public void cs(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month);
 }

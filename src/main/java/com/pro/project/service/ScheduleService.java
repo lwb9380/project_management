@@ -113,4 +113,28 @@ public class ScheduleService {
     public Day selectOneDayCheck(int empno, int year, int month) {
         return scheduleDao.selectOneDayCheck(empno, year, month);
     }
+    public void deleteAllScheduleRequest() {
+        scheduleDao.deleteAllScheduleRequest();
+    }
+
+    public void deleteAllSchedule() {
+        scheduleDao.deleteAllSchedule();
+    }
+
+    public void insertEx(int empno) {
+        scheduleDao.ex1(empno);
+        scheduleDao.ex2(empno);
+    }
+
+    public List<ScheduleRequest> allSchedule() {
+        List<ScheduleRequest> allSchedule = scheduleDao.allSchedule();
+        allSchedule.sort(Comparator.comparing(ScheduleRequest::getDeptno)
+                .thenComparing(ScheduleRequest::getYear)
+                .thenComparing(ScheduleRequest::getMonth));
+        return allSchedule;
+    }
+
+    public void cs(int monday, int tuesday, int wednesday, int thursday, int friday, int empno, int year, int month) {
+        scheduleDao.cs(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+    }
 }

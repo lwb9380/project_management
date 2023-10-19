@@ -356,5 +356,43 @@ public class ScheduleController {
      return "schedule/registerpage";
     }
 
+    @GetMapping("/deleteAllScheduleRequest")
+    public String deleteAllScheduleRequest() {
+        scheduleService.deleteAllScheduleRequest();
+        return "redirect:/schedule";
+    }
+
+    @GetMapping("/deleteAllSchedule")
+    public String deleteAllSchedule() {
+        scheduleService.deleteAllSchedule();
+        return "redirect:/schedule";
+    }
+
+    @GetMapping("/exPage")
+    public String exPage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long num = (Long) session.getAttribute("user");
+        int empno = num.intValue();
+        scheduleService.insertEx(empno);
+        return "redirect:/schedule";
+    }
+
+    @GetMapping("/pptSample")
+    public String pptSample(Model model) {
+        List<ScheduleRequest> allSchedule = scheduleService.allSchedule();
+        model.addAttribute("allSchedule", allSchedule);
+        return "schedule/pptSample";
+    }
+
+    @PostMapping("/pptChange")
+    public String pptChange(HttpServletRequest request,
+                                 @RequestParam int monday, @RequestParam int tuesday,
+                                 @RequestParam int wednesday, @RequestParam int thursday,
+                                 @RequestParam int friday, @RequestParam int year,
+                                 @RequestParam int month, @RequestParam int empno) {
+
+        scheduleService.cs(monday, tuesday, wednesday, thursday, friday, empno, year, month);
+        return "redirect:/pptSample";
+    }
 
 }

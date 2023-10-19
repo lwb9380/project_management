@@ -19,6 +19,7 @@
     <tr>
         <td>부서번호</td>
         <td>사원번호</td>
+        <td>사원이름</td>
         <td>년</td>
         <td>월</td>
         <td>월요일</td>
@@ -31,6 +32,7 @@
     <tr th:each="sc : ${scheduleList}">
         <td>[[${sc.deptno}]]</td>
         <td>[[${sc.empno}]]</td>
+        <td>[[${sc.name}]]</td>
         <td>[[${sc.year}]]</td>
         <td>[[${sc.month}]]</td>
         <td th:switch="${sc.monday}">

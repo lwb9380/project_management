@@ -121,4 +121,36 @@
         where empno = #{param1} and ((year &lt; #{param2}) or year=#{param2} and month &lt; #{param3})
     </delete>
 
+    <delete id="deleteAllScheduleRequest">
+        delete from schedule_request
+    </delete>
+
+    <delete id="deleteAllSchedule">
+        delete from daycheck
+    </delete>
+
+    <insert id="ex1">
+        insert into daycheck(empno, monday, tuesday, wednesday, thursday, friday, year, month)
+        values (#{empno}, 1, 1, 1, 1, 1, 2023, 9)
+    </insert>
+
+    <insert id="ex2">
+        insert into schedule_request(empno, monday, tuesday, wednesday, thursday, friday, year, month)
+        values (#{empno}, 1, 1, 1, 1, 1, 2023, 9)
+    </insert>
+
+    <select id="allSchedule" resultType="com.pro.project.dto.ScheduleRequest">
+        select e.empno, e.deptno, e.name, sc.monday, sc.tuesday,
+               sc.wednesday, sc.thursday, sc.friday, sc.year, sc.month
+        from emp e
+                 Inner join daycheck sc on e.empno=sc.empno
+    </select>
+
+    <!--시연용 직원들 현재 스케줄 수정-->
+    <update id="cs">
+        update daycheck set monday=#{param1}, tuesday=#{param2}, wednesday=#{param3}, thursday=#{param4}, friday=#{param5}
+        where empno=#{param6} and year=#{param7} and month=#{param8}
+    </update>
+
+
 </mapper>

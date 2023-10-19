@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/manageScheduleRequest.css">
+</head>
+<body>
+<h1>모든 사원 스케줄 조회</h1>
+
+<form id="editScheduleForm" action="/edit-schedule" method="post">
+    <table th:if="${not allSchedule.isEmpty()}">
+        <tr>
+            <td>사원이름</td>
+            <td>년</td>
+            <td>월</td>
+            <td>월요일</td>
+            <td>화요일</td>
+            <td>수요일</td>
+            <td>목요일</td>
+            <td>금요일</td>
+        </tr>
+        <tr th:each="as : ${allSchedule}">
+            <td>[[${as.name}]]<input type="hidden" name="empno" th:value="${as.empno}"/></td>
+            <td>[[${as.year}]]<input type="hidden" name="year" th:value="${as.year}"/></td>
+            <td>[[${as.month}]]<input type="hidden" name="month" th:value="${as.month}"/></td>
+            <td>
+                <select name="monday">
+                    <option value="1" th:selected="${as.monday == 1}">8시출근 - 17시퇴근</option>
+                    <option value="2" th:selected="${as.monday == 2}">9시출근 - 18시퇴근</option>
+                    <option value="3" th:selected="${as.monday == 3}">10시출근 - 19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="tuesday">
+                    <option value="1" th:selected="${as.tuesday == 1}">8시출근 - 17시퇴근</option>
+                    <option value="2" th:selected="${as.tuesday == 2}">9시출근 - 18시퇴근</option>
+                    <option value="3" th:selected="${as.tuesday == 3}">10시출근 - 19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="wednesday">
+                    <option value="1" th:selected="${as.wednesday == 1}">8시출근 - 17시퇴근</option>
+                    <option value="2" th:selected="${as.wednesday == 2}">9시출근 - 18시퇴근</option>
+                    <option value="3" th:selected="${as.wednesday == 3}">10시출근 - 19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="thursday">
+                    <option value="1" th:selected="${as.thursday == 1}">8시출근 - 17시퇴근</option>
+                    <option value="2" th:selected="${as.thursday == 2}">9시출근 - 18시퇴근</option>
+                    <option value="3" th:selected="${as.thursday == 3}">10시출근 - 19시퇴근</option>
+                </select>
+            </td>
+            <td>
+                <select name="friday">
+                    <option value="1" th:selected="${as.friday == 1}">8시출근 - 17시퇴근</option>
+                    <option value="2" th:selected="${as.friday == 2}">9시출근 - 18시퇴근</option>
+                    <option value="3" th:selected="${as.friday == 3}">10시출근 - 19시퇴근</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn">저장</button>
+</form>
+
+<th:block th:unless="${not allSchedule.isEmpty()}">
+    <p style="text-align: center">신청된 스케줄이 없습니다.</p>
+</th:block>
+<br>
+<button onclick="location.href='/start'" class="btn">돌아가기</button>
+
+<script>
+    // JavaScript code to handle form submission and post data to the server
+    const editScheduleForm = document.getElementById('editScheduleForm');
+    editScheduleForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // You can use JavaScript to send the form data to the server using fetch or other methods.
+        // For example:
+        const formData = new FormData(editScheduleForm);
+        fetch('/pptChange', {
+            method: 'POST',
+            body: formData,
+        }).then(response => {
+            // Handle the server's response here
+                // 서버의 응답을 처리할 수 있습니다.
+                if (response.ok) {
+                    // 폼 제출이 성공했을 때의 동작
+
+                    alert('스케줄이 수정되었습니다.');
+                } else {
+                    // 폼 제출이 실패했을 때의 동작
+                    alert('스케줄 수정에 문제가 발생했습니다.');
+                }
+            }).catch(error => {
+                console.error('통신 오류:', error);
+        });
+    });
+</script>
+
+</body>
+</html>
