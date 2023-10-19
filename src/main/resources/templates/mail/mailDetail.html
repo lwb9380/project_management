@@ -48,13 +48,17 @@
             <input type="hidden" th:value="${mail.id}" name="id">
             <input type="hidden" th:value="${mail.empno}" name="empno" />
     <input type="submit" value="삭제" onclick="closeMessage()" class="mailDetail_button">
-    <input type="button" value="뒤로가기" onclick="history.back();" class="mailDetail_button"/>
+        <a th:href="@{/mailList/{empno}(empno=${mail.empno})}" class="mailDetail_back_button">돌아가기</a>
     </th:block>
 </form>
         <table border="0" style="table-layout: fixed">
             <tr th:each="ml: ${mailList}">
-                <td style="width: 20px">[[${ml.sName}]]</td>
-                <td style="width: 80%" >[[${ml.title}]]</td>
+                <td style="width: 40px">[[${ml.sName}]]</td>
+                <td>
+                    <a th:href="@{'/mailDetail/' + ${ml.id}}" class="mailDetail_list_title">
+                        <span th:text="${ml.title}"></span>
+                    </a>
+                </td>
                 <td style="width: 20px">[[${#temporals.format(ml.date, 'MM.dd')}]]</td>
             </tr>
         </table>

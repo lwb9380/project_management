@@ -52,3 +52,32 @@ tr:hover {
     background: steelblue;
     color: white;
 }
+
+.mailDetail_list_title {
+    display: block;
+    text-decoration-line: none;
+    font-size: 15px;
+}
+
+.mailDetail_list_title:hover {
+    text-decoration: underline;
+}
+
+.mailDetail_back_button {
+    background-color: lightskyblue;
+    border: none;
+    color: black;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin: 4px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+.mailDetail_back_button:hover {
+    background: steelblue;
+    color: white;
+}
