@@ -64,6 +64,7 @@ public class MailController {
         List<MailDto> mailList = mailService.mailList(empno);
         model.addAttribute("mails", mail);
         model.addAttribute("mailList", mailList);
+        model.addAttribute("id", id);
         return "mail/mailDetail";
     }
 

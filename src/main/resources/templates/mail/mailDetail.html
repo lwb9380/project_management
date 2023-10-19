@@ -53,13 +53,15 @@
 </form>
         <table border="0" style="table-layout: fixed">
             <tr th:each="ml: ${mailList}">
-                <td style="width: 40px">[[${ml.sName}]]</td>
-                <td>
-                    <a th:href="@{'/mailDetail/' + ${ml.id}}" class="mailDetail_list_title">
-                        <span th:text="${ml.title}"></span>
-                    </a>
-                </td>
-                <td style="width: 20px">[[${#temporals.format(ml.date, 'MM.dd')}]]</td>
+                <th:block th:unless="${ml.id==id}">
+                    <td class="mail_list_td">[[${ml.sName}]]</td>
+                    <td>
+                        <a th:href="@{'/mailDetail/' + ${ml.id}}" class="mailDetail_list_title">
+                                <span th:text="${ml.title}"></span>
+                        </a>
+                    </td>
+                    <td class="mail_list_td">[[${#temporals.format(ml.date, 'MM.dd')}]]</td>
+                </th:block>
             </tr>
         </table>
 

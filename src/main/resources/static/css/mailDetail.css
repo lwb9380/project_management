@@ -14,6 +14,10 @@ th, td {
     text-align: left;
 }
 
+td.mail_list_td {
+    width: 60px
+}
+
 th {
     white-space: nowrap;
     text-align: center;
@@ -23,8 +27,6 @@ th[colspan="5"] {
     text-align: center;
 }
 
-tr:hover {
-}
 
 .mailDetail_container {
     position: fixed;
