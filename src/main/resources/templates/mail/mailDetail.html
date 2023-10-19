@@ -51,19 +51,19 @@
         <a th:href="@{/mailList/{empno}(empno=${mail.empno})}" class="mailDetail_back_button">돌아가기</a>
     </th:block>
 </form>
-        <table border="0" style="table-layout: fixed">
-            <tr th:each="ml: ${mailList}">
-                <th:block th:unless="${ml.id==id}">
-                    <td class="mail_list_td">[[${ml.sName}]]</td>
-                    <td>
-                        <a th:href="@{'/mailDetail/' + ${ml.id}}" class="mailDetail_list_title">
-                                <span th:text="${ml.title}"></span>
-                        </a>
-                    </td>
-                    <td class="mail_list_td">[[${#temporals.format(ml.date, 'MM.dd')}]]</td>
-                </th:block>
-            </tr>
-        </table>
+    <br>
+    <hr>
+    <br>
+
+    <th:block th:each="ml: ${mailList}">
+        <th:block th:unless="${ml.id==id}">
+            <a th:href="@{'/mailDetail/' + ${ml.id}}" class="mailDetail_list_title">
+                [[${ml.title}]]</a>
+            [[${ml.sName}]] / [[${#temporals.format(ml.date, 'MM.dd')}]]
+            <br><br>
+        </th:block>
+    </th:block>
+
 
 </div>
 </div>

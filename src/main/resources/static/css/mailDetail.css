@@ -58,7 +58,9 @@ th[colspan="5"] {
 .mailDetail_list_title {
     display: block;
     text-decoration-line: none;
-    font-size: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .mailDetail_list_title:hover {
