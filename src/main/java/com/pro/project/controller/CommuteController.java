@@ -590,13 +590,21 @@ public class CommuteController {
 
             boolean canIgoHome2=time.isAfter(hometime.minusHours(5));
             System.out.println(canIgoHome2);
-            if(canIgoHome2){
-                stuService.updatego(hometime.toString(),empno);
-                stuService.updateworktime(empno,month);
-                responseData=tttime;
+
+            if(working.getIschul().equals("oo")){
+                responseData="이미퇴근";
             } else{
-                responseData="아직못감";
+                if(canIgoHome2){
+                    stuService.updatego(hometime.toString(),empno);
+                    stuService.updateworktime(empno,month);
+                    responseData=tttime;
+                } else{
+                    responseData="아직못감";
+                }
             }
+
+
+
 
         }
 

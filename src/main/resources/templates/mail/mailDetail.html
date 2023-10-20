@@ -38,12 +38,12 @@
 <form action="/mailDelete" method="get">
 <!--<table align="center" cellpadding="0" cellspacing="0" width="600" th:each="mail : ${mails}">-->
     <th:block th:each="mail : ${mails}">
-            <th:block th:text="${mail.title}"></th:block>
+         [제목]   <th:block th:text="${mail.title}"></th:block>
         <hr>
-            <th:block th:text="${mail.sName}"></th:block>
-            &nbsp;&nbsp;&nbsp;<th:block th:text="${#temporals.format(mail.date, 'HH:mm')}"></th:block>
+         [보낸이]  &nbsp;    <th:block th:text="  ${mail.sName}"></th:block> &nbsp;&nbsp;&nbsp;&nbsp;
+        <th:block th:text="${#temporals.format(mail.date, 'HH:mm')}"></th:block>
         <hr>
-            <th:block th:text="${mail.content}"></th:block>
+       [내용] <br><br>      <th:block th:text="${mail.content}"></th:block>
         <hr>
             <input type="hidden" th:value="${mail.id}" name="id">
             <input type="hidden" th:value="${mail.empno}" name="empno" />
