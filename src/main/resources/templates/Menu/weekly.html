@@ -77,12 +77,6 @@
         </td>
     </tr>
     <tr>
-        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 1}" style="width: 70px;">
-            [[${menu.menu1}]]<br>
-            [[${menu.menu2}]]<br>
-            [[${menu.menu3}]]<br>
-            [[${menu.menu4}]]<br>
-        </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 2}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
@@ -114,6 +108,12 @@
             [[${menu.menu4}]]<br>
         </td>
         <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 7}" style="width: 70px;">
+            [[${menu.menu1}]]<br>
+            [[${menu.menu2}]]<br>
+            [[${menu.menu3}]]<br>
+            [[${menu.menu4}]]<br>
+        </td>
+        <td th:each="menu : ${weeklyMenu}" th:if="${menu.dw == 1}" style="width: 70px;">
             [[${menu.menu1}]]<br>
             [[${menu.menu2}]]<br>
             [[${menu.menu3}]]<br>
