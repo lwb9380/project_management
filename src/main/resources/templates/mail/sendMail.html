@@ -37,7 +37,7 @@
 
 <div class="sm_container">
 <form action="/sendMail" method="post">
-    <select name="dept" id="dept">
+    <select name="dept" id="dept" required>
         <option value="">부서를 선택하세요</option>
         <th:block th:each="dept : ${deptList}">
             <option th:value="${dept.deptname}" th:text="${dept.deptname}"></option>
@@ -52,7 +52,7 @@
     <br>
     <br>
     <!-- empno를 출력할 dropdown -->
-    <select name="empno" id="empno">
+    <select name="empno" id="empno" required>
         <option value="">사원을 선택하세요</option>
     </select>
     <br>

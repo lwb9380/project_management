@@ -29,7 +29,6 @@
         select name from dept where empno=#{param1}
     </select>
 
-
     <insert id="sendMail">
         insert into mail (content, date, empno, s_name, title)
         values(#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
