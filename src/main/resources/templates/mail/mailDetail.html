@@ -48,7 +48,7 @@
             <input type="hidden" th:value="${mail.id}" name="id">
             <input type="hidden" th:value="${mail.empno}" name="empno" />
     <input type="submit" value="삭제" onclick="closeMessage()" class="mailDetail_button">
-        <a th:href="@{'/deptSendMail/' + ${mail.empno}}">답장</a>
+        <a th:href="@{'/deptSendMail/' + ${mail.empno}}" class="mailDetail_back_button">답장</a>
         <a th:href="@{/mailList/{empno}(empno=${mail.empno})}" class="mailDetail_back_button">돌아가기</a>
     </th:block>
 </form>
