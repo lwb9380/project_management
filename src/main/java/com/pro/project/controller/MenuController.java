@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.WeekFields;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class MenuController {
@@ -34,7 +36,14 @@ public class MenuController {
     }
     @GetMapping("/weekly")
     public String showMonthlyMenu(Model model) {
-        List<Menu> weeklyMenu = menuRepository.findByWeekNum(42);
+
+        LocalDate today = LocalDate.now();
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        int currentWeekNumber = today.get(weekFields.weekOfWeekBasedYear());
+
+        // DB에서 현재 주차에 해당하는 주간 메뉴를 불러오기
+        List<Menu> weeklyMenu = menuRepository.findByWeekNum(currentWeekNumber);
+
 
         model.addAttribute("weeklyMenu", weeklyMenu);
         System.out.println(weeklyMenu);
